@@ -1,6 +1,5 @@
 ﻿using GaEpd.Library.Domain.Entities;
 using GaEpd.Library.Pagination;
-using System.Linq.Expressions;
 
 namespace GaEpd.Library.Domain.Repositories;
 
@@ -40,7 +39,7 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>An entity.</returns>
     Task<TEntity?> FindAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Func<TEntity, bool> predicate,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -52,26 +51,37 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     Task<IList<TEntity>> GetListAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Searches for <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
+    /// Returns a list of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
     /// Returns an empty list if there are no matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A list of entities.</returns>
     Task<IList<TEntity>> GetListAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Func<TEntity, bool> predicate,
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Searches for <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
-    /// Returns an empty list if there are no matches.
+    /// Returns a paginated list of <see cref="IEntity{TKey}"/> matching the conditions of the
+    /// <paramref name="predicate"/>. Returns an empty list if there are no matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
     /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A sorted and paged list of entities.</returns>
     Task<IList<TEntity>> GetPagedListAsync(
-        Expression<Func<TEntity, bool>> predicate,
+        Func<TEntity, bool> predicate,
+        PaginatedRequest paging,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Returns a paginated list of all <see cref="IEntity{TKey}"/> values.
+    /// Returns an empty list if there are no matches.
+    /// </summary>
+    /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
+    /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>A sorted and paged list of entities.</returns>
+    Task<IList<TEntity>> GetPagedListAsync(
         PaginatedRequest paging,
         CancellationToken cancellationToken = default);
 }

@@ -20,7 +20,7 @@ public static class Guard
         NotNull(value, parameterName);
 
         if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException($"Value cannot be null, empty, or white space.", parameterName);
+            throw new ArgumentException("Value cannot be null, empty, or white space.", parameterName);
 
         return value;
     }
@@ -51,14 +51,14 @@ public static class Guard
         [CallerArgumentExpression("value")] string? parameterName = null) =>
         value >= 0
             ? value
-            : throw new ArgumentException($"Value cannot be negative.", parameterName);
+            : throw new ArgumentException("Value cannot be negative.", parameterName);
 
     public static int Positive(
         int value,
         [CallerArgumentExpression("value")] string? parameterName = null) =>
         value > 0
             ? value
-            : throw new ArgumentException($"Value must be positive (greater than zero).", parameterName);
+            : throw new ArgumentException("Value must be positive (greater than zero).", parameterName);
 
     public static string? RegexMatch(
         string? value,
@@ -69,6 +69,6 @@ public static class Guard
 
         return Regex.IsMatch(value, pattern)
             ? value
-            : throw new ArgumentException($"Value does not match regex.", parameterName);
+            : throw new ArgumentException("Value does not match regex.", parameterName);
     }
 }
