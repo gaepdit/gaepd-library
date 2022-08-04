@@ -506,3 +506,4 @@ FodyWeavers.xsd
 
 # SonarLint Rider plugin
 .idea/**/sonarlint/
+.idea/**/sonarlint-state.xml
