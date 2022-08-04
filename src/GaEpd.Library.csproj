@@ -15,7 +15,12 @@
 
     <PropertyGroup>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <CodeAnalysisRuleSet>..\.sonarlint\gaepdit_gaepd-librarycsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\.sonarlint\gaepdit_gaepd-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
 
     <ItemGroup>
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
