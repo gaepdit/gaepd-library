@@ -13,7 +13,7 @@ public class EqualityTests
             Count = count;
         }
 
-        private string Name { get; }
+        private string Name { get; } = string.Empty;
         private int Count { get; }
 
         protected override IEnumerable<object> GetEqualityComponents()
