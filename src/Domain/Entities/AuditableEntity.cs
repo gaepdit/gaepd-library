@@ -7,11 +7,23 @@ public abstract class AuditableEntity<TKey, TUserKey> : Entity<TKey>, IAuditable
     where TKey : IEquatable<TKey>
     where TUserKey : IEquatable<TUserKey>
 {
-    public DateTimeOffset CreatedAt { get; set; }
-    public TUserKey? CreatedBy { get; set; }
-    public DateTimeOffset? UpdatedAt { get; set; }
-    public TUserKey? UpdatedBy { get; set; }
-
     protected AuditableEntity() { }
     protected AuditableEntity(TKey id) : base(id) { }
+
+    public DateTimeOffset? CreatedAt { get; private set; }
+    public TUserKey? CreatedBy { get; private set; }
+    public DateTimeOffset? UpdatedAt { get; private set; }
+    public TUserKey? UpdatedBy { get; private set; }
+
+    public void SetCreator(TUserKey? userId)
+    {
+        CreatedAt = DateTimeOffset.Now;
+        CreatedBy = userId;
+    }
+
+    public void SetUpdater(TUserKey? userId)
+    {
+        UpdatedAt = DateTimeOffset.Now;
+        UpdatedBy = userId;
+    }
 }
