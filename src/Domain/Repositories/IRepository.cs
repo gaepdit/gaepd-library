@@ -1,4 +1,4 @@
-﻿using GaEpd.Library.Domain.Entities;
+using GaEpd.Library.Domain.Entities;
 
 namespace GaEpd.Library.Domain.Repositories;
 
@@ -13,7 +13,6 @@ public interface IRepository<TEntity, in TKey> : IReadOnlyRepository<TEntity, TK
 {
     /// <summary>
     /// Inserts a new <see cref="IEntity{TKey}"/>.
-    /// Throws <see cref="EntityAlreadyExistsException"/> if an entity already exists with the given Id.
     /// </summary>
     /// <param name="entity">The entity to insert.</param>
     /// <param name="autoSave">Whether to automatically save the changes.</param>
