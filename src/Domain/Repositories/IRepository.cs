@@ -1,4 +1,4 @@
-using GaEpd.Library.Domain.Entities;
+﻿using GaEpd.Library.Domain.Entities;
 
 namespace GaEpd.Library.Domain.Repositories;
 
@@ -16,25 +16,25 @@ public interface IRepository<TEntity, in TKey> : IReadOnlyRepository<TEntity, TK
     /// </summary>
     /// <param name="entity">The entity to insert.</param>
     /// <param name="autoSave">Whether to automatically save the changes.</param>
-    /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>The inserted entity.</returns>
-    Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
+    Task InsertAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
 
     /// <summary>
     /// Updates an <see cref="IEntity{TKey}"/>.
     /// </summary>
     /// <param name="entity">The entity to update.</param>
     /// <param name="autoSave">Whether to automatically save the changes.</param>
-    /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>The updated entity.</returns>
-    Task<TEntity> UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
+    Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
 
     /// <summary>
     /// Deletes an <see cref="IEntity{TKey}"/>.
     /// </summary>
     /// <param name="id">The Id of the entity to delete.</param>
     /// <param name="autoSave">Whether to automatically save the changes.</param>
-    /// <param name="cancellationToken"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns><see cref="Task"/></returns>
-    Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default);
+    Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken token = default);
 }
