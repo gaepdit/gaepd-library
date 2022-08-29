@@ -14,3 +14,4 @@ This project includes:
 * An abstract Value Object class.
 * Basic repository interfaces.
 * Paginated request and result interfaces and classes.
+* A List Item record type with ID and Name fields, useful for creating HTML Select lists.
