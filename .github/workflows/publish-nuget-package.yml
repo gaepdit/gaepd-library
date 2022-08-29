@@ -1,0 +1,29 @@
+# Publish the NuGet package to GitHub Packages.
+# Workflow runs when a version tag is pushed.
+
+name: Publish NuGet Package
+
+on:
+  push:
+    tags: v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Build and pack
+        run: dotnet build --configuration Release
+
+      - name: Add Custom NuGet Feed
+        run: dotnet nuget add source --username ${{ GITHUB.ACTOR }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ GITHUB.REPOSITORY_OWNER }}/index.json"
+
+      - name: NuGet Push
+        run: dotnet nuget push src/bin/Release/*.nupkg --source "github" --skip-duplicate
