@@ -6,35 +6,40 @@
         <Nullable>enable</Nullable>
         <RootNamespace>GaEpd.Library</RootNamespace>
         <PackageId>GaEpd.Library</PackageId>
-        <Version>0.0.1</Version>
-        <Authors>DouglasWaldron</Authors>
+        <Version>0.1.0-beta</Version>
+        <Authors>Douglas Waldron</Authors>
         <Company>Georgia EPD</Company>
         <Title>Georgia EPD-IT Core App Library</Title>
+        <Description>Core app library for GA EPD-IT projects</Description>
+        <Copyright>Copyright (c) State of Georgia 2022</Copyright>
+        <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/gaepdit/gaepd-library</PackageProjectUrl>
+        <PackageIcon>epd-icon-tile.png</PackageIcon>
+        <RepositoryUrl>https://github.com/gaepdit/gaepd-library.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <CodeAnalysisRuleSet>..\.sonarlint\gaepdit_gaepd-librarycsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\.sonarlint\gaepdit_gaepd-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
+        <None Include="assets\epd-icon-tile.png" Pack="true" PackagePath="\" />
+        <AdditionalFiles Include="..\.sonarlint\gaepdit_gaepd-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="8.42.0.51121">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-    </ItemGroup>
-    
-    <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
