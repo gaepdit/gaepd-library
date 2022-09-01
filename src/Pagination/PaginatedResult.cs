@@ -8,7 +8,7 @@ public class PaginatedResult<T> : IPaginatedResult<T>
 {
     public PaginatedResult(IEnumerable<T> items, int totalCount, IPaginatedRequest paging)
     {
-        TotalCount = Guard.NotNegative(totalCount, nameof(totalCount));
+        TotalCount = Guard.NotNegative(totalCount);
         PageNumber = paging.PageNumber;
         PageSize = paging.PageSize;
 

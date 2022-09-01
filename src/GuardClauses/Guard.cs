@@ -17,6 +17,8 @@ public static class Guard
         [NotNull] string? value,
         [CallerArgumentExpression("value")] string? parameterName = null)
     {
+        // The original parameter name should be passed through so that the correct name is returned to
+        // the original caller.
         NotNull(value, parameterName);
 
         if (string.IsNullOrWhiteSpace(value))
@@ -31,6 +33,8 @@ public static class Guard
         int maxLength = int.MaxValue,
         [CallerArgumentExpression("value")] string? parameterName = null)
     {
+        // The original parameter name should be passed through so that the correct name is returned to
+        // the original caller.
         NotNullOrWhiteSpace(value, parameterName);
 
         if (minLength > maxLength)
