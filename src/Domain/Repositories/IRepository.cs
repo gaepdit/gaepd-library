@@ -30,11 +30,12 @@ public interface IRepository<TEntity, in TKey> : IReadOnlyRepository<TEntity, TK
     Task UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
 
     /// <summary>
-    /// Deletes an <see cref="IEntity{TKey}"/>.
+    /// Deletes an <see cref="IEntity{TKey}"/>. Avoid using this method if the Entity 
+    /// implements <see cref="ISoftDelete{TKey}"/>.
     /// </summary>
-    /// <param name="id">The Id of the entity to delete.</param>
+    /// <param name="entity">The entity to delete.</param>
     /// <param name="autoSave">Whether to automatically save the changes.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns><see cref="Task"/></returns>
-    Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken token = default);
+    Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
 }

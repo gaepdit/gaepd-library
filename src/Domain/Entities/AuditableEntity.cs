@@ -15,12 +15,14 @@ public abstract class AuditableEntity<TKey, TUserKey> : Entity<TKey>, IAuditable
     public DateTimeOffset? UpdatedAt { get; private set; }
     public TUserKey? UpdatedBy { get; private set; }
 
+    /// <inheritdoc/>
     public void SetCreator(TUserKey? userId)
     {
         CreatedAt = DateTimeOffset.Now;
         CreatedBy = userId;
     }
 
+    /// <inheritdoc/>
     public void SetUpdater(TUserKey? userId)
     {
         UpdatedAt = DateTimeOffset.Now;
