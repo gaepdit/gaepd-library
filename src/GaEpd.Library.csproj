@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <RootNamespace>GaEpd.Library</RootNamespace>
         <PackageId>GaEpd.Library</PackageId>
-        <Version>0.1.1-beta</Version>
+        <Version>0.2.0-beta</Version>
         <Authors>Douglas Waldron</Authors>
         <Company>Georgia EPD</Company>
         <Title>Georgia EPD-IT Core App Library</Title>
