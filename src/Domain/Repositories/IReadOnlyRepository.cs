@@ -1,5 +1,6 @@
 ﻿using GaEpd.Library.Domain.Entities;
 using GaEpd.Library.Pagination;
+using System.Linq.Expressions;
 
 namespace GaEpd.Library.Domain.Repositories;
 
@@ -39,49 +40,49 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>An entity.</returns>
     Task<TEntity?> FindAsync(
-        Func<TEntity, bool> predicate,
+        Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default);
 
     /// <summary>
-    /// Returns a list of all <see cref="IEntity{TKey}"/> values>.
-    /// Returns an empty list if none exist.
+    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values>.
+    /// Returns an empty collection if none exist.
     /// </summary>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>A list of entities.</returns>
-    Task<IList<TEntity>> GetListAsync(CancellationToken token = default);
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default);
 
     /// <summary>
-    /// Returns a list of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
-    /// Returns an empty list if there are no matches.
+    /// Returns a read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
+    /// Returns an empty collection if there are no matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>A list of entities.</returns>
-    Task<IList<TEntity>> GetListAsync(
-        Func<TEntity, bool> predicate,
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetListAsync(
+        Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default);
 
     /// <summary>
-    /// Returns a paginated list of <see cref="IEntity{TKey}"/> matching the conditions of the
-    /// <paramref name="predicate"/>. Returns an empty list if there are no matches.
+    /// Returns a paginated read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the
+    /// <paramref name="predicate"/>. Returns an empty collection if there are no matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>A sorted and paged list of entities.</returns>
-    Task<IList<TEntity>> GetPagedListAsync(
-        Func<TEntity, bool> predicate,
+    /// <returns>A sorted and paged read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
+        Expression<Func<TEntity, bool>> predicate,
         PaginatedRequest paging,
         CancellationToken token = default);
 
     /// <summary>
-    /// Returns a paginated list of all <see cref="IEntity{TKey}"/> values.
-    /// Returns an empty list if there are no matches.
+    /// Returns a paginated read-only collection of all <see cref="IEntity{TKey}"/> values.
+    /// Returns an empty collection if there are no matches.
     /// </summary>
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>A sorted and paged list of entities.</returns>
-    Task<IList<TEntity>> GetPagedListAsync(
-        PaginatedRequest paging,
+    /// <returns>A sorted and paged read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
+        PaginatedRequest paging, 
         CancellationToken token = default);
 }
