@@ -5,8 +5,14 @@
 public abstract class Entity<TKey> : IEntity<TKey>
     where TKey : IEquatable<TKey>
 {
+    private TKey? _id;
+
     /// <inheritdoc/>
-    public TKey Id { get; protected set; } = default!;
+    public TKey Id
+    {
+        protected set => _id = value;
+        get => _id ?? throw new InvalidOperationException($"Uninitialized property: {nameof(Id)}");
+    }
 
     protected Entity() { }
 
