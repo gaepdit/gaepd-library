@@ -16,6 +16,14 @@ public class RegexMatch
     }
 
     [Test]
+    public void ReturnsSameValueGivenValidValue()
+    {
+        const string validMatch = "101";
+        var result = Guard.RegexMatch(validMatch, RegexPattern);
+        result.Should().Be(validMatch);
+    }
+
+    [Test]
     public void ThrowsGivenInvalidMatch()
     {
         const string invalidMatch = "ABC";
