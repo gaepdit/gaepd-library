@@ -17,5 +17,4 @@ public interface ISoftDelete<TUserKey>
     /// </summary>
     /// <param name="userId">The ID of the user deleting the entity.</param>
     void SetDeleted(TUserKey? userId);
-
 }
