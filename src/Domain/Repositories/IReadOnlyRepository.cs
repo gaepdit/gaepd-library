@@ -1,8 +1,8 @@
-﻿using GaEpd.Library.Domain.Entities;
-using GaEpd.Library.Pagination;
+﻿using GaEpd.AppLibrary.Domain.Entities;
+using GaEpd.AppLibrary.Pagination;
 using System.Linq.Expressions;
 
-namespace GaEpd.Library.Domain.Repositories;
+namespace GaEpd.AppLibrary.Domain.Repositories;
 
 /// <summary>
 /// A generic repository for Entities with methods for reading data.

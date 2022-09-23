@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace GaEpd.Library.GuardClauses;
+namespace GaEpd.AppLibrary.GuardClauses;
 
 [DebuggerStepThrough]
 public static class Guard

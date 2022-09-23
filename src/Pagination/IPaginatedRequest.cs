@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Pagination;
+﻿namespace GaEpd.AppLibrary.Pagination;
 
 /// <summary>
 /// An interface for requesting a sorted and paged result list.

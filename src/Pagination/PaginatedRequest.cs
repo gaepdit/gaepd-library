@@ -1,6 +1,6 @@
-﻿using GaEpd.Library.GuardClauses;
+﻿using GaEpd.AppLibrary.GuardClauses;
 
-namespace GaEpd.Library.Pagination;
+namespace GaEpd.AppLibrary.Pagination;
 
 public class PaginatedRequest : IPaginatedRequest
 {

@@ -1,6 +1,6 @@
-﻿using GaEpd.Library.GuardClauses;
+﻿using GaEpd.AppLibrary.GuardClauses;
 
-namespace GaEpd.Library.Domain.Entities;
+namespace GaEpd.AppLibrary.Domain.Entities;
 
 /// <inheritdoc cref="IEntity{TKey}" />
 [Serializable]

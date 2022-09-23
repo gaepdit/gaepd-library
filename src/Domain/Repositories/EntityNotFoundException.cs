@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace GaEpd.Library.Domain.Repositories;
+namespace GaEpd.AppLibrary.Domain.Repositories;
 
 /// <summary>
 /// The exception that is thrown if an expected entity is not found. 

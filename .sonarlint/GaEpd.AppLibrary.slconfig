@@ -4,8 +4,8 @@
     "Key": "gaepdit",
     "Name": "Georgia EPD IT"
   },
-  "ProjectKey": "gaepdit_gaepd-library",
-  "ProjectName": "gaepd-library",
+  "ProjectKey": "gaepdit_app-library",
+  "ProjectName": "app-library",
   "Profiles": {
     "CSharp": {
       "ProfileKey": "AX6cU2Nlc6yHdIzagTnC",

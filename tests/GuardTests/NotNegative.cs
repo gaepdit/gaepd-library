@@ -1,7 +1,7 @@
 using FluentAssertions;
-using GaEpd.Library.GuardClauses;
+using GaEpd.AppLibrary.GuardClauses;
 
-namespace GaEpd.Library.Tests.GuardTests;
+namespace GaEpd.AppLibrary.Tests.GuardTests;
 
 public class NotNegative
 {

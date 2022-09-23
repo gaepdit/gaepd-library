@@ -1,6 +1,6 @@
-﻿using GaEpd.Library.Domain.Entities;
+﻿using GaEpd.AppLibrary.Domain.Entities;
 
-namespace GaEpd.Library.Domain.Repositories;
+namespace GaEpd.AppLibrary.Domain.Repositories;
 
 /// <summary>
 /// A generic repository for entities with methods for reading and writing.

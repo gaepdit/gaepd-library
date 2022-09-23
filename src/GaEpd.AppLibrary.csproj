@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>GaEpd.Library</RootNamespace>
-        <PackageId>GaEpd.Library</PackageId>
+        <PackageId>GaEpd.AppLibrary</PackageId>
         <Version>0.2.0-beta</Version>
         <Authors>Douglas Waldron</Authors>
         <Company>Georgia EPD</Company>
@@ -13,21 +13,21 @@
         <Description>Core app library for GA EPD-IT projects</Description>
         <Copyright>Copyright (c) State of Georgia 2022</Copyright>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/gaepdit/gaepd-library</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
         <PackageIcon>epd-icon-tile.png</PackageIcon>
-        <RepositoryUrl>https://github.com/gaepdit/gaepd-library.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/gaepdit/app-library.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <CodeAnalysisRuleSet>..\.sonarlint\gaepdit_gaepd-librarycsharp.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>..\.sonarlint\gaepdit_app-librarycsharp.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
         <None Include="assets\epd-icon-tile.png" Pack="true" PackagePath="\" />
-        <AdditionalFiles Include="..\.sonarlint\gaepdit_gaepd-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+        <AdditionalFiles Include="..\.sonarlint\gaepdit_app-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace GaEpd.Library.ListItems;
+namespace GaEpd.AppLibrary.ListItems;
 
 public record ListItem<TKey>(TKey Id, string Name) where TKey : IEquatable<TKey>;
 

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using GaEpd.Library.Domain.ValueObjects;
+using GaEpd.AppLibrary.Domain.ValueObjects;
 
-namespace GaEpd.Library.Tests.ValueObjectTests;
+namespace GaEpd.AppLibrary.Tests.ValueObjectTests;
 
 public class EqualityTests
 {

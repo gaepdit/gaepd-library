@@ -1,11 +1,11 @@
-# Georgia EPD-IT Library
+# Georgia EPD-IT App Library
 
 This library was created by Georgia EPD-IT to provide common classes and tools for our web applications. (Much of this work was inspired by the [ABP Framework](https://abp.io/).)
 
-[![.NET Test](https://github.com/gaepdit/gaepd-library/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gaepdit/gaepd-library/actions/workflows/dotnet.yml)
-[![CodeQL](https://github.com/gaepdit/gaepd-library/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/gaepdit/gaepd-library/actions/workflows/codeql-analysis.yml)
-[![SonarCloud Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_gaepd-library&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_gaepd-library)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_gaepd-library&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_gaepd-library)
+[![.NET Test](https://github.com/gaepdit/app-library/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gaepdit/app-library/actions/workflows/dotnet.yml)
+[![CodeQL](https://github.com/gaepdit/app-library/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/gaepdit/app-library/actions/workflows/codeql-analysis.yml)
+[![SonarCloud Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_app-library&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_app-library)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_app-library&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_app-library)
 
 ## What's included
 

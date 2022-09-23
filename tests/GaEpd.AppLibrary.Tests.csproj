@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\GaEpd.Library.csproj" />
+        <ProjectReference Include="..\src\GaEpd.AppLibrary.csproj" />
     </ItemGroup>
 
 </Project>

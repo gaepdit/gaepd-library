@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Domain.Entities;
+﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
 /// <summary>
 /// Marks an entity for enabling auditing in the database.

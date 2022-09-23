@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Domain.Entities;
+﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
 /// <summary>
 /// Marks an entity for enabling soft deletion in the database.

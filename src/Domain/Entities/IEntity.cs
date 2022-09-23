@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Domain.Entities;
+﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
 /// <summary>
 /// Defines an entity with an "Id" primary key.

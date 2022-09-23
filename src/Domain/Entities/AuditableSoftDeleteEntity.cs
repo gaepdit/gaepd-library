@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Domain.Entities;
+﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
 /// <summary>
 /// An implementation of <see cref="IEntity{TKey}"/> that also implements <see cref="IAuditableEntity{TUserKey}"/>

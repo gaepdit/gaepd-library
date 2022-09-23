@@ -1,4 +1,4 @@
-﻿namespace GaEpd.Library.Domain.ValueObjects;
+﻿namespace GaEpd.AppLibrary.Domain.ValueObjects;
 
 /// <summary>
 /// Creates a Value Object record.

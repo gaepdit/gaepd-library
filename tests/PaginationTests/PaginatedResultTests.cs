@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using GaEpd.Library.Pagination;
+using GaEpd.AppLibrary.Pagination;
 
-namespace GaEpd.Library.Tests.PaginationTests;
+namespace GaEpd.AppLibrary.Tests.PaginationTests;
 
 public class PaginatedResultTests
 {

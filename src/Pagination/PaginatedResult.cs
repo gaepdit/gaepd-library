@@ -1,7 +1,7 @@
-﻿using GaEpd.Library.GuardClauses;
+﻿using GaEpd.AppLibrary.GuardClauses;
 using System.Text.Json.Serialization;
 
-namespace GaEpd.Library.Pagination;
+namespace GaEpd.AppLibrary.Pagination;
 
 public class PaginatedResult<T> : IPaginatedResult<T>
     where T : class
