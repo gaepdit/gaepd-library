@@ -1,4 +1,6 @@
-﻿namespace GaEpd.Library.Domain.Entities;
+﻿using GaEpd.Library.GuardClauses;
+
+namespace GaEpd.Library.Domain.Entities;
 
 /// <inheritdoc cref="IEntity{TKey}" />
 [Serializable]
@@ -10,7 +12,7 @@ public abstract class Entity<TKey> : IEntity<TKey>
     /// <inheritdoc/>
     public TKey Id
     {
-        protected set => _id = value;
+        protected set => _id = Guard.NotNull(value);
         get => _id ?? throw new InvalidOperationException($"Uninitialized property: {nameof(Id)}");
     }
 
