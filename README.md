@@ -7,6 +7,12 @@ This library was created by Georgia EPD-IT to provide common classes and tools f
 [![SonarCloud Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_app-library&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_app-library)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_app-library&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_app-library)
 
+## How to install
+
+To install , search for "GaEpd.AppLibrary" in the NuGet package manager or run the following command:
+
+`dotnet add package GaEpd.AppLibrary`
+
 ## What's included
 
 ### Guard clauses

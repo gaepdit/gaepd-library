@@ -16,6 +16,7 @@
         <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
         <PackageIcon>epd-icon-tile.png</PackageIcon>
         <RepositoryUrl>https://github.com/gaepdit/app-library.git</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>

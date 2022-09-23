@@ -5,7 +5,8 @@ name: Publish NuGet Package
 
 on:
   push:
-    tags: v*
+    tags: [v*]
+  workflow_dispatch: 
 
 jobs:
   publish:
@@ -22,8 +23,5 @@ jobs:
       - name: Build and pack
         run: dotnet build --configuration Release
 
-      - name: Add Custom NuGet Feed
-        run: dotnet nuget add source --username ${{ GITHUB.ACTOR }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ GITHUB.REPOSITORY_OWNER }}/index.json"
-
       - name: NuGet Push
-        run: dotnet nuget push src/bin/Release/*.nupkg --source "github" --skip-duplicate
+        run: dotnet nuget push src/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
