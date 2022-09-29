@@ -29,3 +29,25 @@ public abstract class AuditableEntity<TKey, TUserKey> : Entity<TKey>, IAuditable
         UpdatedBy = userId;
     }
 }
+
+/// <summary>
+/// An implementation of <see cref="IEntity{TKey}"/> that also implements <see cref="IAuditableEntity{TUserKey}"/>.
+/// A <see cref="string"/> is used for the User primary key.
+/// </summary>
+/// <typeparam name="TKey">The type of the primary key.</typeparam>
+public abstract class AuditableEntity<TKey> : AuditableEntity<TKey, string>
+    where TKey : IEquatable<TKey>
+{
+    protected AuditableEntity() { }
+    protected AuditableEntity(TKey id) : base(id) { }
+}
+
+/// <summary>
+/// The default implementation of <see cref="AuditableEntity{TKey}"/> using <see cref="Guid"/> for the Entity primary
+/// key, and <see cref="string"/> for the User primary key.
+/// </summary>
+public abstract class AuditableEntity : AuditableEntity<Guid>
+{
+    protected AuditableEntity() { }
+    protected AuditableEntity(Guid id) : base(id) { }
+}

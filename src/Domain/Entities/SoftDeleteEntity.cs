@@ -22,3 +22,25 @@ public abstract class SoftDeleteEntity<TKey, TUserKey> : Entity<TKey>, ISoftDele
         DeletedBy = userId;
     }
 }
+
+/// <summary>
+/// An implementation of <see cref="IEntity{TKey}"/> that also implements <see cref="ISoftDelete{TUserKey}"/>
+/// A <see cref="string"/> is used for the User primary key.
+/// </summary>
+/// <typeparam name="TKey">The type of the primary key.</typeparam>
+public abstract class SoftDeleteEntity<TKey> : SoftDeleteEntity<TKey, string>
+    where TKey : IEquatable<TKey>
+{
+    protected SoftDeleteEntity() { }
+    protected SoftDeleteEntity(TKey id) : base(id) { }
+}
+
+/// <summary>
+/// The default implementation of <see cref="SoftDeleteEntity{TKey}"/> using <see cref="Guid"/> for the Entity
+/// primary key, and <see cref="string"/> for the User primary key.
+/// </summary>
+public abstract class SoftDeleteEntity : SoftDeleteEntity<Guid>
+{
+    protected SoftDeleteEntity() { }
+    protected SoftDeleteEntity(Guid id) : base(id) { }
+}

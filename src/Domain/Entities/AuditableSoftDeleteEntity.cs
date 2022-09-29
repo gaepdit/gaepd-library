@@ -23,3 +23,25 @@ public abstract class AuditableSoftDeleteEntity<TKey, TUserKey> : AuditableEntit
         DeletedBy = userId;
     }
 }
+
+/// <summary>
+/// An implementation of <see cref="IEntity{TKey}"/> that also implements <see cref="IAuditableEntity{TUserKey}"/>
+/// and <see cref="ISoftDelete{TUserKey}"/>. A <see cref="string"/> is used for the User primary key.
+/// </summary>
+/// <typeparam name="TKey">The type of the primary key.</typeparam>
+public abstract class AuditableSoftDeleteEntity<TKey> : AuditableSoftDeleteEntity<TKey, string>
+    where TKey : IEquatable<TKey>
+{
+    protected AuditableSoftDeleteEntity() { }
+    protected AuditableSoftDeleteEntity(TKey id) : base(id) { }
+}
+
+/// <summary>
+/// The default implementation of <see cref="AuditableSoftDeleteEntity{TKey}"/> using <see cref="Guid"/> for the Entity
+/// primary key, and <see cref="string"/> for the User primary key.
+/// </summary>
+public abstract class AuditableSoftDeleteEntity : AuditableSoftDeleteEntity<Guid>
+{
+    protected AuditableSoftDeleteEntity() { }
+    protected AuditableSoftDeleteEntity(Guid id) : base(id) { }
+}
