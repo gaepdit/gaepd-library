@@ -15,10 +15,10 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
 {
     /// <summary>
     /// Returns the <see cref="IEntity{TKey}"/> with the given <paramref name="id"/>.
-    /// Throws <see cref="EntityNotFoundException"/> if no entity exists with the given Id.
     /// </summary>
     /// <param name="id">The Id of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <exception cref="EntityNotFoundException">Thrown if no entity exists with the given Id.</exception>
     /// <returns>An entity.</returns>
     Task<TEntity> GetAsync(TKey id, CancellationToken token = default);
 
@@ -34,10 +34,10 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     /// <summary>
     /// Returns a single <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
     /// Returns null if there are no matches.
-    /// Throws <see cref="InvalidOperationException"/> if there are multiple matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <exception cref="InvalidOperationException">Thrown if there are multiple matches.</exception>
     /// <returns>An entity.</returns>
     Task<TEntity?> FindAsync(
         Expression<Func<TEntity, bool>> predicate,
