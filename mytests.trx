@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="7367c87c-203f-4143-82f6-f84b7558817e" name="pat.tran@DNR-H1FK6J3 2022-10-12 12:22:45" runUser="SOG\pat.tran" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-10-12T12:22:45.7077082-04:00" queuing="2022-10-12T12:22:45.7077087-04:00" start="2022-10-12T12:22:42.5752849-04:00" finish="2022-10-12T12:22:46.1913367-04:00" />
+  <TestSettings name="default" id="2085a83d-e837-432e-afc9-928b99b8b629">
+    <Deployment runDeploymentRoot="pat.tran_DNR-H1FK6J3_2022-10-12_12_22_45" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="e40cb580-e21b-4852-aa21-379703078a58" testId="7cd414fa-80f0-3605-e1b1-0d7667f902ba" testName="ThrowsExceptionGivenNegativeCount" computerName="DNR-H1FK6J3" duration="00:00:00.0008830" startTime="2022-10-12T12:22:45.6076331-04:00" endTime="2022-10-12T12:22:45.6085154-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e40cb580-e21b-4852-aa21-379703078a58" />
+    <UnitTestResult executionId="8624aabd-06f8-4bab-82e8-9caad1e358a3" testId="9e5b5782-2de0-a689-b285-4c1f7ed5b105" testName="ReturnsCorrectlyGivenPartialList" computerName="DNR-H1FK6J3" duration="00:00:00.0009590" startTime="2022-10-12T12:22:45.6066531-04:00" endTime="2022-10-12T12:22:45.6076121-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8624aabd-06f8-4bab-82e8-9caad1e358a3" />
+    <UnitTestResult executionId="4833efd5-9c06-43fa-9837-c31d8ad5ca75" testId="c3bc827a-292f-e97a-c458-ac68c409c56f" testName="ThrowsExceptionGivenZeroPageSize" computerName="DNR-H1FK6J3" duration="00:00:00.0005520" startTime="2022-10-12T12:22:45.6092147-04:00" endTime="2022-10-12T12:22:45.6097670-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4833efd5-9c06-43fa-9837-c31d8ad5ca75" />
+    <UnitTestResult executionId="83363919-47d2-4b69-b5de-da017d70370d" testId="cd1c322f-dc55-b389-f315-0176ef16b29c" testName="ThrowsGivenNegativeValue" computerName="DNR-H1FK6J3" duration="00:00:00.0005300" startTime="2022-10-12T12:22:45.5914967-04:00" endTime="2022-10-12T12:22:45.5920262-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="83363919-47d2-4b69-b5de-da017d70370d" />
+    <UnitTestResult executionId="9829e10c-6acf-4c84-ab02-e795d55f207e" testId="6bf74aff-5567-90a9-a82e-45bfd0024fcc" testName="ThrowsGivenInvalidMatch" computerName="DNR-H1FK6J3" duration="00:00:00.0005080" startTime="2022-10-12T12:22:45.5956684-04:00" endTime="2022-10-12T12:22:45.5961758-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9829e10c-6acf-4c84-ab02-e795d55f207e" />
+    <UnitTestResult executionId="3617d607-b663-4cfd-8eb0-7f4d8699449c" testId="ad69dfa1-ba4a-4edf-21d2-003207a479f3" testName="ThrowsIfMinLengthExceedsMaxLength" computerName="DNR-H1FK6J3" duration="00:00:00.0005400" startTime="2022-10-12T12:22:45.5993912-04:00" endTime="2022-10-12T12:22:45.5999310-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3617d607-b663-4cfd-8eb0-7f4d8699449c" />
+    <UnitTestResult executionId="6d141c43-9a3a-4917-ac63-7b07913d0a17" testId="a43bcc1c-3e09-4d49-0b3a-2ca329d1982c" testName="DoesNotThrowGivenPositiveValue" computerName="DNR-H1FK6J3" duration="00:00:00.0005689" startTime="2022-10-12T12:22:45.5907487-04:00" endTime="2022-10-12T12:22:45.5913171-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d141c43-9a3a-4917-ac63-7b07913d0a17" />
+    <UnitTestResult executionId="b7fa9a66-e2ad-4d48-bb15-ad309193f48c" testId="c7907e91-d1d0-94dd-1698-db2efb86af9e" testName="ThrowsGivenWhiteSpaceValue" computerName="DNR-H1FK6J3" duration="00:00:00.0003800" startTime="2022-10-12T12:22:45.5990011-04:00" endTime="2022-10-12T12:22:45.5993813-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b7fa9a66-e2ad-4d48-bb15-ad309193f48c" />
+    <UnitTestResult executionId="42c8b154-1648-482a-a6c9-f72cc1c2596b" testId="04e1d9f9-e6cf-22ee-d5e8-412a851bc60f" testName="ThrowsGivenNullValue" computerName="DNR-H1FK6J3" duration="00:00:00.0010310" startTime="2022-10-12T12:22:45.5871985-04:00" endTime="2022-10-12T12:22:45.5882294-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="42c8b154-1648-482a-a6c9-f72cc1c2596b" />
+    <UnitTestResult executionId="74fba384-d1b9-4425-bf72-d9fb0db39c4b" testId="d23a1269-073b-0f46-8409-c5fc18e7774a" testName="DoesNotThrowGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0010020" startTime="2022-10-12T12:22:45.5833779-04:00" endTime="2022-10-12T12:22:45.5843796-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="74fba384-d1b9-4425-bf72-d9fb0db39c4b" />
+    <UnitTestResult executionId="ebe6b7e3-e48f-4129-b5df-99875854e3c8" testId="4e94f98a-24fa-5d9c-8740-531f6eb5d172" testName="EquivalentValueObjectsAreEqual" computerName="DNR-H1FK6J3" duration="00:00:00.0002980" startTime="2022-10-12T12:22:45.6109935-04:00" endTime="2022-10-12T12:22:45.6112916-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ebe6b7e3-e48f-4129-b5df-99875854e3c8" />
+    <UnitTestResult executionId="36d2eb07-df48-451b-a562-7cd1271e22d0" testId="53c91cee-0fd4-a509-5c7e-98432e3220ed" testName="ThrowsExceptionGivenZeroPageSize" computerName="DNR-H1FK6J3" duration="00:00:00.0004860" startTime="2022-10-12T12:22:45.6032303-04:00" endTime="2022-10-12T12:22:45.6037157-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36d2eb07-df48-451b-a562-7cd1271e22d0" />
+    <UnitTestResult executionId="4bce4d3f-3463-4ee7-b35f-08b9ba825a30" testId="78392286-5c02-dd5d-83cb-0b3e8878ce3f" testName="ThrowsGivenValueThatIsTooLong" computerName="DNR-H1FK6J3" duration="00:00:00.0004929" startTime="2022-10-12T12:22:45.5980292-04:00" endTime="2022-10-12T12:22:45.5985216-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4bce4d3f-3463-4ee7-b35f-08b9ba825a30" />
+    <UnitTestResult executionId="8594d4fd-ad46-466f-a02f-0ad7be5a397e" testId="727fba12-728a-092b-f5f3-894660620b46" testName="ReturnsSameValueGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0002060" startTime="2022-10-12T12:22:45.5954502-04:00" endTime="2022-10-12T12:22:45.5956559-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8594d4fd-ad46-466f-a02f-0ad7be5a397e" />
+    <UnitTestResult executionId="d96d927f-8b2b-4587-a15e-0b1357123e98" testId="090fb182-3d46-0241-7219-1f534f30f2ed" testName="DoesNotThrowGivenNonNullValue" computerName="DNR-H1FK6J3" duration="00:00:00.0004840" startTime="2022-10-12T12:22:45.5893209-04:00" endTime="2022-10-12T12:22:45.5898043-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d96d927f-8b2b-4587-a15e-0b1357123e98" />
+    <UnitTestResult executionId="864de155-63cf-4762-9b0c-830822da1c42" testId="72ba0b79-8c21-4a79-bc1f-01cb5aa4dba4" testName="ThrowsGivenWhiteSpaceValue" computerName="DNR-H1FK6J3" duration="00:00:00.0007670" startTime="2022-10-12T12:22:45.5882523-04:00" endTime="2022-10-12T12:22:45.5890190-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="864de155-63cf-4762-9b0c-830822da1c42" />
+    <UnitTestResult executionId="fd2b0ea0-aa0a-438a-a83c-c0adb7bea1fc" testId="730f12c2-e5d6-6018-1c48-46354b9d8944" testName="ValueObjectsAreNotEqualToNull" computerName="DNR-H1FK6J3" duration="00:00:00.0002520" startTime="2022-10-12T12:22:45.6113045-04:00" endTime="2022-10-12T12:22:45.6115566-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fd2b0ea0-aa0a-438a-a83c-c0adb7bea1fc" />
+    <UnitTestResult executionId="5d4bae55-04ee-41f5-8658-c50a803abeb9" testId="0bc1e923-b903-ee17-37f8-4169bb03a761" testName="ThrowsExceptionGivenZeroPageNumber" computerName="DNR-H1FK6J3" duration="00:00:00.0015060" startTime="2022-10-12T12:22:45.6017066-04:00" endTime="2022-10-12T12:22:45.6032127-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d4bae55-04ee-41f5-8658-c50a803abeb9" />
+    <UnitTestResult executionId="b573fa5f-a84f-46fc-8133-0529d5851a88" testId="2b6c6ec3-b647-bbb2-d47e-6564695b8b66" testName="ThrowsGivenZeroValue" computerName="DNR-H1FK6J3" duration="00:00:00.0005840" startTime="2022-10-12T12:22:45.5920544-04:00" endTime="2022-10-12T12:22:45.5926381-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b573fa5f-a84f-46fc-8133-0529d5851a88" />
+    <UnitTestResult executionId="98f25716-326b-4d47-9da3-28a180fbf548" testId="b20a9630-d09f-de3b-e335-ce1be596b9db" testName="DoesNotThrowGivenZeroValue" computerName="DNR-H1FK6J3" duration="00:00:00.0005270" startTime="2022-10-12T12:22:45.5624831-04:00" endTime="2022-10-12T12:22:45.5630103-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98f25716-326b-4d47-9da3-28a180fbf548" />
+    <UnitTestResult executionId="8c6ba91b-c930-4290-9cba-89021a7a64a5" testId="e931945e-4c15-4ba3-6195-de0ecfe2f512" testName="ReturnsSameValueGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0024950" startTime="2022-10-12T12:22:45.5846744-04:00" endTime="2022-10-12T12:22:45.5871699-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c6ba91b-c930-4290-9cba-89021a7a64a5" />
+    <UnitTestResult executionId="5dda0f5d-f2a9-4613-b0a9-e48cbd654a1f" testId="f9aa5be5-b9c4-39fd-f6cd-cc3c1535fac6" testName="ReturnsWithPagingGivenValidInputs" computerName="DNR-H1FK6J3" duration="00:00:00.0015850" startTime="2022-10-12T12:22:45.6001008-04:00" endTime="2022-10-12T12:22:45.6016849-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5dda0f5d-f2a9-4613-b0a9-e48cbd654a1f" />
+    <UnitTestResult executionId="de2e031e-87e3-4f70-9e09-1d80082b357d" testId="b1b55236-99ba-9cb2-c79e-bbe8faa9085b" testName="ReturnsSameValueGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0012310" startTime="2022-10-12T12:22:45.5630387-04:00" endTime="2022-10-12T12:22:45.5642699-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de2e031e-87e3-4f70-9e09-1d80082b357d" />
+    <UnitTestResult executionId="1a2b0dc7-67d5-4a59-87d0-60371f906a41" testId="b6575784-d1c3-8cd8-3932-4ede8108e303" testName="ReturnsSameValueGivenNonNullValue" computerName="DNR-H1FK6J3" duration="00:00:00.0002310" startTime="2022-10-12T12:22:45.5898186-04:00" endTime="2022-10-12T12:22:45.5900495-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a2b0dc7-67d5-4a59-87d0-60371f906a41" />
+    <UnitTestResult executionId="ad3e1dc6-f002-478d-ad89-a7f8da991291" testId="19c4ee41-7c16-424a-b321-1f88112c1e1e" testName="ReturnsSameValueGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0001530" startTime="2022-10-12T12:22:45.5913322-04:00" endTime="2022-10-12T12:22:45.5914850-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad3e1dc6-f002-478d-ad89-a7f8da991291" />
+    <UnitTestResult executionId="ed4f9093-0fb7-4358-90dd-09bff6064686" testId="bc349962-0107-7f6a-719d-1b725bc87363" testName="ReturnsSameValueGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0001830" startTime="2022-10-12T12:22:45.5970736-04:00" endTime="2022-10-12T12:22:45.5972565-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed4f9093-0fb7-4358-90dd-09bff6064686" />
+    <UnitTestResult executionId="8c71666d-c1d9-4ad6-a2d9-7904ab55d948" testId="548403d2-2581-703b-ec6b-bef6ce28e0f6" testName="ThrowsExceptionGivenZeroPageNum" computerName="DNR-H1FK6J3" duration="00:00:00.0006579" startTime="2022-10-12T12:22:45.6085360-04:00" endTime="2022-10-12T12:22:45.6091939-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c71666d-c1d9-4ad6-a2d9-7904ab55d948" />
+    <UnitTestResult executionId="54e018ee-91d3-4569-941f-d1ee206709f6" testId="993b91f1-fa7c-7d34-269a-6f401e9e27d0" testName="DifferentValueObjectsAreNotEqualToEachOther" computerName="DNR-H1FK6J3" duration="00:00:00.0010320" startTime="2022-10-12T12:22:45.6099462-04:00" endTime="2022-10-12T12:22:45.6109784-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54e018ee-91d3-4569-941f-d1ee206709f6" />
+    <UnitTestResult executionId="fcf67984-e84a-4f70-a286-0e8d949cb08e" testId="fb0e8329-8ebf-e593-fdd4-e9239e91d49b" testName="ThrowsGivenNegativeValue" computerName="DNR-H1FK6J3" duration="00:00:00.0160049" startTime="2022-10-12T12:22:45.5642894-04:00" endTime="2022-10-12T12:22:45.5802939-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fcf67984-e84a-4f70-a286-0e8d949cb08e" />
+    <UnitTestResult executionId="e53679df-c5d3-40a3-b999-9dcf6b9c5271" testId="09e86f87-f890-dbf9-fcc0-536c6c6fda59" testName="ThrowsGivenNullValue" computerName="DNR-H1FK6J3" duration="00:00:00.0006840" startTime="2022-10-12T12:22:45.5973327-04:00" endTime="2022-10-12T12:22:45.5980162-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e53679df-c5d3-40a3-b999-9dcf6b9c5271" />
+    <UnitTestResult executionId="4ddc2144-ad62-47c2-b656-d15801e2cd2e" testId="b999a045-ec6c-1d91-c126-4aab62ab560f" testName="ThrowsGivenNullValue" computerName="DNR-H1FK6J3" duration="00:00:00.0005590" startTime="2022-10-12T12:22:45.5900606-04:00" endTime="2022-10-12T12:22:45.5906194-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ddc2144-ad62-47c2-b656-d15801e2cd2e" />
+    <UnitTestResult executionId="9bcf1af5-db6c-4b67-8e0d-a5f6c694c12e" testId="8771d4f9-b3be-6629-c33d-518175375e7b" testName="ReturnsCorrectlyGivenCompleteList" computerName="DNR-H1FK6J3" duration="00:00:00.0027010" startTime="2022-10-12T12:22:45.6039186-04:00" endTime="2022-10-12T12:22:45.6066194-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9bcf1af5-db6c-4b67-8e0d-a5f6c694c12e" />
+    <UnitTestResult executionId="bc114dde-7b2e-4591-96bf-580c7151a9fc" testId="fe50f4b9-eaf2-7132-4f43-c54184cc9c1d" testName="DoesNotThrowGivenValidMatch" computerName="DNR-H1FK6J3" duration="00:00:00.0026570" startTime="2022-10-12T12:22:45.5927686-04:00" endTime="2022-10-12T12:22:45.5954257-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc114dde-7b2e-4591-96bf-580c7151a9fc" />
+    <UnitTestResult executionId="77cad9ae-7769-49fe-9003-736e655ccab3" testId="09a0c3ab-059b-62ad-e497-afc1f21e808f" testName="DoesNotThrowGivenPositiveValue" computerName="DNR-H1FK6J3" duration="00:00:00.0277020" startTime="2022-10-12T12:22:45.5327091-04:00" endTime="2022-10-12T12:22:45.5603108-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77cad9ae-7769-49fe-9003-736e655ccab3" />
+    <UnitTestResult executionId="3f8f10a4-d0c9-4532-a242-f011c6f88164" testId="87ab3b35-8224-3d36-f2b1-d7dabd816759" testName="ThrowsGivenValueThatIsTooShort" computerName="DNR-H1FK6J3" duration="00:00:00.0004570" startTime="2022-10-12T12:22:45.5985327-04:00" endTime="2022-10-12T12:22:45.5989891-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f8f10a4-d0c9-4532-a242-f011c6f88164" />
+    <UnitTestResult executionId="bc280738-8bdc-420b-b032-1417789ecff8" testId="55ed2998-b8b8-2edc-ca29-b5b8d4c6092b" testName="DoesNotThrowGivenValidValue" computerName="DNR-H1FK6J3" duration="00:00:00.0007530" startTime="2022-10-12T12:22:45.5963019-04:00" endTime="2022-10-12T12:22:45.5970548-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc280738-8bdc-420b-b032-1417789ecff8" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="ThrowsExceptionGivenZeroPageSize" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="c3bc827a-292f-e97a-c458-ac68c409c56f">
+      <Execution id="4833efd5-9c06-43fa-9837-c31d8ad5ca75" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedResultTests" name="ThrowsExceptionGivenZeroPageSize" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="e931945e-4c15-4ba3-6195-de0ecfe2f512">
+      <Execution id="8c6ba91b-c930-4290-9cba-89021a7a64a5" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNull" name="ReturnsSameValueGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenNonNullValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="b6575784-d1c3-8cd8-3932-4ede8108e303">
+      <Execution id="1a2b0dc7-67d5-4a59-87d0-60371f906a41" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNullOrWhiteSpace" name="ReturnsSameValueGivenNonNullValue" />
+    </UnitTest>
+    <UnitTest name="ValueObjectsAreNotEqualToNull" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="730f12c2-e5d6-6018-1c48-46354b9d8944">
+      <Execution id="fd2b0ea0-aa0a-438a-a83c-c0adb7bea1fc" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.ValueObjectTests.EqualityTests" name="ValueObjectsAreNotEqualToNull" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenWhiteSpaceValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="72ba0b79-8c21-4a79-bc1f-01cb5aa4dba4">
+      <Execution id="864de155-63cf-4762-9b0c-830822da1c42" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNull" name="ThrowsGivenWhiteSpaceValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenInvalidMatch" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="6bf74aff-5567-90a9-a82e-45bfd0024fcc">
+      <Execution id="9829e10c-6acf-4c84-ab02-e795d55f207e" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.RegexMatch" name="ThrowsGivenInvalidMatch" />
+    </UnitTest>
+    <UnitTest name="ThrowsExceptionGivenZeroPageNum" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="548403d2-2581-703b-ec6b-bef6ce28e0f6">
+      <Execution id="8c71666d-c1d9-4ad6-a2d9-7904ab55d948" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedResultTests" name="ThrowsExceptionGivenZeroPageNum" />
+    </UnitTest>
+    <UnitTest name="ThrowsIfMinLengthExceedsMaxLength" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="ad69dfa1-ba4a-4edf-21d2-003207a479f3">
+      <Execution id="3617d607-b663-4cfd-8eb0-7f4d8699449c" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ThrowsIfMinLengthExceedsMaxLength" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenNegativeValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="cd1c322f-dc55-b389-f315-0176ef16b29c">
+      <Execution id="83363919-47d2-4b69-b5de-da017d70370d" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.Positive" name="ThrowsGivenNegativeValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenNegativeValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="fb0e8329-8ebf-e593-fdd4-e9239e91d49b">
+      <Execution id="fcf67984-e84a-4f70-a286-0e8d949cb08e" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNegative" name="ThrowsGivenNegativeValue" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenPositiveValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="09a0c3ab-059b-62ad-e497-afc1f21e808f">
+      <Execution id="77cad9ae-7769-49fe-9003-736e655ccab3" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNegative" name="DoesNotThrowGivenPositiveValue" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="55ed2998-b8b8-2edc-ca29-b5b8d4c6092b">
+      <Execution id="bc280738-8bdc-420b-b032-1417789ecff8" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="DoesNotThrowGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenValidMatch" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="fe50f4b9-eaf2-7132-4f43-c54184cc9c1d">
+      <Execution id="bc114dde-7b2e-4591-96bf-580c7151a9fc" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.RegexMatch" name="DoesNotThrowGivenValidMatch" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenPositiveValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="a43bcc1c-3e09-4d49-0b3a-2ca329d1982c">
+      <Execution id="6d141c43-9a3a-4917-ac63-7b07913d0a17" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.Positive" name="DoesNotThrowGivenPositiveValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsExceptionGivenZeroPageNumber" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="0bc1e923-b903-ee17-37f8-4169bb03a761">
+      <Execution id="5d4bae55-04ee-41f5-8658-c50a803abeb9" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedRequestTests" name="ThrowsExceptionGivenZeroPageNumber" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="19c4ee41-7c16-424a-b321-1f88112c1e1e">
+      <Execution id="ad3e1dc6-f002-478d-ad89-a7f8da991291" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.Positive" name="ReturnsSameValueGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="ReturnsWithPagingGivenValidInputs" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="f9aa5be5-b9c4-39fd-f6cd-cc3c1535fac6">
+      <Execution id="5dda0f5d-f2a9-4613-b0a9-e48cbd654a1f" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedRequestTests" name="ReturnsWithPagingGivenValidInputs" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="727fba12-728a-092b-f5f3-894660620b46">
+      <Execution id="8594d4fd-ad46-466f-a02f-0ad7be5a397e" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.RegexMatch" name="ReturnsSameValueGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="EquivalentValueObjectsAreEqual" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="4e94f98a-24fa-5d9c-8740-531f6eb5d172">
+      <Execution id="ebe6b7e3-e48f-4129-b5df-99875854e3c8" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.ValueObjectTests.EqualityTests" name="EquivalentValueObjectsAreEqual" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenValueThatIsTooLong" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="78392286-5c02-dd5d-83cb-0b3e8878ce3f">
+      <Execution id="4bce4d3f-3463-4ee7-b35f-08b9ba825a30" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ThrowsGivenValueThatIsTooLong" />
+    </UnitTest>
+    <UnitTest name="ReturnsCorrectlyGivenPartialList" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="9e5b5782-2de0-a689-b285-4c1f7ed5b105">
+      <Execution id="8624aabd-06f8-4bab-82e8-9caad1e358a3" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedResultTests" name="ReturnsCorrectlyGivenPartialList" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenWhiteSpaceValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="c7907e91-d1d0-94dd-1698-db2efb86af9e">
+      <Execution id="b7fa9a66-e2ad-4d48-bb15-ad309193f48c" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ThrowsGivenWhiteSpaceValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenZeroValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="2b6c6ec3-b647-bbb2-d47e-6564695b8b66">
+      <Execution id="b573fa5f-a84f-46fc-8133-0529d5851a88" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.Positive" name="ThrowsGivenZeroValue" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenNonNullValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="090fb182-3d46-0241-7219-1f534f30f2ed">
+      <Execution id="d96d927f-8b2b-4587-a15e-0b1357123e98" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNullOrWhiteSpace" name="DoesNotThrowGivenNonNullValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenNullValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="09e86f87-f890-dbf9-fcc0-536c6c6fda59">
+      <Execution id="e53679df-c5d3-40a3-b999-9dcf6b9c5271" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ThrowsGivenNullValue" />
+    </UnitTest>
+    <UnitTest name="DifferentValueObjectsAreNotEqualToEachOther" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="993b91f1-fa7c-7d34-269a-6f401e9e27d0">
+      <Execution id="54e018ee-91d3-4569-941f-d1ee206709f6" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.ValueObjectTests.EqualityTests" name="DifferentValueObjectsAreNotEqualToEachOther" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenValueThatIsTooShort" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="87ab3b35-8224-3d36-f2b1-d7dabd816759">
+      <Execution id="3f8f10a4-d0c9-4532-a242-f011c6f88164" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ThrowsGivenValueThatIsTooShort" />
+    </UnitTest>
+    <UnitTest name="ThrowsExceptionGivenZeroPageSize" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="53c91cee-0fd4-a509-5c7e-98432e3220ed">
+      <Execution id="36d2eb07-df48-451b-a562-7cd1271e22d0" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedRequestTests" name="ThrowsExceptionGivenZeroPageSize" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenZeroValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="b20a9630-d09f-de3b-e335-ce1be596b9db">
+      <Execution id="98f25716-326b-4d47-9da3-28a180fbf548" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNegative" name="DoesNotThrowGivenZeroValue" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="bc349962-0107-7f6a-719d-1b725bc87363">
+      <Execution id="ed4f9093-0fb7-4358-90dd-09bff6064686" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.ValidLength" name="ReturnsSameValueGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="DoesNotThrowGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="d23a1269-073b-0f46-8409-c5fc18e7774a">
+      <Execution id="74fba384-d1b9-4425-bf72-d9fb0db39c4b" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNull" name="DoesNotThrowGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="ReturnsCorrectlyGivenCompleteList" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="8771d4f9-b3be-6629-c33d-518175375e7b">
+      <Execution id="9bcf1af5-db6c-4b67-8e0d-a5f6c694c12e" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedResultTests" name="ReturnsCorrectlyGivenCompleteList" />
+    </UnitTest>
+    <UnitTest name="ThrowsExceptionGivenNegativeCount" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="7cd414fa-80f0-3605-e1b1-0d7667f902ba">
+      <Execution id="e40cb580-e21b-4852-aa21-379703078a58" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.PaginationTests.PaginatedResultTests" name="ThrowsExceptionGivenNegativeCount" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenNullValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="04e1d9f9-e6cf-22ee-d5e8-412a851bc60f">
+      <Execution id="42c8b154-1648-482a-a6c9-f72cc1c2596b" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNull" name="ThrowsGivenNullValue" />
+    </UnitTest>
+    <UnitTest name="ReturnsSameValueGivenValidValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="b1b55236-99ba-9cb2-c79e-bbe8faa9085b">
+      <Execution id="de2e031e-87e3-4f70-9e09-1d80082b357d" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNegative" name="ReturnsSameValueGivenValidValue" />
+    </UnitTest>
+    <UnitTest name="ThrowsGivenNullValue" storage="c:\users\phat(pat).tran\desktop\repository\app-library\tests\bin\debug\net6.0\gaepd.applibrary.tests.dll" id="b999a045-ec6c-1d91-c126-4aab62ab560f">
+      <Execution id="4ddc2144-ad62-47c2-b656-d15801e2cd2e" />
+      <TestMethod codeBase="C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="GaEpd.AppLibrary.Tests.GuardTests.NotNullOrWhiteSpace" name="ThrowsGivenNullValue" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="7cd414fa-80f0-3605-e1b1-0d7667f902ba" executionId="e40cb580-e21b-4852-aa21-379703078a58" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9e5b5782-2de0-a689-b285-4c1f7ed5b105" executionId="8624aabd-06f8-4bab-82e8-9caad1e358a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3bc827a-292f-e97a-c458-ac68c409c56f" executionId="4833efd5-9c06-43fa-9837-c31d8ad5ca75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cd1c322f-dc55-b389-f315-0176ef16b29c" executionId="83363919-47d2-4b69-b5de-da017d70370d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6bf74aff-5567-90a9-a82e-45bfd0024fcc" executionId="9829e10c-6acf-4c84-ab02-e795d55f207e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ad69dfa1-ba4a-4edf-21d2-003207a479f3" executionId="3617d607-b663-4cfd-8eb0-7f4d8699449c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a43bcc1c-3e09-4d49-0b3a-2ca329d1982c" executionId="6d141c43-9a3a-4917-ac63-7b07913d0a17" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c7907e91-d1d0-94dd-1698-db2efb86af9e" executionId="b7fa9a66-e2ad-4d48-bb15-ad309193f48c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="04e1d9f9-e6cf-22ee-d5e8-412a851bc60f" executionId="42c8b154-1648-482a-a6c9-f72cc1c2596b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d23a1269-073b-0f46-8409-c5fc18e7774a" executionId="74fba384-d1b9-4425-bf72-d9fb0db39c4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e94f98a-24fa-5d9c-8740-531f6eb5d172" executionId="ebe6b7e3-e48f-4129-b5df-99875854e3c8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="53c91cee-0fd4-a509-5c7e-98432e3220ed" executionId="36d2eb07-df48-451b-a562-7cd1271e22d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="78392286-5c02-dd5d-83cb-0b3e8878ce3f" executionId="4bce4d3f-3463-4ee7-b35f-08b9ba825a30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="727fba12-728a-092b-f5f3-894660620b46" executionId="8594d4fd-ad46-466f-a02f-0ad7be5a397e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="090fb182-3d46-0241-7219-1f534f30f2ed" executionId="d96d927f-8b2b-4587-a15e-0b1357123e98" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="72ba0b79-8c21-4a79-bc1f-01cb5aa4dba4" executionId="864de155-63cf-4762-9b0c-830822da1c42" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="730f12c2-e5d6-6018-1c48-46354b9d8944" executionId="fd2b0ea0-aa0a-438a-a83c-c0adb7bea1fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0bc1e923-b903-ee17-37f8-4169bb03a761" executionId="5d4bae55-04ee-41f5-8658-c50a803abeb9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2b6c6ec3-b647-bbb2-d47e-6564695b8b66" executionId="b573fa5f-a84f-46fc-8133-0529d5851a88" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b20a9630-d09f-de3b-e335-ce1be596b9db" executionId="98f25716-326b-4d47-9da3-28a180fbf548" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e931945e-4c15-4ba3-6195-de0ecfe2f512" executionId="8c6ba91b-c930-4290-9cba-89021a7a64a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9aa5be5-b9c4-39fd-f6cd-cc3c1535fac6" executionId="5dda0f5d-f2a9-4613-b0a9-e48cbd654a1f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b1b55236-99ba-9cb2-c79e-bbe8faa9085b" executionId="de2e031e-87e3-4f70-9e09-1d80082b357d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6575784-d1c3-8cd8-3932-4ede8108e303" executionId="1a2b0dc7-67d5-4a59-87d0-60371f906a41" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19c4ee41-7c16-424a-b321-1f88112c1e1e" executionId="ad3e1dc6-f002-478d-ad89-a7f8da991291" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bc349962-0107-7f6a-719d-1b725bc87363" executionId="ed4f9093-0fb7-4358-90dd-09bff6064686" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="548403d2-2581-703b-ec6b-bef6ce28e0f6" executionId="8c71666d-c1d9-4ad6-a2d9-7904ab55d948" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="993b91f1-fa7c-7d34-269a-6f401e9e27d0" executionId="54e018ee-91d3-4569-941f-d1ee206709f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb0e8329-8ebf-e593-fdd4-e9239e91d49b" executionId="fcf67984-e84a-4f70-a286-0e8d949cb08e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09e86f87-f890-dbf9-fcc0-536c6c6fda59" executionId="e53679df-c5d3-40a3-b999-9dcf6b9c5271" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b999a045-ec6c-1d91-c126-4aab62ab560f" executionId="4ddc2144-ad62-47c2-b656-d15801e2cd2e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8771d4f9-b3be-6629-c33d-518175375e7b" executionId="9bcf1af5-db6c-4b67-8e0d-a5f6c694c12e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fe50f4b9-eaf2-7132-4f43-c54184cc9c1d" executionId="bc114dde-7b2e-4591-96bf-580c7151a9fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09a0c3ab-059b-62ad-e497-afc1f21e808f" executionId="77cad9ae-7769-49fe-9003-736e655ccab3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="87ab3b35-8224-3d36-f2b1-d7dabd816759" executionId="3f8f10a4-d0c9-4532-a242-f011c6f88164" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55ed2998-b8b8-2edc-ca29-b5b8d4c6092b" executionId="bc280738-8bdc-420b-b032-1417789ecff8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="36" executed="36" passed="36" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.2.0.0: Test execution started&#xD;
+Running all tests in C:\Users\phat(pat).tran\Desktop\Repository\app-library\tests\bin\Debug\net6.0\GaEpd.AppLibrary.Tests.dll&#xD;
+   NUnit3TestExecutor discovered 36 of 36 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.2.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="DNR-H1FK6J3" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="DNR-H1FK6J3\coverage.opencover.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>
