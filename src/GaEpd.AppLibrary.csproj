@@ -23,10 +23,15 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <CodeAnalysisRuleSet>..\.sonarlint\gaepdit_app-librarycsharp.ruleset</CodeAnalysisRuleSet>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
+        <None Include="..\README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+        </None>
         <None Include="assets\epd-icon-tile.png" Pack="true" PackagePath="\" />
         <AdditionalFiles Include="..\.sonarlint\gaepdit_app-library\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     </ItemGroup>
