@@ -47,12 +47,13 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.24" />
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
         <ReadLinesFromFile File="../RELEASE-NOTES.txt">
-            <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
+            <Output TaskParameter="Lines" ItemName="ReleaseNotes" />
         </ReadLinesFromFile>
         <PropertyGroup>
             <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>

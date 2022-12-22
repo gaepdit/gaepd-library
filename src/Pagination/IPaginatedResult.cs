@@ -12,6 +12,7 @@ public interface IPaginatedResult
     int TotalPages { get; }
     int FirstItemIndex { get; }
     int LastItemIndex { get; }
+    int CurrentCount { get; }
     bool HasPreviousPage { get; }
     bool HasNextPage { get; }
 }
@@ -20,5 +21,4 @@ public interface IPaginatedResult<T> : IPaginatedResult
     where T : class
 {
     public IList<T> Items { get; }
-    int CurrentCount { get; }
 }
