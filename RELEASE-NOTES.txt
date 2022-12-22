@@ -1,7 +1,13 @@
+v1.1.0
+
+- Added predicate builder and common entity filters.
+- Added enum extensions.
+- Added the System.Linq.Dynamic.Core package.
+
 v1.0.1
 
-- Added Readme file to package
+- Added Readme file to package.
 
 v1.0.0
 
-- Initial release
+- Initial release.
