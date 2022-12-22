@@ -1,4 +1,4 @@
-﻿using GaEpd.AppLibrary.Domain.Entities;
+using GaEpd.AppLibrary.Domain.Entities;
 using GaEpd.AppLibrary.Pagination;
 using System.Linq.Expressions;
 
@@ -83,6 +83,15 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A sorted and paged read-only collection of entities.</returns>
     Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
-        PaginatedRequest paging, 
+        PaginatedRequest paging,
         CancellationToken token = default);
+
+    /// <summary>
+    /// Returns the count of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
+    /// Returns zero if there are no matches.
+    /// </summary>
+    /// <param name="predicate">The search conditions.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns></returns>
+    public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
 }
