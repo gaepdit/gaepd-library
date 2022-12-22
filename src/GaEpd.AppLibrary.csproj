@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>GaEpd.Library</RootNamespace>
+        <RootNamespace>GaEpd.AppLibrary</RootNamespace>
         <PackageId>GaEpd.AppLibrary</PackageId>
         <Version>1.0.1</Version>
         <Authors>Douglas Waldron</Authors>
