@@ -80,10 +80,30 @@ Common repository interfaces define basic entity CRUD operations. The `IReadOnly
 
 Note that these interfaces work directly with domain entities. Your application should define [application/domain services](https://docs.abp.io/en/abp/latest/Domain-Services#application-services-vs-domain-services) that define how the application interacts with the entities & repositories through data transfer objects (DTOs).  
 
+### Predicate builder
+
+Code from [C# in a Nutshell](https://www.albahari.com/nutshell/predicatebuilder.aspx) is included to enable creating filter expressions that can be combined. The library comes with the commonly used filters `WithId(id)` for all entities and `ExcludedDeleted()` for "soft delete" entities.
+
+Example usage:
+
+```csharp
+public static Expression<Func<MyEntity, bool>> IsActive(this Expression<Func<MyEntity, bool>> predicate) =>
+    predicate.And(e => e.IsActive);
+
+public static Expression<Func<MyEntity, bool>> ActiveAndNotDeletedPredicate() =>
+    PredicateBuilder.True<MyEntity>().IsActive().ExcludeDeleted();
+```
+
 ### Pagination classes
 
-`IPaginatedRequest` and `IPaginatedResult<T>` define how to request and receive paginated (and sorted) search results. 
+`IPaginatedRequest` and `IPaginatedResult<T>` define how to request and receive paginated (and sorted) search results.
+
+The [System.Linq.Dynamic.Core](https://github.com/zzzprojects/System.Linq.Dynamic.Core) package is included. 
 
 ### List Item record
 
 A `ListItem<TKey>` record type defines a key-value pair with fields for ID of type `TKey` and `string` Name. The `ToSelectList()` extension method takes a `ListItem` enumerable and returns an MVC `SelectList` which can be used to create an HTML `<select>` element.
+
+### Enum extensions
+
+`GetDisplayName()` and `GetDescription()` return the `DisplayAttribute.Name` and `DescriptionAttribute` values of an enum, respectively.
