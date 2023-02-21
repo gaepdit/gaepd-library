@@ -92,6 +92,23 @@ public interface IReadOnlyRepository<TEntity, in TKey> : IDisposable
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns></returns>
+    /// <returns>The number of matching entities.</returns>
     public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
+
+    /// <summary>
+    /// Returns a boolean indicating whether an <see cref="IEntity{TKey}"/> with the given <paramref name="id"/> exists.
+    /// </summary>
+    /// <param name="id">The Id of the entity.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>True if the entity exists; otherwise false.</returns>
+    public Task<bool> ExistsAsync(TKey id, CancellationToken token = default);
+
+    /// <summary>
+    /// Returns a boolean indicating whether an <see cref="IEntity{TKey}"/> exists matching the conditions of
+    /// the <paramref name="predicate"/>.
+    /// </summary>
+    /// <param name="predicate">The search conditions.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>True if the entity exists; otherwise false.</returns>
+    public Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
 }
