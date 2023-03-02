@@ -11,22 +11,22 @@ public abstract class AuditableEntity<TKey, TUserKey> : Entity<TKey>, IAuditable
     protected AuditableEntity(TKey id) : base(id) { }
 
     public DateTimeOffset? CreatedAt { get; private set; }
-    public TUserKey? CreatedBy { get; private set; }
+    public TUserKey? CreatedById { get; private set; }
     public DateTimeOffset? UpdatedAt { get; private set; }
-    public TUserKey? UpdatedBy { get; private set; }
+    public TUserKey? UpdatedById { get; private set; }
 
     /// <inheritdoc/>
     public void SetCreator(TUserKey? userId)
     {
         CreatedAt = DateTimeOffset.Now;
-        CreatedBy = userId;
+        CreatedById = userId;
     }
 
     /// <inheritdoc/>
     public void SetUpdater(TUserKey? userId)
     {
         UpdatedAt = DateTimeOffset.Now;
-        UpdatedBy = userId;
+        UpdatedById = userId;
     }
 }
 

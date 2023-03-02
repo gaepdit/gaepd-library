@@ -13,14 +13,14 @@ public abstract class AuditableSoftDeleteEntity<TKey, TUserKey> : AuditableEntit
 
     public bool IsDeleted { get; private set; }
     public DateTimeOffset? DeletedAt { get; private set; }
-    public TUserKey? DeletedBy { get; private set; }
+    public TUserKey? DeletedById { get; private set; }
 
     /// <inheritdoc/>
     public void SetDeleted(TUserKey? userId)
     {
         IsDeleted = true;
         DeletedAt = DateTimeOffset.Now;
-        DeletedBy = userId;
+        DeletedById = userId;
     }
 }
 
