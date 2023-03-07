@@ -1,12 +1,18 @@
+v2.0.0
+
+- Move the write repository operations to a separate interface.
+- Add "Exists" methods to the read repository interface.
+- Rename the user ID properties on auditable entities.
+
 v1.1.0
 
-- Added predicate builder and common entity filters.
-- Added enum extensions.
-- Added the System.Linq.Dynamic.Core package.
+- Add predicate builder and common entity filters.
+- Add enum extensions.
+- Add the System.Linq.Dynamic.Core package.
 
 v1.0.1
 
-- Added Readme file to package.
+- Add Readme file to package.
 
 v1.0.0
 

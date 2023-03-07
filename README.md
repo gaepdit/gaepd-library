@@ -76,7 +76,7 @@ Note: The `[Owned]` attribute is an Entity Framework attribute defining this as 
 
 ### Repository interfaces
 
-Common repository interfaces define basic entity CRUD operations. The `IReadOnlyRepository<TEntity, in TKey>` interface defines get and search operations (including paginated search). `IRepository<TEntity, in TKey>` adds write operations.
+Common repository interfaces define basic entity CRUD operations. The `IReadRepository<TEntity, in TKey>` interface defines get and search operations (including paginated search). The `IWriteRepository<TEntity, in TKey>` interface defines insert, update, and delete operations. `IRepository<TEntity, in TKey>` combines the read and write interfaces.
 
 Note that these interfaces work directly with domain entities. Your application should define [application/domain services](https://docs.abp.io/en/abp/latest/Domain-Services#application-services-vs-domain-services) that define how the application interacts with the entities & repositories through data transfer objects (DTOs).  
 
