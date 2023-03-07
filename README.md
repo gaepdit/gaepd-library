@@ -9,6 +9,8 @@ This library was created by Georgia EPD-IT to provide common classes and tools f
 
 ## How to install
 
+[![Nuget](https://img.shields.io/nuget/v/GaEpd.AppLibrary)](https://www.nuget.org/packages/GaEpd.AppLibrary)
+
 To install , search for "GaEpd.AppLibrary" in the NuGet package manager or run the following command:
 
 `dotnet add package GaEpd.AppLibrary`
