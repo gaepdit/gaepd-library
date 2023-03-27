@@ -1,3 +1,7 @@
+v3.0.0
+
+- Upgrade the library to .NET 7.
+
 v2.0.0
 
 - Move the write repository operations to a separate interface.
