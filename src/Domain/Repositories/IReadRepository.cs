@@ -28,7 +28,7 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable
     /// </summary>
     /// <param name="id">The Id of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>An entity.</returns>
+    /// <returns>An entity or null.</returns>
     Task<TEntity?> FindAsync(TKey id, CancellationToken token = default);
 
     /// <summary>
@@ -38,13 +38,13 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <exception cref="InvalidOperationException">Thrown if there are multiple matches.</exception>
-    /// <returns>An entity.</returns>
+    /// <returns>An entity or null.</returns>
     Task<TEntity?> FindAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default);
 
     /// <summary>
-    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values>.
+    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values.
     /// Returns an empty collection if none exist.
     /// </summary>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>

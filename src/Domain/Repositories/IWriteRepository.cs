@@ -7,7 +7,7 @@ namespace GaEpd.AppLibrary.Domain.Repositories;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public interface IWriteRepository<TEntity, in TKey> : IDisposable
+public interface IWriteRepository<in TEntity, in TKey> : IDisposable
     where TEntity : IEntity<TKey>
     where TKey : IEquatable<TKey>
 {
@@ -17,7 +17,7 @@ public interface IWriteRepository<TEntity, in TKey> : IDisposable
     /// <param name="entity">The entity to insert.</param>
     /// <param name="autoSave">Whether to automatically save the changes (default is true).</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>The inserted entity.</returns>
+    /// <returns><see cref="Task"/></returns>
     Task InsertAsync(TEntity entity, bool autoSave = true, CancellationToken token = default);
 
     /// <summary>
@@ -26,7 +26,7 @@ public interface IWriteRepository<TEntity, in TKey> : IDisposable
     /// <param name="entity">The entity to update.</param>
     /// <param name="autoSave">Whether to automatically save the changes (default is true).</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>The updated entity.</returns>
+    /// <returns><see cref="Task"/></returns>
     Task UpdateAsync(TEntity entity, bool autoSave = true, CancellationToken token = default);
 
     /// <summary>
@@ -38,4 +38,12 @@ public interface IWriteRepository<TEntity, in TKey> : IDisposable
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns><see cref="Task"/></returns>
     Task DeleteAsync(TEntity entity, bool autoSave = true, CancellationToken token = default);
+
+    /// <summary>
+    /// Saves all changes to the repository. Only use by repositories that require explicit calls to save changes
+    /// and when the autoSave parameter is set to false in one of the other methods.
+    /// </summary>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns><see cref="Task"/></returns>
+    Task SaveChangesAsync(CancellationToken token = default);
 }
