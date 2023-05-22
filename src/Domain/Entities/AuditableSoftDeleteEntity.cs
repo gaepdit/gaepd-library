@@ -22,6 +22,14 @@ public abstract class AuditableSoftDeleteEntity<TKey, TUserKey> : AuditableEntit
         DeletedAt = DateTimeOffset.Now;
         DeletedById = userId;
     }
+
+    /// <inheritdoc/>
+    public void SetNotDeleted()
+    {
+        IsDeleted = false;
+        DeletedAt = default;
+        DeletedById = default;
+    }
 }
 
 /// <summary>

@@ -18,10 +18,18 @@ public interface ISoftDelete<TUserKey> : ISoftDelete
     TUserKey? DeletedById { get; }
 
     /// <summary>
-    /// Sets the <see cref="ISoftDelete.IsDeleted"/> property to "true", indicating that the element should be considered to have
-    /// been deleted. Also sets the <see cref="DeletedById"/> property to the <see cref="userId"/> parameter value and
-    /// the <see cref="ISoftDelete.DeletedAt"/> property to the current <see cref="DateTimeOffset"/> value.
+    /// Sets the <see cref="ISoftDelete.IsDeleted"/> property to "true", indicating that the element should be
+    /// considered to have been deleted. Also sets the <see cref="DeletedById"/> property to the <see cref="userId"/>
+    /// parameter value and the <see cref="ISoftDelete.DeletedAt"/> property to the current
+    /// <see cref="DateTimeOffset"/> value.
     /// </summary>
     /// <param name="userId">The ID of the user deleting the entity.</param>
     void SetDeleted(TUserKey? userId);
+
+    /// <summary>
+    /// Sets the <see cref="ISoftDelete.IsDeleted"/> property to "false", indicating that the element should NOT be
+    /// considered to have been deleted. Also clears the <see cref="DeletedById"/> and
+    /// <see cref="ISoftDelete.DeletedAt"/> properties.
+    /// </summary>
+    void SetNotDeleted();
 }
