@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace GaEpd.AppLibrary.Enums;
+namespace GaEpd.AppLibrary.Extensions;
 
 /// <summary>
 /// Enumeration type extension methods.

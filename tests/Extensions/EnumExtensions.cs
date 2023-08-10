@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using GaEpd.AppLibrary.Enums;
+using GaEpd.AppLibrary.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace GaEpd.AppLibrary.Tests.Enums;
