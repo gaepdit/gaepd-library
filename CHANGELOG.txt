@@ -1,26 +1,37 @@
+v3.3.0
+
+- Added a "ConcatWithSeparator" string extension.
+- Added "PreviousPageNumber" and "NextPageNumber" properties to the IPaginatedResult interface.
+- Made some possible performance improvements to the Enum extensions. 
+  Breaking change: The Enum extensions no longer work with nullable Enum values. 
+
+v3.2.0
+
+- Added a "SetNotDeleted" (undelete) method to the ISoftDelete interface.
+
 v3.1.0
 
-- Add a "SaveChanges" method to the write repository.
+- Added a "SaveChanges" method to the write repository.
 
 v3.0.0
 
-- Upgrade the library to .NET 7.
+- Upgraded the library to .NET 7.
 
 v2.0.0
 
-- Move the write repository operations to a separate interface.
-- Add "Exists" methods to the read repository interface.
-- Rename the user ID properties on auditable entities.
+- Moved the write repository operations to a separate interface.
+- Added "Exists" methods to the read repository interface.
+- Renamed the user ID properties on auditable entities.
 
 v1.1.0
 
-- Add predicate builder and common entity filters.
-- Add enum extensions.
-- Add the System.Linq.Dynamic.Core package.
+- Added predicate builder and common entity filters.
+- Added enum extensions.
+- Added the System.Linq.Dynamic.Core package.
 
 v1.0.1
 
-- Add Readme file to package.
+- Added a Readme file to the package.
 
 v1.0.0
 
