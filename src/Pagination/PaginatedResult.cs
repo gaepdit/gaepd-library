@@ -34,7 +34,13 @@ public class PaginatedResult<T> : IPaginatedResult<T>
     public bool HasPreviousPage => PageNumber > 1;
 
     [JsonIgnore]
+    public int PreviousPageNumber => Math.Max(1, PageNumber - 1);
+
+    [JsonIgnore]
     public bool HasNextPage => PageNumber < TotalPages;
+
+    [JsonIgnore]
+    public int NextPageNumber => Math.Min(PageNumber + 1, TotalPages);
 
     public IList<T> Items { get; }
 }

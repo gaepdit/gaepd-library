@@ -8,13 +8,14 @@ public interface IPaginatedResult
     int TotalCount { get; }
     int PageSize { get; }
     int PageNumber { get; }
-
     int TotalPages { get; }
     int FirstItemIndex { get; }
     int LastItemIndex { get; }
     int CurrentCount { get; }
     bool HasPreviousPage { get; }
+    int PreviousPageNumber { get; }
     bool HasNextPage { get; }
+    int NextPageNumber { get; }
 }
 
 public interface IPaginatedResult<T> : IPaginatedResult

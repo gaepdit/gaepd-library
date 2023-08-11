@@ -25,6 +25,8 @@ public class PaginatedResultTests
             result.HasNextPage.Should().BeFalse();
             result.HasPreviousPage.Should().BeFalse();
             result.LastItemIndex.Should().Be(2);
+            result.PreviousPageNumber.Should().Be(1);
+            result.NextPageNumber.Should().Be(1);
         });
     }
 
@@ -46,6 +48,8 @@ public class PaginatedResultTests
             result.HasNextPage.Should().BeTrue();
             result.HasPreviousPage.Should().BeTrue();
             result.LastItemIndex.Should().Be(4);
+            result.PreviousPageNumber.Should().Be(1);
+            result.NextPageNumber.Should().Be(3);
         });
     }
 
