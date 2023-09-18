@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using GaEpd.AppLibrary.Domain.ValueObjects;
+﻿using GaEpd.AppLibrary.Domain.ValueObjects;
 
 namespace GaEpd.AppLibrary.Tests.ValueObjectTests;
 

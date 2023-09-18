@@ -76,11 +76,13 @@ public record Address : ValueObject
 
 Note: The `[Owned]` attribute is an Entity Framework attribute defining this as a value object owned by the parent class. See [Owned Entity Types](https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities) for more info on how this is implemented in EF Core.
 
-### Repository interfaces
+### Data Repositories
 
-Common repository interfaces define basic entity CRUD operations. The `IReadRepository<TEntity, in TKey>` interface defines get and search operations (including paginated search). The `IWriteRepository<TEntity, in TKey>` interface defines insert, update, and delete operations. `IRepository<TEntity, in TKey>` combines the read and write interfaces.
+Common data repository interfaces define basic entity CRUD operations. The `IReadRepository<TEntity, in TKey>` interface defines get and search operations (including paginated search). The `IWriteRepository<TEntity, in TKey>` interface defines insert, update, and delete operations. `IRepository<TEntity, in TKey>` combines the read and write interfaces.
 
-Note that these interfaces work directly with domain entities. Your application should define [application/domain services](https://docs.abp.io/en/abp/latest/Domain-Services#application-services-vs-domain-services) that define how the application interacts with the entities & repositories through data transfer objects (DTOs).  
+(Note that these interfaces work directly with domain entities. Your application should define [application/domain services](https://docs.abp.io/en/abp/latest/Domain-Services#application-services-vs-domain-services) that define how the application interacts with the entities & repositories through data transfer objects (DTOs).)
+
+There are two abstract `BaseRepository` classes that each implement the `IRepository` interface, one using in-memory data and the other requiring an Entity Framework database context.
 
 ### Predicate builder
 

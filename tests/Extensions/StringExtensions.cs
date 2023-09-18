@@ -1,7 +1,6 @@
-﻿using FluentAssertions;
-using GaEpd.AppLibrary.Extensions;
+﻿using GaEpd.AppLibrary.Extensions;
 
-namespace GaEpd.AppLibrary.Tests.Enums;
+namespace GaEpd.AppLibrary.Tests.Extensions;
 
 [TestFixture]
 public class StringExtensions

@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using GaEpd.AppLibrary.Pagination;
+﻿using GaEpd.AppLibrary.Pagination;
 
 namespace GaEpd.AppLibrary.Tests.PaginationTests;
 

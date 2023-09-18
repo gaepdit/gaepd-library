@@ -1,4 +1,3 @@
-using FluentAssertions;
 using GaEpd.AppLibrary.GuardClauses;
 
 namespace GaEpd.AppLibrary.Tests.GuardTests;

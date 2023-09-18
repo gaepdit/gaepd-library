@@ -1,3 +1,7 @@
+v3.4.0
+
+- Included abstract implementations of BaseRepository.
+
 v3.3.0
 
 - Added a "ConcatWithSeparator" string extension.

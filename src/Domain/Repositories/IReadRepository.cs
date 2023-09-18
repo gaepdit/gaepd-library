@@ -39,9 +39,7 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <exception cref="InvalidOperationException">Thrown if there are multiple matches.</exception>
     /// <returns>An entity or null.</returns>
-    Task<TEntity?> FindAsync(
-        Expression<Func<TEntity, bool>> predicate,
-        CancellationToken token = default);
+    Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
 
     /// <summary>
     /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values.
@@ -82,9 +80,7 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A sorted and paged read-only collection of entities.</returns>
-    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
-        PaginatedRequest paging,
-        CancellationToken token = default);
+    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(PaginatedRequest paging, CancellationToken token = default);
 
     /// <summary>
     /// Returns the count of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.

@@ -1,8 +1,7 @@
-﻿using FluentAssertions;
-using GaEpd.AppLibrary.Extensions;
+﻿using GaEpd.AppLibrary.Extensions;
 using System.ComponentModel.DataAnnotations;
 
-namespace GaEpd.AppLibrary.Tests.Enums;
+namespace GaEpd.AppLibrary.Tests.Extensions;
 
 [TestFixture]
 public class EnumExtensions
