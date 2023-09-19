@@ -1,30 +1,15 @@
 ﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
 
-public class Exists
+public class Exists : EfRepositoryTestBase
 {
-    private EfRepositoryTestHelper _helper = default!;
-
-    private EfRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfRepository();
-    }
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task ExistsAsync_WhenEntityExists_ReturnsTrue()
     {
-        var entity = _repository.Context.Set<TestEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
-        var result = await _repository.ExistsAsync(entity.Id);
+        var result = await Repository.ExistsAsync(entity.Id);
 
         result.Should().BeTrue();
     }
@@ -34,7 +19,7 @@ public class Exists
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.ExistsAsync(id);
+        var result = await Repository.ExistsAsync(id);
 
         result.Should().BeFalse();
     }
@@ -42,9 +27,9 @@ public class Exists
     [Test]
     public async Task ExistsAsync_UsingPredicate_WhenEntityExists_ReturnsTrue()
     {
-        var entity = _repository.Context.Set<TestEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
-        var result = await _repository.ExistsAsync(e => e.Id == entity.Id);
+        var result = await Repository.ExistsAsync(e => e.Id == entity.Id);
 
         result.Should().BeTrue();
     }
@@ -54,7 +39,7 @@ public class Exists
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.ExistsAsync(e => e.Id == id);
+        var result = await Repository.ExistsAsync(e => e.Id == id);
 
         result.Should().BeFalse();
     }

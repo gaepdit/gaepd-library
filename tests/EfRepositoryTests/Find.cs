@@ -3,28 +3,14 @@ using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
 
-public class Find
+public class Find : EfRepositoryTestBase
 {
-    private EfRepositoryTestHelper _helper = default!;
-
-    private EfRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfRepository();
-    }
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task FindAsync_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Context.Set<TestEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
-        var result = await _repository.FindAsync(entity.Id);
+        var result = await Repository.FindAsync(entity.Id);
 
         result.Should().BeEquivalentTo(entity);
     }
@@ -34,7 +20,7 @@ public class Find
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.FindAsync(id);
+        var result = await Repository.FindAsync(id);
 
         result.Should().BeNull();
     }
@@ -42,9 +28,9 @@ public class Find
     [Test]
     public async Task FindAsync_UsingPredicate_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Context.Set<TestEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
-        var result = await _repository.FindAsync(e => e.Id == entity.Id);
+        var result = await Repository.FindAsync(e => e.Id == entity.Id);
 
         result.Should().BeEquivalentTo(entity);
     }
@@ -54,7 +40,7 @@ public class Find
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.FindAsync(e => e.Id == id);
+        var result = await Repository.FindAsync(e => e.Id == id);
 
         result.Should().BeNull();
     }
@@ -62,14 +48,14 @@ public class Find
     [Test]
     public async Task FindAsync_UsingPredicate_WhenUsingSqlite_IsCaseSensitive()
     {
-        var entity = _repository.Context.Set<TestEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         // Test using a predicate that compares uppercase names.
-        var resultSameCase = await _repository.FindAsync(e =>
+        var resultSameCase = await Repository.FindAsync(e =>
             e.Name.ToUpper().Equals(entity.Name.ToUpper()));
 
         // Test using a predicate that compares an uppercase name to a lowercase name.
-        var resultDifferentCase = await _repository.FindAsync(e =>
+        var resultDifferentCase = await Repository.FindAsync(e =>
             e.Name.ToUpper().Equals(entity.Name.ToLower()));
 
         using (new AssertionScope())

@@ -1,31 +1,21 @@
-﻿using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
-
-public class GetList
+public class GetList : LocalRepositoryTestBase
 {
-    private LocalRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp() => _repository = LocalRepositoryTestHelper.GetTestRepository();
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task GetListAsync_ReturnsAllEntities()
     {
-        var result = await _repository.GetListAsync();
+        var result = await Repository.GetListAsync();
 
-        result.Should().BeEquivalentTo(_repository.Items);
+        result.Should().BeEquivalentTo(Repository.Items);
     }
 
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        _repository.Items.Clear();
+        Repository.Items.Clear();
 
-        var result = await _repository.GetListAsync();
+        var result = await Repository.GetListAsync();
 
         result.Should().BeEmpty();
     }
@@ -34,9 +24,9 @@ public class GetList
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
         // Assuming this predicate selects correct items.
-        var selectedItems = _repository.Items.Skip(1).ToList();
+        var selectedItems = Repository.Items.Skip(1).ToList();
 
-        var result = await _repository.GetListAsync(e => e.Id == selectedItems[0].Id);
+        var result = await Repository.GetListAsync(e => e.Id == selectedItems[0].Id);
 
         result.Should().BeEquivalentTo(selectedItems);
     }
@@ -44,7 +34,7 @@ public class GetList
     [Test]
     public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
-        var result = await _repository.GetListAsync(e => e.Id == Guid.NewGuid());
+        var result = await Repository.GetListAsync(e => e.Id == Guid.NewGuid());
 
         result.Should().BeEmpty();
     }

@@ -39,11 +39,26 @@ public class SomeClass
 
 The following interfaces and abstract implementations of domain entities are provided for domain driven design:
 
-* The basic `IEntity<TKey>` interface defines a basic entity with a primary key of the given type.
-* `IAuditableEntitey<TUserKey>` adds creation/update properties and methods for basic data auditing.
-* `ISoftDelete<TUserKey>` adds properties for "soft deleting" an entity rather than actually deleting it.
+* The basic `IEntity<TKey>` interface defines an entity with a primary key of the given type.
+* `IAuditableEntitey<TUserKey>` adds created/updated properties and methods for basic data auditing.
+* `ISoftDelete` and `ISoftDelete<TUserKey>` add properties for "soft deleting" an entity rather than actually deleting it.
+* `INamedEntity` adds a "Name" string property.
+* `IActiveEntity` adds an "Active" boolean property.
 
-There are also abstract classes based on the above that you can derive your domain entities from, including `Entity<TKey>`, `AuditableEntity<TKey, TUserKey>`, `SoftDeleteEntity<TKey, TUserKey>`, and `AuditableSoftDeleteEntity<TKey, TUserKey>`.
+There are also abstract classes based on the above that you should derive your domain entities from: `Entity<TKey>`, `AuditableEntity<TKey, TUserKey>`, `SoftDeleteEntity<TKey, TUserKey>`, `AuditableSoftDeleteEntity<TKey, TUserKey>`, and `StandardNamedEntity`.
+
+The `StandardNamedEntity` class derives from `AuditableEntity<Guid>`, `INamedEntity`, and `IActiveEntity`, and includes methods for enforcing the length of the `Name`. Maximum and minimum name length can be set in the constructor. For example:
+
+```csharp
+public class DerivedEntity : StandardNamedEntity
+{
+    public DerivedEntity(Guid id, string name) : base(id, name)
+    {
+        MinNameLength = 4;
+        MaxNameLength = 9;
+    }
+}
+```
 
 ### ValueObject
 

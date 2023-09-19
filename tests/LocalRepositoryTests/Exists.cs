@@ -1,23 +1,13 @@
-﻿using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
-
-public class Exists
+public class Exists : LocalRepositoryTestBase
 {
-    private LocalRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp() => _repository = LocalRepositoryTestHelper.GetTestRepository();
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task ExistsAsync_WhenEntityExists_ReturnsTrue()
     {
-        var entity = _repository.Items.First();
+        var entity = Repository.Items.First();
 
-        var result = await _repository.ExistsAsync(entity.Id);
+        var result = await Repository.ExistsAsync(entity.Id);
 
         result.Should().BeTrue();
     }
@@ -27,7 +17,7 @@ public class Exists
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.ExistsAsync(id);
+        var result = await Repository.ExistsAsync(id);
 
         result.Should().BeFalse();
     }
@@ -35,9 +25,9 @@ public class Exists
     [Test]
     public async Task ExistsAsync_UsingPredicate_WhenEntityExists_ReturnsTrue()
     {
-        var entity = _repository.Items.First();
+        var entity = Repository.Items.First();
 
-        var result = await _repository.ExistsAsync(e => e.Id == entity.Id);
+        var result = await Repository.ExistsAsync(e => e.Id == entity.Id);
 
         result.Should().BeTrue();
     }
@@ -45,7 +35,7 @@ public class Exists
     [Test]
     public async Task ExistsAsync_UsingPredicate_WhenEntityDoesNotExist_ReturnsFall()
     {
-        var result = await _repository.ExistsAsync(e => e.Id == Guid.NewGuid());
+        var result = await Repository.ExistsAsync(e => e.Id == Guid.NewGuid());
 
         result.Should().BeFalse();
     }

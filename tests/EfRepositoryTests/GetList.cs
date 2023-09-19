@@ -1,30 +1,15 @@
 ﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
 
-public class GetList
+public class GetList : EfRepositoryTestBase
 {
-    private EfRepositoryTestHelper _helper = default!;
-
-    private EfRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfRepository();
-    }
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task GetListAsync_ReturnsAllEntities()
     {
-        var items = _repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<TestEntity>();
 
-        var result = await _repository.GetListAsync();
+        var result = await Repository.GetListAsync();
 
         result.Should().BeEquivalentTo(items);
     }
@@ -32,9 +17,9 @@ public class GetList
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        await _helper.ClearTestEntityTableAsync();
+        await Helper.ClearTestEntityTableAsync();
 
-        var result = await _repository.GetListAsync();
+        var result = await Repository.GetListAsync();
 
         result.Should().BeEmpty();
     }
@@ -43,10 +28,10 @@ public class GetList
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
         // Assuming this predicate selects correct items.
-        var items = _repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var selectedItems = items.Skip(1).ToList();
 
-        var result = await _repository.GetListAsync(e => e.Id == selectedItems[0].Id);
+        var result = await Repository.GetListAsync(e => e.Id == selectedItems[0].Id);
 
         result.Should().BeEquivalentTo(selectedItems);
     }
@@ -56,7 +41,7 @@ public class GetList
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.GetListAsync(e => e.Id == id);
+        var result = await Repository.GetListAsync(e => e.Id == id);
 
         result.Should().BeEmpty();
     }

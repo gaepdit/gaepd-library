@@ -1,26 +1,17 @@
 ﻿using GaEpd.AppLibrary.Pagination;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 using System.Globalization;
 
 namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 
-public class GetPagedList
+public class GetPagedList : LocalRepositoryTestBase
 {
-    private LocalRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp() => _repository = LocalRepositoryTestHelper.GetTestRepository();
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task GetPagedListAsync_ReturnsCorrectPagedResults()
     {
         var paging = new PaginatedRequest(2, 1);
-        var expectedResults = _repository.Items.Skip(paging.Skip).Take(paging.Take).ToList();
+        var expectedResults = Repository.Items.Skip(paging.Skip).Take(paging.Take).ToList();
 
-        var results = await _repository.GetPagedListAsync(paging);
+        var results = await Repository.GetPagedListAsync(paging);
 
         results.Should().BeEquivalentTo(expectedResults);
     }
@@ -29,11 +20,11 @@ public class GetPagedList
     public async Task GetPagedListAsync_WithPredicate_ReturnsCorrectPagedResults()
     {
         // Assuming this is the correct selection based on your predicate.
-        var selectedItems = _repository.Items.Skip(1).ToList();
+        var selectedItems = Repository.Items.Skip(1).ToList();
         var paging = new PaginatedRequest(1, 1);
         var expectedResults = selectedItems.Skip(paging.Skip).Take(paging.Take).ToList();
 
-        var results = await _repository.GetPagedListAsync(e => e.Id == selectedItems[0].Id, paging);
+        var results = await Repository.GetPagedListAsync(e => e.Id == selectedItems[0].Id, paging);
 
         results.Should().BeEquivalentTo(expectedResults);
     }
@@ -41,10 +32,10 @@ public class GetPagedList
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        _repository.Items.Clear();
+        Repository.Items.Clear();
         var paging = new PaginatedRequest(1, 1);
 
-        var result = await _repository.GetPagedListAsync(paging);
+        var result = await Repository.GetPagedListAsync(paging);
 
         result.Should().BeEmpty();
     }
@@ -52,9 +43,9 @@ public class GetPagedList
     [Test]
     public async Task WhenPagedBeyondExistingItems_ReturnsEmptyList()
     {
-        var paging = new PaginatedRequest(2, _repository.Items.Count);
+        var paging = new PaginatedRequest(2, Repository.Items.Count);
 
-        var result = await _repository.GetPagedListAsync(paging);
+        var result = await Repository.GetPagedListAsync(paging);
 
         result.Should().BeEmpty();
     }
@@ -62,19 +53,19 @@ public class GetPagedList
     [Test]
     public async Task GivenSorting_ReturnsSortedList()
     {
-        var itemsCount = _repository.Items.Count;
+        var itemsCount = Repository.Items.Count;
         var pagingAsc = new PaginatedRequest(1, itemsCount, "Name asc");
         var pagingDesc = new PaginatedRequest(1, itemsCount, "Name desc");
 
-        var resultAsc = await _repository.GetPagedListAsync(pagingAsc);
-        var resultDesc = await _repository.GetPagedListAsync(pagingDesc);
+        var resultAsc = await Repository.GetPagedListAsync(pagingAsc);
+        var resultDesc = await Repository.GetPagedListAsync(pagingDesc);
 
         using (new AssertionScope())
         {
             resultAsc.Count.Should().Be(itemsCount);
             resultDesc.Count.Should().Be(itemsCount);
-            resultAsc.Should().BeEquivalentTo(_repository.Items);
-            resultDesc.Should().BeEquivalentTo(_repository.Items);
+            resultAsc.Should().BeEquivalentTo(Repository.Items);
+            resultDesc.Should().BeEquivalentTo(Repository.Items);
 
             var comparer = CultureInfo.InvariantCulture.CompareInfo.GetStringComparer(CompareOptions.IgnoreCase);
             resultAsc.Should().BeInAscendingOrder(e => e.Name, comparer);

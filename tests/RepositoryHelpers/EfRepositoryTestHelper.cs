@@ -11,11 +11,17 @@ public class EfRepository : BaseRepository<TestEntity, Guid>
     public EfRepository(DbContext context) : base(context) { }
 }
 
+public class EfNamedEntityRepository : NamedEntityRepository<TestNamedEntity>
+{
+    public EfNamedEntityRepository(DbContext context) : base(context) { }
+}
+
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<TestEntity> TestEntities => Set<TestEntity>();
+    public DbSet<TestNamedEntity> TestNamedEntities => Set<TestNamedEntity>();
 }
 
 public sealed class EfRepositoryTestHelper : IDisposable
@@ -134,6 +140,27 @@ public sealed class EfRepositoryTestHelper : IDisposable
 
         Context = new AppDbContext(_options);
         return new EfRepository(Context);
+    }
+
+    /// <summary>
+    /// Seeds data and returns an instance of EfNamedEntityRepository.
+    /// </summary>
+    /// <returns>An <see cref="EfNamedEntityRepository"/>.</returns>
+    public EfNamedEntityRepository GetEfNamedEntityRepository()
+    {
+        if (!_context.TestNamedEntities.Any())
+        {
+            _context.TestNamedEntities.AddRange(
+                new List<TestNamedEntity>
+                {
+                    new(Guid.NewGuid(), "Abce"),
+                    new(Guid.NewGuid(), "Efgh"),
+                });
+            _context.SaveChanges();
+        }
+
+        Context = new AppDbContext(_options);
+        return new EfNamedEntityRepository(Context);
     }
 
     public void Dispose()

@@ -1,23 +1,13 @@
-﻿using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
-
-public class Find
+public class Find : LocalRepositoryTestBase
 {
-    private LocalRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp() => _repository = LocalRepositoryTestHelper.GetTestRepository();
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task FindAsync_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Items.First();
+        var entity = Repository.Items.First();
 
-        var result = await _repository.FindAsync(entity.Id);
+        var result = await Repository.FindAsync(entity.Id);
 
         result.Should().BeEquivalentTo(entity);
     }
@@ -27,7 +17,7 @@ public class Find
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.FindAsync(id);
+        var result = await Repository.FindAsync(id);
 
         result.Should().BeNull();
     }
@@ -35,9 +25,9 @@ public class Find
     [Test]
     public async Task FindAsync_UsingPredicate_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Items.First();
+        var entity = Repository.Items.First();
 
-        var result = await _repository.FindAsync(e => e.Id == entity.Id);
+        var result = await Repository.FindAsync(e => e.Id == entity.Id);
 
         result.Should().BeEquivalentTo(entity);
     }
@@ -45,7 +35,7 @@ public class Find
     [Test]
     public async Task FindAsync_UsingPredicate_WhenEntityDoesNotExist_ReturnsNull()
     {
-        var result = await _repository.FindAsync(e => e.Id == Guid.NewGuid());
+        var result = await Repository.FindAsync(e => e.Id == Guid.NewGuid());
 
         result.Should().BeNull();
     }
@@ -53,12 +43,12 @@ public class Find
     [Test]
     public async Task FindAsync_UsingPredicate_WhenUsingLocalRepository_IsCaseSensitive()
     {
-        var entity = _repository.Items.First();
+        var entity = Repository.Items.First();
 
-        var resultIgnoreCase = await _repository.FindAsync(e =>
+        var resultIgnoreCase = await Repository.FindAsync(e =>
             e.Name.ToUpperInvariant().Equals(entity.Name.ToLowerInvariant(), StringComparison.CurrentCultureIgnoreCase));
 
-        var resultCaseSensitive = await _repository.FindAsync(e =>
+        var resultCaseSensitive = await Repository.FindAsync(e =>
             e.Name.ToUpperInvariant().Equals(entity.Name.ToLowerInvariant(), StringComparison.CurrentCulture));
 
         using (new AssertionScope())

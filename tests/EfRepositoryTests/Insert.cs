@@ -1,32 +1,17 @@
 ﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
 
-public class Insert
+public class Insert : EfRepositoryTestBase
 {
-    private EfRepositoryTestHelper _helper = default!;
-
-    private EfRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfRepository();
-    }
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldIncreaseCountByOne()
     {
-        var items = _repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var initialCount = items.Count();
         var entity = new TestEntity { Id = Guid.NewGuid() };
 
-        await _repository.InsertAsync(entity);
+        await Repository.InsertAsync(entity);
 
         items.Count().Should().Be(initialCount + 1);
     }
@@ -36,8 +21,8 @@ public class Insert
     {
         var entity = new TestEntity { Id = Guid.NewGuid() };
 
-        await _repository.InsertAsync(entity);
-        var result = await _repository.GetAsync(entity.Id);
+        await Repository.InsertAsync(entity);
+        var result = await Repository.GetAsync(entity.Id);
 
         result.Should().BeEquivalentTo(entity);
     }

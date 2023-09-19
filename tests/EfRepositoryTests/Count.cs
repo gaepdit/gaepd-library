@@ -1,38 +1,23 @@
 ﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
 
-public class Count
+public class Count : EfRepositoryTestBase
 {
-    private EfRepositoryTestHelper _helper = default!;
-
-    private EfRepository _repository = default!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfRepository();
-    }
-
-    [TearDown]
-    public void TearDown() => _repository.Dispose();
-
     [Test]
     public async Task CountAsync_WithoutPredicate_ReturnsCorrectCount()
     {
-        var result = await _repository.CountAsync(e => true);
+        var result = await Repository.CountAsync(e => true);
 
-        result.Should().Be(_repository.Context.Set<TestEntity>().Count());
+        result.Should().Be(Repository.Context.Set<TestEntity>().Count());
     }
 
     [Test]
     public async Task CountAsync_WithoutPredicate_WhenNoItemsExist_ReturnsZero()
     {
-        await _helper.ClearTestEntityTableAsync();
+        await Helper.ClearTestEntityTableAsync();
 
-        var result = await _repository.CountAsync(e => true);
+        var result = await Repository.CountAsync(e => true);
 
         result.Should().Be(0);
     }
@@ -41,9 +26,9 @@ public class Count
     public async Task CountAsync_WithPredicate_ReturnsCorrectCount()
     {
         // Assuming this is the count you are expecting from your predicate.
-        var selectedItemsCount = _repository.Context.Set<TestEntity>().Count() - 1;
+        var selectedItemsCount = Repository.Context.Set<TestEntity>().Count() - 1;
 
-        var result = await _repository.CountAsync(e => e.Id != _repository.Context.Set<TestEntity>().First().Id);
+        var result = await Repository.CountAsync(e => e.Id != Repository.Context.Set<TestEntity>().First().Id);
 
         result.Should().Be(selectedItemsCount);
     }
@@ -53,7 +38,7 @@ public class Count
     {
         var id = Guid.NewGuid();
 
-        var result = await _repository.CountAsync(e => e.Id == id);
+        var result = await Repository.CountAsync(e => e.Id == id);
 
         result.Should().Be(0);
     }
