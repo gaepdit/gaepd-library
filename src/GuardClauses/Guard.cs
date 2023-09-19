@@ -42,10 +42,12 @@ public static class Guard
                 $"The minimum length '{minLength}' cannot exceed the maximum length '{maxLength}'.", nameof(minLength));
 
         if (value.Length > maxLength)
-            throw new ArgumentException($"The length cannot exceed the maximum length '{maxLength}'.", parameterName);
+            throw new ArgumentException(
+                $"The length cannot exceed the maximum length '{maxLength}'.", parameterName);
 
-        if (minLength > 0 && value.Length < minLength)
-            throw new ArgumentException($"The length must be at least the minimum length '{minLength}'.", parameterName);
+        if (value.Length < minLength)
+            throw new ArgumentException(
+                $"The length must be at least the minimum length '{minLength}'.", parameterName);
 
         return value;
     }
