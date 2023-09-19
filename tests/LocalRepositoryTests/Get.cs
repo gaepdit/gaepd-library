@@ -1,4 +1,5 @@
 ﻿using GaEpd.AppLibrary.Domain.Repositories;
+using GaEpd.AppLibrary.Tests.EntityHelpers;
 using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
 namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;

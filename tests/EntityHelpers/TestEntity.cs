@@ -1,6 +1,6 @@
 ﻿using GaEpd.AppLibrary.Domain.Entities;
 
-namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
+namespace GaEpd.AppLibrary.Tests.EntityHelpers;
 
 public class TestEntity : IEntity<Guid>
 {

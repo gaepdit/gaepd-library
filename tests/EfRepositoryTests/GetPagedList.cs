@@ -1,4 +1,5 @@
 ﻿using GaEpd.AppLibrary.Pagination;
+using GaEpd.AppLibrary.Tests.EntityHelpers;
 using GaEpd.AppLibrary.Tests.RepositoryHelpers;
 using System.Globalization;
 
