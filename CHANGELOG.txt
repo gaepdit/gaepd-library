@@ -1,3 +1,8 @@
+v3.5.0
+
+- Added an abstract StandardNameEntity along with INamedEntity and IActiveEntity interfaces.
+- Added INamedEntityRepository and INamedEntityManager interfaces and implementations.
+
 v3.4.0
 
 - Included abstract implementations of BaseRepository.
