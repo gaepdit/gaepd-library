@@ -50,13 +50,13 @@ There are also abstract classes based on the above that you should derive your d
 The `StandardNamedEntity` class derives from `AuditableEntity<Guid>`, `INamedEntity`, and `IActiveEntity`, and includes methods for enforcing the length of the `Name`. Maximum and minimum name length can be set in the constructor. For example:
 
 ```csharp
-public class DerivedEntity : StandardNamedEntity
+public class DerivedNamedEntity : StandardNamedEntity
 {
-    public DerivedEntity(Guid id, string name) : base(id, name)
-    {
-        MinNameLength = 4;
-        MaxNameLength = 9;
-    }
+    public override int MinNameLength => 2;
+    public override int MaxNameLength => 50;
+
+    public DerivedNamedEntity() { }
+    public DerivedNamedEntity(Guid id, string name) : base(id, name) { }
 }
 ```
 

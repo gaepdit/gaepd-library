@@ -3,29 +3,29 @@ using GaEpd.AppLibrary.Tests.EntityHelpers;
 
 namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
-public class LocalRepository : BaseRepository<TestEntity, Guid>
+public class DerivedLocalRepository : BaseRepository<DerivedEntity, Guid>
 {
-    public LocalRepository(IEnumerable<TestEntity> items) : base(items) { }
+    public DerivedLocalRepository(IEnumerable<DerivedEntity> items) : base(items) { }
 }
 
-public class LocalNamedEntityRepository : NamedEntityRepository<TestNamedEntity>
+public class DerivedLocalNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity>
 {
-    public LocalNamedEntityRepository(IEnumerable<TestNamedEntity> items) : base(items) { }
+    public DerivedLocalNamedEntityRepository(IEnumerable<DerivedNamedEntity> items) : base(items) { }
 }
 
 public static class LocalRepositoryTestHelper
 {
-    public static LocalRepository GetTestRepository() =>
-        new(new List<TestEntity>
+    public static DerivedLocalRepository GetRepository() =>
+        new(new List<DerivedEntity>
         {
             new() { Id = Guid.NewGuid(), Name = "Abc" },
             new() { Id = Guid.NewGuid(), Name = "Def" },
         });
 
-    public static LocalNamedEntityRepository GetNamedEntityRepository() =>
-        new(new List<TestNamedEntity>
+    public static DerivedLocalNamedEntityRepository GetNamedEntityRepository() =>
+        new(new List<DerivedNamedEntity>
         {
-            new(Guid.NewGuid(), "Abcd"),
-            new(Guid.NewGuid(), "Efgh"),
+            new(Guid.NewGuid(), "Abc def"),
+            new(Guid.NewGuid(), "Efg hij"),
         });
 }

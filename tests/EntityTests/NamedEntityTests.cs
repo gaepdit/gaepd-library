@@ -1,16 +1,15 @@
-﻿using GaEpd.AppLibrary.Domain.Entities;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
 
 namespace GaEpd.AppLibrary.Tests.EntityTests;
 
-public class StandardNamedEntityTests
+public class NamedEntityTests
 {
     [Test]
     public void SetName_ShouldSetTheName_WhenValidNameIsProvided()
     {
-        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
 
-        sut.ChangeName("Changed");
+        sut.SetName("Changed");
 
         sut.Name.Should().Be("Changed");
     }
@@ -18,9 +17,9 @@ public class StandardNamedEntityTests
     [Test]
     public void SetName_ShouldThrowException_WhenInvalidNameIsProvided()
     {
-        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
 
-        var action = () => sut.ChangeName(string.Empty);
+        var action = () => sut.SetName(string.Empty);
 
         action.Should().Throw<ArgumentException>()
             .WithMessage("Value cannot be null, empty, or white space.*");
@@ -29,29 +28,29 @@ public class StandardNamedEntityTests
     [Test]
     public void SetName_ShouldThrowException_WhenNameIsShorterThanMinimum()
     {
-        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
 
-        var action = () => sut.ChangeName("123");
+        var action = () => sut.SetName("123");
 
         action.Should().Throw<ArgumentException>()
-            .WithMessage($"The length must be at least the minimum length '{StandardNamedEntity.MinNameLength}'.*");
+            .WithMessage($"The length must be at least the minimum length '{sut.MinNameLength}'.*");
     }
 
     [Test]
     public void SetName_ShouldThrowException_WhenNameIsLongerThanMaximum()
     {
-        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
 
-        var action = () => sut.ChangeName("1234567890");
+        var action = () => sut.SetName("1234567890");
 
         action.Should().Throw<ArgumentException>()
-            .WithMessage($"The length cannot exceed the maximum length '{StandardNamedEntity.MaxNameLength}'.*");
+            .WithMessage($"The length cannot exceed the maximum length '{sut.MaxNameLength}'.*");
     }
 
     [Test]
     public void NameWithActivity_ShouldAppendInactive_WhenActiveIsFalse()
     {
-        var sut = new TestNamedEntity(Guid.NewGuid(), "Test") { Active = false };
+        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test") { Active = false };
 
         var result = sut.NameWithActivity;
 
@@ -61,9 +60,9 @@ public class StandardNamedEntityTests
     [Test]
     public void NoMinMax_ShouldSetTheName_WhenValidNameIsProvided()
     {
-        var sut = new TestNamedEntityNoMinMax(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntityNoMinMax(Guid.NewGuid(), "Test");
 
-        sut.ChangeName("Changed");
+        sut.SetName("Changed");
 
         sut.Name.Should().Be("Changed");
     }
@@ -71,9 +70,9 @@ public class StandardNamedEntityTests
     [Test]
     public void NoMinMax_ShouldThrowException_WhenEmptyNameIsProvided()
     {
-        var sut = new TestNamedEntityNoMinMax(Guid.NewGuid(), "Test");
+        var sut = new DerivedNamedEntityNoMinMax(Guid.NewGuid(), "Test");
 
-        var action = () => sut.ChangeName(string.Empty);
+        var action = () => sut.SetName(string.Empty);
 
         action.Should().Throw<ArgumentException>()
             .WithMessage("Value cannot be null, empty, or white space.*");

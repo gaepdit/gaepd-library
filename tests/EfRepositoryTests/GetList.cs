@@ -7,7 +7,7 @@ public class GetList : EfRepositoryTestBase
     [Test]
     public async Task GetListAsync_ReturnsAllEntities()
     {
-        var items = Repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<DerivedEntity>();
 
         var result = await Repository.GetListAsync();
 
@@ -28,7 +28,7 @@ public class GetList : EfRepositoryTestBase
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
         // Assuming this predicate selects correct items.
-        var items = Repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<DerivedEntity>();
         var selectedItems = items.Skip(1).ToList();
 
         var result = await Repository.GetListAsync(e => e.Id == selectedItems[0].Id);

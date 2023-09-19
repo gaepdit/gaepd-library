@@ -2,7 +2,7 @@
 
 namespace GaEpd.AppLibrary.Tests.EntityHelpers;
 
-public class TestEntity : IEntity<Guid>
+public class DerivedEntity : IEntity<Guid>
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = string.Empty;

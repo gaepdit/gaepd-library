@@ -4,7 +4,7 @@ namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 
 public class FindByName
 {
-    private LocalNamedEntityRepository _repository = default!;
+    private DerivedLocalNamedEntityRepository _repository = default!;
 
     [SetUp]
     public void SetUp() => _repository = LocalRepositoryTestHelper.GetNamedEntityRepository();

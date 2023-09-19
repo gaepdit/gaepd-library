@@ -6,22 +6,22 @@ using TestSupport.EfHelpers;
 
 namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
-public class EfRepository : BaseRepository<TestEntity, Guid>
+public class DerivedEfRepository : BaseRepository<DerivedEntity, Guid>
 {
-    public EfRepository(DbContext context) : base(context) { }
+    public DerivedEfRepository(DbContext context) : base(context) { }
 }
 
-public class EfNamedEntityRepository : NamedEntityRepository<TestNamedEntity>
+public class DerivedEfNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity>
 {
-    public EfNamedEntityRepository(DbContext context) : base(context) { }
+    public DerivedEfNamedEntityRepository(DbContext context) : base(context) { }
 }
 
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<TestEntity> TestEntities => Set<TestEntity>();
-    public DbSet<TestNamedEntity> TestNamedEntities => Set<TestNamedEntity>();
+    public DbSet<DerivedEntity> TestEntities => Set<DerivedEntity>();
+    public DbSet<DerivedNamedEntity> TestNamedEntities => Set<DerivedNamedEntity>();
 }
 
 public sealed class EfRepositoryTestHelper : IDisposable
@@ -119,18 +119,18 @@ public sealed class EfRepositoryTestHelper : IDisposable
     /// <summary>
     /// Deletes all data from the EF database table for the Test Entity.
     /// </summary>
-    public async Task ClearTestEntityTableAsync() => await ClearTableAsync<TestEntity>();
+    public async Task ClearTestEntityTableAsync() => await ClearTableAsync<DerivedEntity>();
 
     /// <summary>
     /// Seeds data and returns an instance of EfRepository.
     /// </summary>
-    /// <returns>An <see cref="EfRepository"/>.</returns>
-    public EfRepository GetEfRepository()
+    /// <returns>An <see cref="DerivedEfRepository"/>.</returns>
+    public DerivedEfRepository GetRepository()
     {
         if (!_context.TestEntities.Any())
         {
             _context.TestEntities.AddRange(
-                new List<TestEntity>
+                new List<DerivedEntity>
                 {
                     new() { Id = Guid.NewGuid(), Name = "Abc" },
                     new() { Id = Guid.NewGuid(), Name = "Def" },
@@ -139,28 +139,28 @@ public sealed class EfRepositoryTestHelper : IDisposable
         }
 
         Context = new AppDbContext(_options);
-        return new EfRepository(Context);
+        return new DerivedEfRepository(Context);
     }
 
     /// <summary>
     /// Seeds data and returns an instance of EfNamedEntityRepository.
     /// </summary>
-    /// <returns>An <see cref="EfNamedEntityRepository"/>.</returns>
-    public EfNamedEntityRepository GetEfNamedEntityRepository()
+    /// <returns>An <see cref="DerivedEfNamedEntityRepository"/>.</returns>
+    public DerivedEfNamedEntityRepository GetNamedEntityRepository()
     {
         if (!_context.TestNamedEntities.Any())
         {
             _context.TestNamedEntities.AddRange(
-                new List<TestNamedEntity>
+                new List<DerivedNamedEntity>
                 {
-                    new(Guid.NewGuid(), "Abce"),
-                    new(Guid.NewGuid(), "Efgh"),
+                    new(Guid.NewGuid(), "Abc def"),
+                    new(Guid.NewGuid(), "Efg hij"),
                 });
             _context.SaveChanges();
         }
 
         Context = new AppDbContext(_options);
-        return new EfNamedEntityRepository(Context);
+        return new DerivedEfNamedEntityRepository(Context);
     }
 
     public void Dispose()

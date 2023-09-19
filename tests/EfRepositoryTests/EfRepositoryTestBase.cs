@@ -6,13 +6,13 @@ public class EfRepositoryTestBase
 {
     protected EfRepositoryTestHelper Helper = default!;
 
-    protected EfRepository Repository = default!;
+    protected DerivedEfRepository Repository = default!;
 
     [SetUp]
     public void SetUp()
     {
         Helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        Repository = Helper.GetEfRepository();
+        Repository = Helper.GetRepository();
     }
 
     [TearDown]

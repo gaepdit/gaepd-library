@@ -7,9 +7,9 @@ public class Insert : EfRepositoryTestBase
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldIncreaseCountByOne()
     {
-        var items = Repository.Context.Set<TestEntity>();
+        var items = Repository.Context.Set<DerivedEntity>();
         var initialCount = items.Count();
-        var entity = new TestEntity { Id = Guid.NewGuid() };
+        var entity = new DerivedEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
 
@@ -19,7 +19,7 @@ public class Insert : EfRepositoryTestBase
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldBeAbleToRetrieveNewItem()
     {
-        var entity = new TestEntity { Id = Guid.NewGuid() };
+        var entity = new DerivedEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
         var result = await Repository.GetAsync(entity.Id);

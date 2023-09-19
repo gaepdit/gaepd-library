@@ -8,7 +8,7 @@ public class Insert : LocalRepositoryTestBase
     public async Task InsertAsync_AddNewItem_ShouldIncreaseCountByOne()
     {
         var initialCount = Repository.Items.Count;
-        var entity = new TestEntity { Id = Guid.NewGuid() };
+        var entity = new DerivedEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
 
@@ -18,7 +18,7 @@ public class Insert : LocalRepositoryTestBase
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldBeAbleToRetrieveNewItem()
     {
-        var entity = new TestEntity { Id = Guid.NewGuid() };
+        var entity = new DerivedEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
         var result = await Repository.GetAsync(entity.Id);

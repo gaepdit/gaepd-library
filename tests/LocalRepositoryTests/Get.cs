@@ -6,14 +6,14 @@ namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
 public class Get : LocalRepositoryTestBase
 {
     [Test]
-    public async Task GetAsync_WhenEntityDoesNotExist_ThrowsException()
+    public void GetAsync_WhenEntityDoesNotExist_ThrowsException()
     {
         var id = Guid.NewGuid();
 
         var func = async () => await Repository.GetAsync(id);
 
-        (await func.Should().ThrowAsync<EntityNotFoundException>())
-            .WithMessage($"Entity not found. Entity type: {typeof(TestEntity).FullName}, id: {id}");
+        func.Should().ThrowAsync<EntityNotFoundException>()
+            .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {id}");
     }
 
     [Test]

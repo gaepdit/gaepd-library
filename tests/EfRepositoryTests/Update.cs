@@ -8,9 +8,9 @@ public class Update : EfRepositoryTestBase
     [Test]
     public async Task UpdateAsync_UpdateExistingItem_ShouldReflectChanges()
     {
-        var originalEntity = Repository.Context.Set<TestEntity>().First();
+        var originalEntity = Repository.Context.Set<DerivedEntity>().First();
         Helper.ClearChangeTracker();
-        var newEntityWithSameId = new TestEntity { Id = originalEntity.Id, Name = "Xyz" };
+        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Name = "Xyz" };
 
         await Repository.UpdateAsync(newEntityWithSameId);
 
@@ -20,18 +20,18 @@ public class Update : EfRepositoryTestBase
         using (new AssertionScope())
         {
             result.Should().BeEquivalentTo(newEntityWithSameId);
-            Repository.Context.Set<TestEntity>().ToList().Contains(originalEntity).Should().BeFalse();
+            Repository.Context.Set<DerivedEntity>().ToList().Contains(originalEntity).Should().BeFalse();
         }
     }
 
     [Test]
-    public async Task UpdateAsync_WhenItemDoesNotExist_Throws()
+    public void UpdateAsync_WhenItemDoesNotExist_Throws()
     {
-        var item = new TestEntity { Id = Guid.NewGuid() };
+        var item = new DerivedEntity { Id = Guid.NewGuid() };
 
-        var action = async () => await Repository.UpdateAsync(item);
+        var func = async () => await Repository.UpdateAsync(item);
 
-        (await action.Should().ThrowAsync<EntityNotFoundException>())
-            .WithMessage($"Entity not found. Entity type: {typeof(TestEntity).FullName}, id: {item.Id}");
+        func.Should().ThrowAsync<EntityNotFoundException>()
+            .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {item.Id}");
     }
 }

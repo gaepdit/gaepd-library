@@ -7,13 +7,13 @@ public class FindByName
 {
     private EfRepositoryTestHelper _helper = default!;
 
-    private EfNamedEntityRepository _repository = default!;
+    private DerivedEfNamedEntityRepository _repository = default!;
 
     [SetUp]
     public void SetUp()
     {
         _helper = EfRepositoryTestHelper.CreateRepositoryHelper();
-        _repository = _helper.GetEfNamedEntityRepository();
+        _repository = _helper.GetNamedEntityRepository();
     }
 
     [TearDown]
@@ -22,7 +22,7 @@ public class FindByName
     [Test]
     public async Task FindByName_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Context.Set<TestNamedEntity>().First();
+        var entity = _repository.Context.Set<DerivedNamedEntity>().First();
 
         var result = await _repository.FindByNameAsync(entity.Name);
 
@@ -40,7 +40,7 @@ public class FindByName
     [Test]
     public async Task FindByName_IsNotCaseSensitive()
     {
-        var entity = _repository.Context.Set<TestNamedEntity>().First();
+        var entity = _repository.Context.Set<DerivedNamedEntity>().First();
 
         var result = await _repository.FindByNameAsync(entity.Name.ToUpperInvariant());
 

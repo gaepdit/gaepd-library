@@ -7,34 +7,17 @@ public abstract class StandardNamedEntity : AuditableEntity, INamedEntity, IActi
 {
     // Entity properties
 
-    private static int _minNameLength = 1;
-    private static int _maxNameLength;
-
     /// <summary>
     /// The minimum allowable length for the <see cref="Name"/>. Must be greater than zero.
     /// </summary>
-    public static int MinNameLength
-    {
-        get => _minNameLength;
-        protected set => _minNameLength = Guard.Positive(value);
-    }
+    public virtual int MinNameLength => 1;
 
     /// <summary>
     /// The maximum allowable length for the <see cref="Name"/>. Must be equal to or greater
     /// than <see cref="MinNameLength"/>, unless set to zero. When set to zero, no maximum
     /// length is enforced.
     /// </summary>
-    public static int MaxNameLength
-    {
-        get => _maxNameLength;
-        protected set
-        {
-            if (value == 0) _maxNameLength = 0;
-            if (value < _minNameLength)
-                throw new ArgumentException("Maximum length must be greater than or equal to minimum.", nameof(value));
-            _maxNameLength = value;
-        }
-    }
+    public virtual int MaxNameLength => 0;
 
     // Constructors
 
@@ -48,12 +31,10 @@ public abstract class StandardNamedEntity : AuditableEntity, INamedEntity, IActi
     public bool Active { get; set; } = true;
 
     // Methods
+    internal void SetId(Guid id) => Id = id;
 
-    internal void ChangeName(string name) => SetName(name);
-
-    private void SetName(string name) =>
-        Name = Guard.ValidLength(name.Trim(), minLength: MinNameLength,
-            maxLength: MaxNameLength > 0 ? MaxNameLength : int.MaxValue);
+    internal void SetName(string name) => Name = Guard.ValidLength(name.Trim(), minLength: MinNameLength,
+        maxLength: MaxNameLength > 0 ? MaxNameLength : int.MaxValue);
 
     // Display properties
 
