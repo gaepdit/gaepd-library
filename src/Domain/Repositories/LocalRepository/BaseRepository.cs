@@ -4,6 +4,11 @@ using System.Linq.Expressions;
 
 namespace GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 
+/// <summary>
+/// An implementation of <see cref="IRepository{TEntity,TKey}"/> using in-memory data.
+/// </summary>
+/// <typeparam name="TEntity">The entity type.</typeparam>
+/// <typeparam name="TKey">The primary key type for the entity.</typeparam>
 public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     where TEntity : IEntity<TKey>
     where TKey : IEquatable<TKey>

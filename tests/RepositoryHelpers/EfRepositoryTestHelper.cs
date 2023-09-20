@@ -1,4 +1,4 @@
-﻿using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
+using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 using GaEpd.AppLibrary.Tests.EntityHelpers;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
@@ -108,7 +108,7 @@ public sealed class EfRepositoryTestHelper : IDisposable
     /// <summary>
     /// Deletes all data from the EF database table for the specified entity.
     /// </summary>
-    /// <typeparam name="TEntity">The entity whose data is to be deleted.</typeparam>
+    /// <typeparam name="TEntity">The entity type.</typeparam>
     private async Task ClearTableAsync<TEntity>() where TEntity : class
     {
         Context.RemoveRange(Context.Set<TEntity>());
@@ -124,7 +124,7 @@ public sealed class EfRepositoryTestHelper : IDisposable
     /// <summary>
     /// Seeds data and returns an instance of EfRepository.
     /// </summary>
-    /// <returns>An <see cref="DerivedEfRepository"/>.</returns>
+    /// <returns>A <see cref="DerivedEfRepository"/>.</returns>
     public DerivedEfRepository GetRepository()
     {
         if (!_context.TestEntities.Any())
@@ -145,7 +145,7 @@ public sealed class EfRepositoryTestHelper : IDisposable
     /// <summary>
     /// Seeds data and returns an instance of EfNamedEntityRepository.
     /// </summary>
-    /// <returns>An <see cref="DerivedEfNamedEntityRepository"/>.</returns>
+    /// <returns>A <see cref="DerivedEfNamedEntityRepository"/>.</returns>
     public DerivedEfNamedEntityRepository GetNamedEntityRepository()
     {
         if (!_context.TestNamedEntities.Any())

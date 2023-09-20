@@ -2,6 +2,11 @@
 
 namespace GaEpd.AppLibrary.Domain.Entities;
 
+/// <summary>
+/// An implementation of <see cref="INamedEntityManager{TEntity}"/>
+/// </summary>
+/// <typeparam name="TEntity">The entity type.</typeparam>
+/// <typeparam name="TRepository">The repository interface for managing the entity data.</typeparam>
 public abstract class NamedEntityManager<TEntity, TRepository> : INamedEntityManager<TEntity>
     where TEntity : StandardNamedEntity, new()
     where TRepository : INamedEntityRepository<TEntity>

@@ -5,7 +5,13 @@
 /// </summary>
 public interface ISoftDelete
 {
+    /// <summary>
+    /// A flag indicating whether the entity should be considered as having been deleted.
+    /// </summary>
     bool IsDeleted { get; }
+    /// <summary>
+    /// The date and time the entity was deleted.
+    /// </summary>
     DateTimeOffset? DeletedAt { get; }
 }
 
@@ -15,6 +21,9 @@ public interface ISoftDelete
 public interface ISoftDelete<TUserKey> : ISoftDelete
     where TUserKey : IEquatable<TUserKey>
 {
+    /// <summary>
+    /// The ID of the user who deleted the entity.
+    /// </summary>
     TUserKey? DeletedById { get; }
 
     /// <summary>

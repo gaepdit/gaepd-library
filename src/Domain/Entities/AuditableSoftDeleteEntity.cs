@@ -15,7 +15,6 @@ public abstract class AuditableSoftDeleteEntity<TKey, TUserKey> : AuditableEntit
     public DateTimeOffset? DeletedAt { get; private set; }
     public TUserKey? DeletedById { get; private set; }
 
-    /// <inheritdoc/>
     public void SetDeleted(TUserKey? userId)
     {
         IsDeleted = true;
@@ -23,7 +22,6 @@ public abstract class AuditableSoftDeleteEntity<TKey, TUserKey> : AuditableEntit
         DeletedById = userId;
     }
 
-    /// <inheritdoc/>
     public void SetNotDeleted()
     {
         IsDeleted = false;
