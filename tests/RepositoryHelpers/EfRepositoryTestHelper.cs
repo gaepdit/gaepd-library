@@ -1,4 +1,4 @@
-using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
+﻿using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 using GaEpd.AppLibrary.Tests.EntityHelpers;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
@@ -6,14 +6,14 @@ using TestSupport.EfHelpers;
 
 namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
 
-public class DerivedEfRepository : BaseRepository<DerivedEntity, Guid>
+public class DerivedEfRepository : BaseRepository<DerivedEntity, Guid, AppDbContext>
 {
-    public DerivedEfRepository(DbContext context) : base(context) { }
+    public DerivedEfRepository(AppDbContext context) : base(context) { }
 }
 
-public class DerivedEfNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity>
+public class DerivedEfNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity, AppDbContext>
 {
-    public DerivedEfNamedEntityRepository(DbContext context) : base(context) { }
+    public DerivedEfNamedEntityRepository(AppDbContext context) : base(context) { }
 }
 
 public class AppDbContext : DbContext

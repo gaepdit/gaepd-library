@@ -1,22 +1,39 @@
-﻿using GaEpd.AppLibrary.Domain.Entities;
+using GaEpd.AppLibrary.Domain.Entities;
 using GaEpd.AppLibrary.Pagination;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
+
+/// <summary>
+/// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework. The <see cref="DbContext"/>
+/// type is assumed, but a derivative may still be used.
+/// </summary>
+/// <typeparam name="TEntity">The entity type.</typeparam>
+/// <typeparam name="TKey">The primary key type for the entity.</typeparam>
+public abstract class BaseRepository<TEntity, TKey> : BaseRepository<TEntity, TKey, DbContext>
+    where TEntity : class, IEntity<TKey>
+    where TKey : IEquatable<TKey>
+{
+    protected BaseRepository(DbContext context) : base(context) { }
+}
 
 /// <summary>
 /// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework.
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
+/// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
+[SuppressMessage("", "S2436")]
+public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEntity, TKey>
     where TEntity : class, IEntity<TKey>
     where TKey : IEquatable<TKey>
+    where TContext : DbContext
 {
-    public readonly DbContext Context;
+    public readonly TContext Context;
 
-    protected BaseRepository(DbContext context) => Context = context;
+    protected BaseRepository(TContext context) => Context = context;
 
     public async Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token)
