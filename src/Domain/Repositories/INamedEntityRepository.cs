@@ -2,6 +2,10 @@
 
 namespace GaEpd.AppLibrary.Domain.Repositories;
 
+/// <summary>
+/// A repository for working with entities that have a <see cref="INamedEntity.Name"/> property.  
+/// </summary>
+/// <typeparam name="TEntity">The entity type.</typeparam>
 public interface INamedEntityRepository<TEntity> : IRepository<TEntity, Guid>
     where TEntity : IEntity<Guid>, INamedEntity
 {

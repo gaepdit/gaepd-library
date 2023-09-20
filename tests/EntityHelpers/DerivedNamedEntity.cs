@@ -8,6 +8,5 @@ public class DerivedNamedEntity : StandardNamedEntity
     public override int MaxNameLength => 9;
 
     public DerivedNamedEntity() { }
-
     public DerivedNamedEntity(Guid id, string name) : base(id, name) { }
 }

@@ -14,7 +14,6 @@ public abstract class SoftDeleteEntity<TKey, TUserKey> : Entity<TKey>, ISoftDele
     public DateTimeOffset? DeletedAt { get; private set; }
     public TUserKey? DeletedById { get; private set; }
 
-    /// <inheritdoc/>
     public void SetDeleted(TUserKey? userId)
     {
         IsDeleted = true;
@@ -22,7 +21,6 @@ public abstract class SoftDeleteEntity<TKey, TUserKey> : Entity<TKey>, ISoftDele
         DeletedById = userId;
     }
 
-    /// <inheritdoc/>
     public void SetNotDeleted()
     {
         IsDeleted = false;

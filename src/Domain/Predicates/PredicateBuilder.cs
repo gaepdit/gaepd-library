@@ -3,7 +3,7 @@
 namespace GaEpd.AppLibrary.Domain.Predicates;
 
 /// <summary>
-/// Allows one to dynamically compose expression predicates.
+/// Allows expression predicates to be dynamically composed.
 /// <a href="https://www.albahari.com/nutshell/predicatebuilder.aspx">Credit</a>
 /// </summary>
 public static class PredicateBuilder

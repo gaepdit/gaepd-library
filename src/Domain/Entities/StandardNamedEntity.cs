@@ -3,6 +3,10 @@ using System.Text;
 
 namespace GaEpd.AppLibrary.Domain.Entities;
 
+/// <summary>
+/// An <see cref="AuditableEntity"/> that also implements <see cref="INamedEntity"/>
+/// and <see cref="IActiveEntity"/>.
+/// </summary>
 public abstract class StandardNamedEntity : AuditableEntity, INamedEntity, IActiveEntity
 {
     // Entity properties
@@ -22,7 +26,6 @@ public abstract class StandardNamedEntity : AuditableEntity, INamedEntity, IActi
     // Constructors
 
     protected StandardNamedEntity() { }
-
     protected StandardNamedEntity(Guid id, string name) : base(id) => SetName(name);
 
     // Properties
