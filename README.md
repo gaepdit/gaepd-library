@@ -17,24 +17,6 @@ To install , search for "GaEpd.AppLibrary" in the NuGet package manager or run t
 
 ## What's included
 
-### Guard clauses
-
-Guard clauses simplify checking for invalid input parameters. (This might be moved to a separate package later or replaced with a third-party tool like [ardalis/GuardClauses](https://github.com/ardalis/GuardClauses).)
-
-Example usage:
-
-```csharp
-public class SomeClass
-{
-    private readonly string _name;
-
-    public SomeClass(string name)
-    {
-        _name = Guard.NotNullOrWhiteSpace(name);
-    }
-}
-```
-
 ### Domain entities
 
 The following interfaces and abstract implementations of domain entities are provided for domain driven design:
@@ -47,7 +29,9 @@ The following interfaces and abstract implementations of domain entities are pro
 
 There are also abstract classes based on the above that you should derive your domain entities from: `Entity<TKey>`, `AuditableEntity<TKey, TUserKey>`, `SoftDeleteEntity<TKey, TUserKey>`, `AuditableSoftDeleteEntity<TKey, TUserKey>`, and `StandardNamedEntity`.
 
-The `StandardNamedEntity` class derives from `AuditableEntity<Guid>`, `INamedEntity`, and `IActiveEntity`, and includes methods for enforcing the length of the `Name`. Maximum and minimum name length can be set in the constructor. For example:
+The `StandardNamedEntity` class derives from `AuditableEntity<Guid>`, `INamedEntity`, and `IActiveEntity`, and includes methods for enforcing the length of the `Name`. Maximum and minimum name length can be set in the constructor. 
+
+Example usage:
 
 ```csharp
 public class DerivedNamedEntity : StandardNamedEntity
@@ -62,7 +46,7 @@ public class DerivedNamedEntity : StandardNamedEntity
 
 ### ValueObject
 
-An abstract ValueObject record can help add value objects to your domain entities. A [value object](https://www.martinfowler.com/bliki/ValueObject.html) is a compound of properties, such as an address or date range, that are comparable based solely on their values rather than their references. The properties of a value object are typically stored with its parent class, not as a separate record with its own ID. Value objects should be treated as immutable. When deriving from `ValueObject`, you will have to provide a `GetEqualityComponents()` method to define which properties to use to determine equality.
+An abstract ValueObject record can help add value objects to your domain entities. A [value object](https://www.martinfowler.com/bliki/ValueObject.html) is a compound of properties, such as an address or date range, that are comparable based solely on their values rather than their references. The properties of a value object are typically stored with its parent class, not as a separate record with its own ID. Value objects should be treated as immutable. When deriving from `ValueObject`, you must provide a `GetEqualityComponents()` method to define which properties to use to determine equality.
 
 Example usage:
 
@@ -93,11 +77,25 @@ Note: The `[Owned]` attribute is an Entity Framework attribute defining this as 
 
 ### Data Repositories
 
-Common data repository interfaces define basic entity CRUD operations. The `IReadRepository<TEntity, in TKey>` interface defines get and search operations (including paginated search). The `IWriteRepository<TEntity, in TKey>` interface defines insert, update, and delete operations. `IRepository<TEntity, in TKey>` combines the read and write interfaces.
+Common data repository interfaces define basic entity CRUD operations. The `IReadRepository` interface defines get and search operations (including paginated search). The `IWriteRepository` interface defines insert, update, and delete operations. `IRepository` combines the read and write interfaces. Finally, the `INamedEntityRepository` adds a find-by-name method.
 
 (Note that these interfaces work directly with domain entities. Your application should define [application/domain services](https://docs.abp.io/en/abp/latest/Domain-Services#application-services-vs-domain-services) that define how the application interacts with the entities & repositories through data transfer objects (DTOs).)
 
 There are two abstract `BaseRepository` classes that each implement the `IRepository` interface, one using in-memory data and the other requiring an Entity Framework database context.
+
+There are similarly two abstract `NamedEntityRepository` classes that each implement the `INamedEntityRepository` interface.
+
+Example usage:
+
+```csharp
+public interface IDerivedRepository : INamedEntityRepository<DerivedNamedEntity> { }
+
+public sealed class DerivedRepository : NamedEntityRepository<DerivedNamedEntity, AppDbContext>, IDerivedRepository
+{
+    public DerivedRepository(AppDbContext context) : base(context) { }
+}
+
+```
 
 ### Predicate builder
 
@@ -111,6 +109,24 @@ public static Expression<Func<MyEntity, bool>> IsActive(this Expression<Func<MyE
 
 public static Expression<Func<MyEntity, bool>> ActiveAndNotDeletedPredicate() =>
     PredicateBuilder.True<MyEntity>().IsActive().ExcludeDeleted();
+```
+
+### Guard clauses
+
+Guard clauses simplify checking for invalid input parameters.
+
+Example usage:
+
+```csharp
+public class SomeClass
+{
+    private readonly string _name;
+
+    public SomeClass(string name)
+    {
+        _name = Guard.NotNullOrWhiteSpace(name);
+    }
+}
 ```
 
 ### Pagination classes
