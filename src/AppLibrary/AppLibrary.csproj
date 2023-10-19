@@ -27,12 +27,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\LICENSE" Pack="true" PackagePath="" />
-        <None Include="..\README.md">
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+        <None Include="..\..\README.md">
           <Pack>True</Pack>
           <PackagePath>\</PackagePath>
         </None>
-        <None Include="assets\epd-icon-tile.png" Pack="true" PackagePath="\" />
+        <None Include="..\assets\epd-icon-tile.png" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
@@ -52,7 +52,7 @@
 
 
     <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
-        <ReadLinesFromFile File="../CHANGELOG.txt">
+        <ReadLinesFromFile File="CHANGELOG.txt">
             <Output TaskParameter="Lines" ItemName="ReleaseNotes" />
         </ReadLinesFromFile>
         <PropertyGroup>
