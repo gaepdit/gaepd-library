@@ -1,7 +1,7 @@
 ﻿using GaEpd.AppLibrary.Extensions;
 using System.ComponentModel.DataAnnotations;
 
-namespace GaEpd.AppLibrary.Tests.ExtensionTests;
+namespace AppLibrary.Tests.ExtensionTests;
 
 [TestFixture]
 public class EnumExtensions

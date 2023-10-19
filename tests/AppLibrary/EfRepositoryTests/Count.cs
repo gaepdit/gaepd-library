@@ -1,6 +1,6 @@
-﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class Count : EfRepositoryTestBase
 {

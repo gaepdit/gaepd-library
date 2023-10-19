@@ -1,6 +1,6 @@
 ﻿using GaEpd.AppLibrary.Domain.Entities;
 
-namespace GaEpd.AppLibrary.Tests.EntityHelpers;
+namespace AppLibrary.Tests.EntityHelpers;
 
 public class DerivedEntity : IEntity<Guid>
 {

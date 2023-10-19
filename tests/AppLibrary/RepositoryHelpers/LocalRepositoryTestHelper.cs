@@ -1,7 +1,7 @@
-﻿using GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
+using GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 
-namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
+namespace AppLibrary.Tests.RepositoryHelpers;
 
 public class DerivedLocalRepository : BaseRepository<DerivedEntity, Guid>
 {

@@ -1,6 +1,6 @@
 ﻿using GaEpd.AppLibrary.Extensions;
 
-namespace GaEpd.AppLibrary.Tests.ExtensionTests;
+namespace AppLibrary.Tests.ExtensionTests;
 
 [TestFixture]
 public class StringExtensions

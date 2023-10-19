@@ -1,6 +1,6 @@
 ﻿using GaEpd.AppLibrary.Pagination;
 
-namespace GaEpd.AppLibrary.Tests.PaginationTests;
+namespace AppLibrary.Tests.PaginationTests;
 
 public class PaginatedRequestTests
 {

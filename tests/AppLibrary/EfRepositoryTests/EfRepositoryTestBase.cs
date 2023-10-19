@@ -1,6 +1,6 @@
-﻿using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿using AppLibrary.Tests.RepositoryHelpers;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class EfRepositoryTestBase
 {

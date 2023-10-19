@@ -1,6 +1,6 @@
-﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
 
-namespace GaEpd.AppLibrary.Tests.EntityTests;
+namespace AppLibrary.Tests.EntityTests;
 
 public class NamedEntityTests
 {

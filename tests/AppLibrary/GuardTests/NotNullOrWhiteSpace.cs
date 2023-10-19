@@ -1,6 +1,6 @@
 using GaEpd.AppLibrary.GuardClauses;
 
-namespace GaEpd.AppLibrary.Tests.GuardTests;
+namespace AppLibrary.Tests.GuardTests;
 
 public class NotNull
 {

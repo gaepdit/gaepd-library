@@ -1,6 +1,6 @@
-﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
+namespace AppLibrary.Tests.LocalRepositoryTests;
 
 public class Insert : LocalRepositoryTestBase
 {

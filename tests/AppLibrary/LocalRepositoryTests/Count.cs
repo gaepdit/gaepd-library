@@ -1,4 +1,4 @@
-﻿namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
+﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
 public class Count : LocalRepositoryTestBase
 {

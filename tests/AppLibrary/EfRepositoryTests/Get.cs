@@ -1,7 +1,7 @@
-﻿using GaEpd.AppLibrary.Domain.Repositories;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
+using GaEpd.AppLibrary.Domain.Repositories;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class Get : EfRepositoryTestBase
 {

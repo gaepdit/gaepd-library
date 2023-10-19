@@ -1,8 +1,8 @@
-﻿using GaEpd.AppLibrary.Pagination;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
+using GaEpd.AppLibrary.Pagination;
 using System.Globalization;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class GetPagedList : EfRepositoryTestBase
 {

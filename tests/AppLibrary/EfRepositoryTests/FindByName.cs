@@ -1,7 +1,7 @@
-﻿using GaEpd.AppLibrary.Tests.EntityHelpers;
-using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
+using AppLibrary.Tests.RepositoryHelpers;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class FindByName
 {

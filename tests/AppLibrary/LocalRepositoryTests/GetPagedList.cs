@@ -1,7 +1,7 @@
 ﻿using GaEpd.AppLibrary.Pagination;
 using System.Globalization;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
+namespace AppLibrary.Tests.LocalRepositoryTests;
 
 public class GetPagedList : LocalRepositoryTestBase
 {

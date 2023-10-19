@@ -1,6 +1,6 @@
 ﻿using GaEpd.AppLibrary.Domain.ValueObjects;
 
-namespace GaEpd.AppLibrary.Tests.ValueObjectTests;
+namespace AppLibrary.Tests.ValueObjectTests;
 
 public class EqualityTests
 {

@@ -1,6 +1,6 @@
-﻿using GaEpd.AppLibrary.Tests.RepositoryHelpers;
+﻿using AppLibrary.Tests.RepositoryHelpers;
 
-namespace GaEpd.AppLibrary.Tests.LocalRepositoryTests;
+namespace AppLibrary.Tests.LocalRepositoryTests;
 
 public class LocalRepositoryTestBase
 {

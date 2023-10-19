@@ -1,10 +1,10 @@
-﻿using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.EntityHelpers;
+using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using TestSupport.EfHelpers;
 
-namespace GaEpd.AppLibrary.Tests.RepositoryHelpers;
+namespace AppLibrary.Tests.RepositoryHelpers;
 
 public class DerivedEfRepository : BaseRepository<DerivedEntity, Guid, AppDbContext>
 {

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace GaEpd.AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 [SetUpFixture]
 public class EfRepositoryTestsSetup

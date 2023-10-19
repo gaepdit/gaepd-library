@@ -1,9 +1,9 @@
-﻿using GaEpd.AppLibrary.Domain.Entities;
+﻿using AppLibrary.Tests.EntityHelpers;
+using GaEpd.AppLibrary.Domain.Entities;
 using GaEpd.AppLibrary.Domain.Repositories;
-using GaEpd.AppLibrary.Tests.EntityHelpers;
 using NSubstitute;
 
-namespace GaEpd.AppLibrary.Tests.EntityTests;
+namespace AppLibrary.Tests.EntityTests;
 
 public class NamedEntityManagerTests
 {
