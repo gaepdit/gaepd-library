@@ -16,5 +16,9 @@ public class EfRepositoryTestBase
     }
 
     [TearDown]
-    public void TearDown() => Repository.Dispose();
+    public void TearDown()
+    {
+        Repository.Dispose();
+        Helper.Dispose();
+    }
 }

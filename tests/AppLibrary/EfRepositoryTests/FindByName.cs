@@ -17,7 +17,11 @@ public class FindByName
     }
 
     [TearDown]
-    public void TearDown() => _repository.Dispose();
+    public void TearDown()
+    {
+        _repository.Dispose();
+        _helper.Dispose();
+    }
 
     [Test]
     public async Task FindByName_WhenEntityExists_ReturnsEntity()

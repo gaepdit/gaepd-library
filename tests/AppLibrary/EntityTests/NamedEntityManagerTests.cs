@@ -17,6 +17,12 @@ public class NamedEntityManagerTests
         _manager = new DerivedNamedEntityManager(_repositoryMock);
     }
 
+    [TearDown]
+    public void Teardown()
+    {
+        _repositoryMock.Dispose();
+    }
+
     [Test]
     public async Task CreateAsync_ShouldReturnEntityWithGivenName()
     {
