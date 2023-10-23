@@ -54,17 +54,23 @@ public static class Guard
 
     public static int NotNegative(
         int value,
-        [CallerArgumentExpression("value")] string? parameterName = null) =>
-        value >= 0
-            ? value
-            : throw new ArgumentException("Value cannot be negative.", parameterName);
+        [CallerArgumentExpression("value")] string? parameterName = null)
+    {
+        if (value < 0) 
+            throw new ArgumentException("Value cannot be negative.", parameterName);
+
+        return value;
+    }
 
     public static int Positive(
         int value,
-        [CallerArgumentExpression("value")] string? parameterName = null) =>
-        value > 0
-            ? value
-            : throw new ArgumentException("Value must be positive (greater than zero).", parameterName);
+        [CallerArgumentExpression("value")] string? parameterName = null)
+    {
+        if (value <= 0) 
+            throw new ArgumentException("Value must be positive (greater than zero).", parameterName);
+
+        return value;
+    }
 
     public static string? RegexMatch(
         string? value,
@@ -73,8 +79,9 @@ public static class Guard
     {
         if (value is null) return null;
 
-        return Regex.IsMatch(value, pattern, RegexOptions.NonBacktracking)
-            ? value
-            : throw new ArgumentException("Value does not match regex.", parameterName);
+        if (!Regex.IsMatch(value, pattern, RegexOptions.NonBacktracking))
+            throw new ArgumentException("Value does not match regex.", parameterName);
+
+        return value;
     }
 }

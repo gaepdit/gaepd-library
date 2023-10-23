@@ -1,6 +1,4 @@
-﻿using GaEpd.AppLibrary.GuardClauses;
-
-namespace GaEpd.AppLibrary.Domain.Entities;
+﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
 [Serializable]
 public abstract class Entity<TKey> : IEntity<TKey>

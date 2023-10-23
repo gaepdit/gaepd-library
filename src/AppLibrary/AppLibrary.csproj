@@ -5,6 +5,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
         <RootNamespace>GaEpd.AppLibrary</RootNamespace>
         <PackageId>GaEpd.AppLibrary</PackageId>
         <Authors>Douglas Waldron</Authors>
@@ -53,6 +54,10 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\GuardClauses\GuardClauses.csproj" PrivateAssets="all" />
+    </ItemGroup>
+
     <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
         <ReadLinesFromFile File="CHANGELOG.txt">
             <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
@@ -60,6 +65,12 @@
         <PropertyGroup>
             <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>
         </PropertyGroup>
+    </Target>
+
+    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+        <ItemGroup>
+            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))"/>
+        </ItemGroup>
     </Target>
 
 </Project>

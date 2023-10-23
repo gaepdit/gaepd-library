@@ -1,5 +1,4 @@
-﻿using GaEpd.AppLibrary.GuardClauses;
-using System.Text;
+﻿using System.Text;
 
 namespace GaEpd.AppLibrary.Domain.Entities;
 

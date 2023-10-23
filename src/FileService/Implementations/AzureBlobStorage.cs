@@ -1,7 +1,6 @@
-﻿using Azure.Identity;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using GaEpd.FileService.Utilities;
 
 namespace GaEpd.FileService.Implementations;
 

@@ -1,5 +1,3 @@
-using GaEpd.AppLibrary.GuardClauses;
-
 namespace AppLibrary.Tests.GuardTests;
 
 public class NotNullOrWhiteSpace

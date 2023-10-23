@@ -15,8 +15,7 @@ public class FileSystem : IFileService
 
     public FileSystem(string basePath)
     {
-        Guard.NotNullOrWhiteSpace(basePath);
-        _basePath = basePath;
+        _basePath = Guard.NotNullOrWhiteSpace(basePath);
         Directory.CreateDirectory(_basePath);
     }
 
