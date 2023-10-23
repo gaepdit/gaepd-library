@@ -73,7 +73,7 @@ public static class Guard
     {
         if (value is null) return null;
 
-        return Regex.IsMatch(value, pattern)
+        return Regex.IsMatch(value, pattern, RegexOptions.NonBacktracking)
             ? value
             : throw new ArgumentException("Value does not match regex.", parameterName);
     }
