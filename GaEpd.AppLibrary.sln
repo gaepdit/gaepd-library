@@ -1,11 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary", "src\GaEpd.AppLibrary.csproj", "{95C15375-969C-4E2F-8569-9135BD0C34E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary", "src\AppLibrary\AppLibrary.csproj", "{95C15375-969C-4E2F-8569-9135BD0C34E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary.Tests", "tests\GaEpd.AppLibrary.Tests.csproj", "{6F3BB725-C5C1-424A-8553-737EA4BCF9DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary.Tests", "tests\AppLibrary\AppLibrary.Tests.csproj", "{6F3BB725-C5C1-424A-8553-737EA4BCF9DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BADA9ED7-80CC-4C17-95EA-807C201D31C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,5 +28,6 @@ Global
 		{6F3BB725-C5C1-424A-8553-737EA4BCF9DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{6F3BB725-C5C1-424A-8553-737EA4BCF9DD} = {BADA9ED7-80CC-4C17-95EA-807C201D31C0}
 	EndGlobalSection
 EndGlobal

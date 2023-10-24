@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>3.5.1</Version>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>GaEpd.AppLibrary</RootNamespace>
+        <PackageId>GaEpd.AppLibrary</PackageId>
+        <Authors>Douglas Waldron</Authors>
+        <Company>Georgia EPD</Company>
+        <Title>Georgia EPD-IT Core App Library</Title>
+        <Description>Core app library for GA EPD-IT projects</Description>
+        <Copyright>Copyright (c) State of Georgia 2023</Copyright>
+        <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
+        <PackageIcon>epd-icon-tile.png</PackageIcon>
+        <RepositoryUrl>https://github.com/gaepdit/app-library.git</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>(Add release notes to CHANGELOG.txt)</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+        <None Include="..\..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\assets\epd-icon-tile.png" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="SonarAnalyzer.CSharp">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.Linq.Dynamic.Core"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+
+    <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
+        <ReadLinesFromFile File="CHANGELOG.txt">
+            <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
+        </ReadLinesFromFile>
+        <PropertyGroup>
+            <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>
+        </PropertyGroup>
+    </Target>
+
+</Project>
