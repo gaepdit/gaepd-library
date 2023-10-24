@@ -1,4 +1,4 @@
-using Azure.Identity;
+﻿using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 
@@ -19,11 +19,12 @@ public class AzureBlobStorage : IFileService
         _containerClient = serviceClient.GetBlobContainerClient(container);
     }
 
-    public Task SaveFileAsync(Stream stream, string fileName, string path = "", CancellationToken token = default)
+    public async Task SaveFileAsync(Stream stream, string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
-        return blobClient.UploadAsync(stream, token);
+        var filePath = Path.Combine(_basePath, path, fileName);
+        var blobClient = _containerClient.GetBlobClient(filePath);
+        await blobClient.UploadAsync(stream, overwrite: true, token);
     }
 
     public async Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default)
@@ -47,13 +48,6 @@ public class AzureBlobStorage : IFileService
         return fileResponse.Value.Content;
     }
 
-    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
-    {
-        Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
-        return blobClient.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, cancellationToken: token);
-    }
-
     public async Task<IFileService.TryGetResponse> TryGetFileAsync(string fileName, string path = "",
         CancellationToken token = default)
     {
@@ -67,5 +61,12 @@ public class AzureBlobStorage : IFileService
 
         var fileResponse = await blobClient.DownloadStreamingAsync(cancellationToken: token);
         return new IFileService.TryGetResponse(true, fileResponse.Value.Content);
+    }
+
+    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
+    {
+        Guard.NotNullOrWhiteSpace(fileName);
+        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        return blobClient.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, cancellationToken: token);
     }
 }

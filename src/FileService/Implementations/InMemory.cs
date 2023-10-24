@@ -37,13 +37,6 @@ public class InMemory : IFileService
         return Task.FromResult<Stream>(new MemoryStream(fileContents));
     }
 
-    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
-    {
-        Guard.NotNullOrWhiteSpace(fileName);
-        _fileContainer.Remove(Path.Combine(path, fileName));
-        return Task.CompletedTask;
-    }
-
     public Task<IFileService.TryGetResponse> TryGetFileAsync(string fileName, string path = "",
         CancellationToken token = default)
     {
@@ -53,5 +46,12 @@ public class InMemory : IFileService
             _fileContainer.TryGetValue(filePath, out var value)
                 ? new IFileService.TryGetResponse(true, new MemoryStream(value))
                 : new IFileService.TryGetResponse(false, Stream.Null));
+    }
+
+    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
+    {
+        Guard.NotNullOrWhiteSpace(fileName);
+        _fileContainer.Remove(Path.Combine(path, fileName));
+        return Task.CompletedTask;
     }
 }

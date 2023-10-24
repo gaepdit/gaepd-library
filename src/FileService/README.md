@@ -12,13 +12,13 @@ To install, search for "GaEpd.FileService" in the NuGet package manager or run t
 
 ## What's included
 
-An `IFileService` interface is provided to abstract out common file persistence operations along with three
-useful implementations:
+An `IFileService` interface is provided to abstract out common file persistence operations along with three useful
+implementations:
 
 ### In Memory
 
 ```csharp
-builder.Services.AddTransient<IFileService, InMemoryFileService>();
+builder.Services.AddSingleton<IFileService, InMemoryFileService>();
 ```
 
 ### File System
@@ -30,8 +30,8 @@ builder.Services.AddTransient<IFileService, FileSystemFileService>(_ =>
     new FileSystemFileService(basePath));
 ```
 
-If a Windows Identity is required to access the desired file system, include the username, domain, and
-password in the constructor.
+If a Windows Identity is required to access the desired file system, include the username, domain, and password in the
+constructor.
 
 ```csharp
 builder.Services.AddTransient<IFileService, FileSystemFileService>(_ =>
@@ -40,10 +40,13 @@ builder.Services.AddTransient<IFileService, FileSystemFileService>(_ =>
 
 ### Azure Blob Storage
 
-Requires an Azure account and an existing Blob Storage container. (The Azure Blob service does not attempt to create 
-the container if it does not exist.) The `basePath` is optional and is added to file names as a path segment.
+Requires an Azure account and an existing Blob Storage container. (The Azure Blob service does not attempt to create the
+container if it does not exist.) The `basePath` is optional and is added to file names as a path segment.
 
 ```csharp
 builder.Services.AddSingleton<IFileService, AzureBlobFileService>(_ =>
     new AzureBlobFileService(accountName, container, basePath));
 ```
+
+**Warning:** At the moment, the `SaveFileAsync()` method throws an exception when using Azure Blob Storage if the file
+already exists. 

@@ -21,9 +21,13 @@ public class FileSystem : IFileService
 
     public FileSystem(string basePath, string username, string domain, string password)
     {
-        Guard.NotNullOrWhiteSpace(basePath);
-        Guard.NotNullOrWhiteSpace(username);
-        Guard.NotNullOrWhiteSpace(password);
+        _basePath = Guard.NotNullOrWhiteSpace(basePath);
+        if (username == string.Empty || password == string.Empty)
+        {
+            Directory.CreateDirectory(_basePath);
+            return;
+        }
+
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) throw new InvalidOperationException();
         _accessToken = new WindowsLogin(username, domain, password).AccessToken;
         _basePath = basePath;
@@ -77,27 +81,11 @@ public class FileSystem : IFileService
         }
     }
 
-    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
-    {
-        Guard.NotNullOrWhiteSpace(fileName);
-
-        return _useWindowsLogin
-            ? WindowsIdentity.RunImpersonated(_accessToken!, DeleteFromFileSystem)
-            : DeleteFromFileSystem();
-
-        Task DeleteFromFileSystem()
-        {
-            File.Delete(Path.Combine(_basePath, path, fileName));
-            return Task.CompletedTask;
-        }
-    }
-
     public Task<IFileService.TryGetResponse> TryGetFileAsync(string fileName, string path = "",
         CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
         var filePath = Path.Combine(_basePath, path, fileName);
-
         return _useWindowsLogin
             ? WindowsIdentity.RunImpersonated(_accessToken!, InternalTryGetFile)
             : InternalTryGetFile();
@@ -107,6 +95,20 @@ public class FileSystem : IFileService
             return Task.FromResult(File.Exists(filePath)
                 ? new IFileService.TryGetResponse(true, File.OpenRead(filePath))
                 : new IFileService.TryGetResponse(false, Stream.Null));
+        }
+    }
+
+    public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
+    {
+        Guard.NotNullOrWhiteSpace(fileName);
+        return _useWindowsLogin
+            ? WindowsIdentity.RunImpersonated(_accessToken!, DeleteFromFileSystem)
+            : DeleteFromFileSystem();
+
+        Task DeleteFromFileSystem()
+        {
+            File.Delete(Path.Combine(_basePath, path, fileName));
+            return Task.CompletedTask;
         }
     }
 }
