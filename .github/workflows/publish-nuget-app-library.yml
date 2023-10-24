@@ -1,7 +1,6 @@
-# Publish the NuGet package to GitHub Packages.
-# Workflow runs when a version tag is pushed.
+# Workflow runs when a matching version tag is pushed.
 
-name: Publish NuGet Package
+name: Publish App Library NuGet Package
 
 on:
   push:
@@ -9,7 +8,12 @@ on:
   workflow_dispatch: 
 
 jobs:
-  publish:
+  publish-app-library-nuget-package:
+    # ↓ Change this to "false" to disable the workflow without any alert messages.
+    if: ${{ true }}
+    # ↑ Change to "true" (or delete) to enable the workflow.
+
+    name: Publish App Library NuGet package
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
