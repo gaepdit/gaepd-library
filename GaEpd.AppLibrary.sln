@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary", "src\AppLibrary\AppLibrary.csproj", "{95C15375-969C-4E2F-8569-9135BD0C34E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary.Tests", "tests\AppLibrary\AppLibrary.Tests.csproj", "{6F3BB725-C5C1-424A-8553-737EA4BCF9DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.AppLibrary.Tests", "tests\AppLibrary.Tests\AppLibrary.Tests.csproj", "{6F3BB725-C5C1-424A-8553-737EA4BCF9DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaEpd.FileService", "src\FileService\FileService.csproj", "{790A7D00-0087-43E4-B596-CEDC05FC03F0}"
 EndProject
