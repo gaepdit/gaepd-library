@@ -146,4 +146,4 @@ enum, respectively.
 
 ### Guard clauses
 
-The GuardClauses package is included by reference.
+The [GuardClauses package](../GuardClauses/README.md) is included by reference.
