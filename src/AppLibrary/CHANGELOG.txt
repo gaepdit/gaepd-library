@@ -1,3 +1,7 @@
+v3.6.0
+
+- Move GuardClauses to a separate NuGet package.
+
 v3.5.1
 
 - Derived EF repositories can now specify the the DbContext type.
