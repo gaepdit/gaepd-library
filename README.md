@@ -16,3 +16,7 @@ This repo contains two packages created by Georgia EPD-IT to provide common util
 - **[File Service](./src/FileService/README.md)** – A library to provide common file services.
 
     [![Nuget](https://img.shields.io/nuget/v/GaEpd.FileService)](https://www.nuget.org/packages/GaEpd.FileService)
+
+- **[Guard Clauses](./src/GuardClauses/README.md)** – A library to provide common file services.
+
+    [![Nuget](https://img.shields.io/nuget/v/GaEpd.GuardClauses)](https://www.nuget.org/packages/GaEpd.GuardClauses)

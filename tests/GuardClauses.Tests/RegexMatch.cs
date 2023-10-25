@@ -1,4 +1,4 @@
-namespace AppLibrary.Tests.GuardTests;
+namespace GuardClauses.Tests;
 
 public class RegexMatch
 {

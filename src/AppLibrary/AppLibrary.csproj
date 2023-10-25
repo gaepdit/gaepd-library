@@ -5,13 +5,12 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
         <RootNamespace>GaEpd.AppLibrary</RootNamespace>
         <PackageId>GaEpd.AppLibrary</PackageId>
         <Authors>Douglas Waldron</Authors>
         <Company>Georgia EPD</Company>
         <Title>Georgia EPD-IT Core App Library</Title>
-        <Description>Core app library for GA EPD-IT projects</Description>
+        <Description>Core app library with entities, repositories, and more</Description>
         <Copyright>Copyright (c) State of Georgia 2023</Copyright>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
@@ -41,6 +40,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="GaEpd.GuardClauses" />
         <PackageReference Include="Microsoft.EntityFrameworkCore"/>
         <PackageReference Include="Microsoft.SourceLink.GitHub">
           <PrivateAssets>all</PrivateAssets>
@@ -54,10 +54,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\GuardClauses\GuardClauses.csproj" PrivateAssets="all" />
-    </ItemGroup>
-
     <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
         <ReadLinesFromFile File="CHANGELOG.txt">
             <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
@@ -65,12 +61,6 @@
         <PropertyGroup>
             <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>
         </PropertyGroup>
-    </Target>
-
-    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
-        <ItemGroup>
-            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))"/>
-        </ItemGroup>
     </Target>
 
 </Project>

@@ -1,1 +1,1 @@
-global using GaEpd.AppLibrary.GuardClauses;
+global using GaEpd.GuardClauses;
