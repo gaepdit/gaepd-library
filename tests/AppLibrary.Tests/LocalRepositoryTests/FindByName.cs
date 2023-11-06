@@ -10,7 +10,7 @@ public class FindByName
     public void SetUp() => _repository = LocalRepositoryTestHelper.GetNamedEntityRepository();
 
     [TearDown]
-    public void TearDown() => _repository.Dispose();
+    public async Task TearDown() => await _repository.DisposeAsync();
 
     [Test]
     public async Task FindByName_WhenEntityExists_ReturnsEntity()

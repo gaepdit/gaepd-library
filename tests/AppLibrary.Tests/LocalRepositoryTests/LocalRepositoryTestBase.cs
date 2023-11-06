@@ -10,5 +10,5 @@ public class LocalRepositoryTestBase
     public void SetUp() => Repository = LocalRepositoryTestHelper.GetRepository();
 
     [TearDown]
-    public void TearDown() => Repository.Dispose();
+    public async Task TearDown() => await Repository.DisposeAsync();
 }

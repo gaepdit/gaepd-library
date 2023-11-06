@@ -16,9 +16,9 @@ public class EfRepositoryTestBase
     }
 
     [TearDown]
-    public void TearDown()
+    public async Task TearDown()
     {
-        Repository.Dispose();
-        Helper.Dispose();
+        await Repository.DisposeAsync();
+        await Helper.DisposeAsync();
     }
 }

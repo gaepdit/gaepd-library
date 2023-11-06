@@ -7,7 +7,7 @@ namespace GaEpd.AppLibrary.Domain.Repositories;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public interface IWriteRepository<in TEntity, in TKey> : IDisposable
+public interface IWriteRepository<in TEntity, in TKey> : IDisposable, IAsyncDisposable
     where TEntity : IEntity<TKey>
     where TKey : IEquatable<TKey>
 {
