@@ -109,9 +109,7 @@ public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     // ReSharper disable once UnusedParameter.Global
     protected virtual void Dispose(bool disposing)
     {
-        if (_disposed) return;
-        Items.Clear();
-        _disposed = true;
+        if (!_disposed) _disposed = true;
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global

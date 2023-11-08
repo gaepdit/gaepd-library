@@ -137,6 +137,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
+    // ReSharper disable once UnusedParameter.Global
     protected virtual void Dispose(bool disposing)
     {
         if (_disposed) return;
@@ -145,10 +146,8 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual async ValueTask DisposeAsyncCore()
-    {
+    protected virtual async ValueTask DisposeAsyncCore() => 
         await Context.DisposeAsync().ConfigureAwait(false);
-    }
 
     #endregion
 }
