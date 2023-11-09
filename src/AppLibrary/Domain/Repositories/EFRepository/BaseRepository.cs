@@ -118,15 +118,36 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
 
     public async Task SaveChangesAsync(CancellationToken token = default) => await Context.SaveChangesAsync(token);
 
-    // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing) Context.Dispose();
-    }
+    #region IDisposable,  IAsyncDisposable
+
+    private bool _disposed;
+    ~BaseRepository() => Dispose(disposing: false);
 
     public void Dispose()
     {
-        Dispose(true);
-        GC.SuppressFinalize(this);
+        Dispose(disposing: true);
+        GC.SuppressFinalize(obj: this);
     }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsyncCore().ConfigureAwait(false);
+        Dispose(disposing: false);
+        GC.SuppressFinalize(obj: this);
+    }
+
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    // ReSharper disable once UnusedParameter.Global
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed) return;
+        Context.Dispose();
+        _disposed = true;
+    }
+
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    protected virtual async ValueTask DisposeAsyncCore() => 
+        await Context.DisposeAsync().ConfigureAwait(false);
+
+    #endregion
 }

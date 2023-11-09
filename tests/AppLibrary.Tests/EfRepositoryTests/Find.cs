@@ -68,8 +68,8 @@ public class Find : EfRepositoryTestBase
     [Test]
     public async Task FindAsync_UsingPredicate_WhenUsingSqlServer_IsNotCaseSensitive()
     {
-        using var repositoryHelper = EfRepositoryTestHelper.CreateSqlServerRepositoryHelper(this);
-        using var repository = repositoryHelper.GetRepository();
+        await using var repositoryHelper = EfRepositoryTestHelper.CreateSqlServerRepositoryHelper(this);
+        await using var repository = repositoryHelper.GetRepository();
         var entity = repository.Context.Set<DerivedEntity>().First();
 
         // Test using a predicate that compares uppercase names.

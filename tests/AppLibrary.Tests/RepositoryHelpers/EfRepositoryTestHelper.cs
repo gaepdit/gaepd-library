@@ -24,7 +24,7 @@ public class AppDbContext : DbContext
     public DbSet<DerivedNamedEntity> TestNamedEntities => Set<DerivedNamedEntity>();
 }
 
-public sealed class EfRepositoryTestHelper : IDisposable
+public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
 {
     private AppDbContext Context { get; set; } = default!;
     private readonly DbContextOptions<AppDbContext> _options;
@@ -167,5 +167,11 @@ public sealed class EfRepositoryTestHelper : IDisposable
     {
         _context.Dispose();
         Context.Dispose();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _context.DisposeAsync();
+        await Context.DisposeAsync();
     }
 }

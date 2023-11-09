@@ -18,10 +18,7 @@ public class NamedEntityManagerTests
     }
 
     [TearDown]
-    public void Teardown()
-    {
-        _repositoryMock.Dispose();
-    }
+    public async Task TearDown() => await _repositoryMock.DisposeAsync();
 
     [Test]
     public async Task CreateAsync_ShouldReturnEntityWithGivenName()

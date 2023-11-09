@@ -15,10 +15,7 @@ public class FileSystemTests
     }
 
     [TearDown]
-    public void Teardown()
-    {
-        Directory.Delete(_basePath, true);
-    }
+    public void TearDown() => Directory.Delete(_basePath, true);
 
     [Test]
     public async Task SaveFileSucceeds_AndGet_ReturnsFile()

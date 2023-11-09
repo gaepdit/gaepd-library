@@ -1,4 +1,4 @@
-﻿using GaEpd.AppLibrary.Domain.Entities;
+using GaEpd.AppLibrary.Domain.Entities;
 using GaEpd.AppLibrary.Pagination;
 using System.Linq.Expressions;
 
@@ -87,16 +87,33 @@ public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     // Local repository does not require changes to be explicitly saved.
     public Task SaveChangesAsync(CancellationToken token = default) => Task.CompletedTask;
 
+    #region IDisposable,  IAsyncDisposable
+
+    private bool _disposed;
+    ~BaseRepository() => Dispose(disposing: false);
+
+    public void Dispose()
+    {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(obj: this);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsyncCore().ConfigureAwait(false);
+        Dispose(disposing: false);
+        GC.SuppressFinalize(obj: this);
+    }
+
     // ReSharper disable once VirtualMemberNeverOverridden.Global
     // ReSharper disable once UnusedParameter.Global
     protected virtual void Dispose(bool disposing)
     {
-        // This method intentionally left blank.
+        if (!_disposed) _disposed = true;
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    protected virtual ValueTask DisposeAsyncCore() => ValueTask.CompletedTask;
+
+    #endregion
 }

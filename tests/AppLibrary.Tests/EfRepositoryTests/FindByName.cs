@@ -17,10 +17,10 @@ public class FindByName
     }
 
     [TearDown]
-    public void TearDown()
+    public async Task TearDown()
     {
-        _repository.Dispose();
-        _helper.Dispose();
+        await _repository.DisposeAsync();
+        await _helper.DisposeAsync();
     }
 
     [Test]
