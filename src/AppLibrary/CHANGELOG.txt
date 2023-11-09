@@ -1,3 +1,7 @@
+v4.1.0
+
+- Implement IAsyncDisposable in repositories.
+
 v4.0.0
 
 - Move GuardClauses to a separate NuGet package.
