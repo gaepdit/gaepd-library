@@ -37,7 +37,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
 
     public async Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token)
-        ?? throw new EntityNotFoundException(typeof(TEntity), id);
+        ?? throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(e => e.Id.Equals(id), token);
@@ -92,7 +92,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
         catch (DbUpdateConcurrencyException)
         {
             if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
-                throw new EntityNotFoundException(typeof(TEntity), entity.Id);
+                throw new EntityNotFoundException<TEntity>(entity.Id);
             throw;
         }
     }
@@ -109,7 +109,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
         {
             if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
             {
-                throw new EntityNotFoundException(typeof(TEntity), entity.Id);
+                throw new EntityNotFoundException<TEntity>(entity.Id);
             }
 
             throw;
@@ -146,7 +146,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual async ValueTask DisposeAsyncCore() => 
+    protected virtual async ValueTask DisposeAsyncCore() =>
         await Context.DisposeAsync().ConfigureAwait(false);
 
     #endregion

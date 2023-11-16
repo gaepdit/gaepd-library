@@ -20,7 +20,7 @@ public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     public Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         Items.Any(e => e.Id.Equals(id))
             ? Task.FromResult(Items.Single(e => e.Id.Equals(id)))
-            : throw new EntityNotFoundException(typeof(TEntity), id);
+            : throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(e => e.Id.Equals(id)));
