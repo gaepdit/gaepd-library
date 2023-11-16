@@ -1,6 +1,5 @@
 ﻿namespace GaEpd.AppLibrary.Domain.Entities;
 
-[Serializable]
 public abstract class Entity<TKey> : IEntity<TKey>
     where TKey : IEquatable<TKey>
 {
