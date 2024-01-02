@@ -3,7 +3,5 @@ using GaEpd.AppLibrary.Domain.Repositories;
 
 namespace AppLibrary.Tests.EntityHelpers;
 
-public class DerivedNamedEntityManager : NamedEntityManager<DerivedNamedEntity, INamedEntityRepository<DerivedNamedEntity>>
-{
-    public DerivedNamedEntityManager(INamedEntityRepository<DerivedNamedEntity> repository) : base(repository) { }
-}
+public class DerivedNamedEntityManager(INamedEntityRepository<DerivedNamedEntity> repository)
+    : NamedEntityManager<DerivedNamedEntity, INamedEntityRepository<DerivedNamedEntity>>(repository);

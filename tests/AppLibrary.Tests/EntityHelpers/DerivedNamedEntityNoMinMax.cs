@@ -2,7 +2,4 @@
 
 namespace AppLibrary.Tests.EntityHelpers;
 
-public class DerivedNamedEntityNoMinMax : StandardNamedEntity
-{
-    public DerivedNamedEntityNoMinMax(Guid id, string name) : base(id, name) { }
-}
+public class DerivedNamedEntityNoMinMax(Guid id, string name) : StandardNamedEntity(id, name);

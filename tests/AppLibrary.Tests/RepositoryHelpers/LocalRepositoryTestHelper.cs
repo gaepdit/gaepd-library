@@ -3,15 +3,10 @@ using GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 
 namespace AppLibrary.Tests.RepositoryHelpers;
 
-public class DerivedLocalRepository : BaseRepository<DerivedEntity, Guid>
-{
-    public DerivedLocalRepository(IEnumerable<DerivedEntity> items) : base(items) { }
-}
+public class DerivedLocalRepository(IEnumerable<DerivedEntity> items) : BaseRepository<DerivedEntity, Guid>(items);
 
-public class DerivedLocalNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity>
-{
-    public DerivedLocalNamedEntityRepository(IEnumerable<DerivedNamedEntity> items) : base(items) { }
-}
+public class DerivedLocalNamedEntityRepository(IEnumerable<DerivedNamedEntity> items)
+    : NamedEntityRepository<DerivedNamedEntity>(items);
 
 public static class LocalRepositoryTestHelper
 {

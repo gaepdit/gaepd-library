@@ -6,20 +6,13 @@ using TestSupport.EfHelpers;
 
 namespace AppLibrary.Tests.RepositoryHelpers;
 
-public class DerivedEfRepository : BaseRepository<DerivedEntity, Guid, AppDbContext>
-{
-    public DerivedEfRepository(AppDbContext context) : base(context) { }
-}
+public class DerivedEfRepository(AppDbContext context) : BaseRepository<DerivedEntity, Guid, AppDbContext>(context);
 
-public class DerivedEfNamedEntityRepository : NamedEntityRepository<DerivedNamedEntity, AppDbContext>
-{
-    public DerivedEfNamedEntityRepository(AppDbContext context) : base(context) { }
-}
+public class DerivedEfNamedEntityRepository(AppDbContext context)
+    : NamedEntityRepository<DerivedNamedEntity, AppDbContext>(context);
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
     public DbSet<DerivedEntity> TestEntities => Set<DerivedEntity>();
     public DbSet<DerivedNamedEntity> TestNamedEntities => Set<DerivedNamedEntity>();
 }

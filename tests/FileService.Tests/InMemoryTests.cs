@@ -14,7 +14,7 @@ public class InMemoryTests
     {
         // Arrange
         var fileName = Guid.NewGuid().ToString();
-        byte[] fileBytes = { 0x0 };
+        byte[] fileBytes = [0x0];
 
         // Act
         using (var msTest = new MemoryStream(fileBytes))
@@ -36,7 +36,7 @@ public class InMemoryTests
     {
         // Arrange
         var fileName = Guid.NewGuid().ToString();
-        byte[] fileBytes = { 0x0 };
+        byte[] fileBytes = [0x0];
         await _fileService.SaveFileAsync(new MemoryStream(fileBytes), fileName);
 
         // Act
@@ -77,7 +77,7 @@ public class InMemoryTests
     {
         // Arrange
         var fileName = Guid.NewGuid().ToString();
-        byte[] fileBytes = { 0x0 };
+        byte[] fileBytes = [0x0];
         await _fileService.SaveFileAsync(new MemoryStream(fileBytes), fileName);
 
         // Act
@@ -93,7 +93,7 @@ public class InMemoryTests
     {
         // Arrange
         var fileName = Guid.NewGuid().ToString();
-        byte[] fileBytes = { 0x0 };
+        byte[] fileBytes = [0x0];
         await _fileService.SaveFileAsync(new MemoryStream(fileBytes), fileName);
 
         // Act
