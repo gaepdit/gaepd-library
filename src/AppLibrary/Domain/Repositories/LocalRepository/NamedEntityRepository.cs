@@ -8,8 +8,8 @@ namespace GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 public abstract class NamedEntityRepository<TEntity>(IEnumerable<TEntity> items)
-    : BaseRepository<TEntity, Guid>(items), INamedEntityRepository<TEntity>
-    where TEntity : IEntity<Guid>, INamedEntity
+    : BaseRepository<TEntity>(items), INamedEntityRepository<TEntity>
+    where TEntity : class, IEntity, INamedEntity
 {
     public Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(e => string.Equals(e.Name.ToUpper(), name.ToUpper())));

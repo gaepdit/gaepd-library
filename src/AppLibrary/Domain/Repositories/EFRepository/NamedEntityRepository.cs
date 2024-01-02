@@ -11,7 +11,7 @@ namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 /// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
 public abstract class NamedEntityRepository<TEntity, TContext>(TContext context)
     : BaseRepository<TEntity, TContext>(context), INamedEntityRepository<TEntity>
-    where TEntity : class, IEntity<Guid>, INamedEntity
+    where TEntity : class, IEntity, INamedEntity
     where TContext : DbContext
 {
     public Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default) =>

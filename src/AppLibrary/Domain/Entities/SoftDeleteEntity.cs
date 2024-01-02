@@ -45,7 +45,7 @@ public abstract class SoftDeleteEntity<TKey> : SoftDeleteEntity<TKey, string>
 /// The default implementation of <see cref="SoftDeleteEntity{TKey}"/> using <see cref="Guid"/> for the Entity
 /// primary key, and <see cref="string"/> for the User primary key.
 /// </summary>
-public abstract class SoftDeleteEntity : SoftDeleteEntity<Guid>
+public abstract class SoftDeleteEntity : SoftDeleteEntity<Guid>, IEntity
 {
     protected SoftDeleteEntity() { }
     protected SoftDeleteEntity(Guid id) : base(id) { }

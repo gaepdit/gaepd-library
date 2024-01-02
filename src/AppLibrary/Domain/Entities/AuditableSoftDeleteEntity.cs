@@ -46,7 +46,7 @@ public abstract class AuditableSoftDeleteEntity<TKey> : AuditableSoftDeleteEntit
 /// The default implementation of <see cref="AuditableSoftDeleteEntity{TKey}"/> using <see cref="Guid"/> for the Entity
 /// primary key, and <see cref="string"/> for the User primary key.
 /// </summary>
-public abstract class AuditableSoftDeleteEntity : AuditableSoftDeleteEntity<Guid>
+public abstract class AuditableSoftDeleteEntity : AuditableSoftDeleteEntity<Guid>, IEntity
 {
     protected AuditableSoftDeleteEntity() { }
     protected AuditableSoftDeleteEntity(Guid id) : base(id) { }

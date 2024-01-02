@@ -44,7 +44,7 @@ public abstract class AuditableEntity<TKey> : AuditableEntity<TKey, string>
 /// The default implementation of <see cref="AuditableEntity{TKey}"/> using <see cref="Guid"/> for the Entity primary
 /// key, and <see cref="string"/> for the User primary key.
 /// </summary>
-public abstract class AuditableEntity : AuditableEntity<Guid>
+public abstract class AuditableEntity : AuditableEntity<Guid>, IEntity
 {
     protected AuditableEntity() { }
     protected AuditableEntity(Guid id) : base(id) { }

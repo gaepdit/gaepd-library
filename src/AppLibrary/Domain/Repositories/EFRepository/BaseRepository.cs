@@ -13,8 +13,8 @@ namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
 public abstract class BaseRepository<TEntity, TContext>(TContext context)
-    : BaseRepository<TEntity, Guid, DbContext>(context)
-    where TEntity : class, IEntity<Guid>
+    : BaseRepository<TEntity, Guid, DbContext>(context), IRepository<TEntity>
+    where TEntity : class, IEntity
     where TContext : DbContext;
 
 /// <summary>

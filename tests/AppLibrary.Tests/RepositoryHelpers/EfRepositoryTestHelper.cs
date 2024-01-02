@@ -6,7 +6,7 @@ using TestSupport.EfHelpers;
 
 namespace AppLibrary.Tests.RepositoryHelpers;
 
-public class DerivedEfRepository(AppDbContext context) : BaseRepository<DerivedEntity, Guid, AppDbContext>(context);
+public class DerivedEfRepository(AppDbContext context) : BaseRepository<DerivedEntity, AppDbContext>(context);
 
 public class DerivedEfNamedEntityRepository(AppDbContext context)
     : NamedEntityRepository<DerivedNamedEntity, AppDbContext>(context);

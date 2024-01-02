@@ -12,3 +12,8 @@ public interface IEntity<out TKey>
     /// </summary>
     TKey Id { get; }
 }
+
+/// <summary>
+/// Defines an entity with a <see cref="Guid"/> primary key.
+/// </summary>
+public interface IEntity : IEntity<Guid>;

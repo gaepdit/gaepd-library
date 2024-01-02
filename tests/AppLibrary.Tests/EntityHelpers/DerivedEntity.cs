@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AppLibrary.Tests.EntityHelpers;
 
-public class DerivedEntity : IEntity<Guid>
+public class DerivedEntity : IEntity
 {
     public Guid Id { get; init; }
 

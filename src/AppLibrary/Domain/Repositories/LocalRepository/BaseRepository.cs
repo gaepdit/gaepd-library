@@ -10,8 +10,8 @@ namespace GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 public abstract class BaseRepository<TEntity>(IEnumerable<TEntity> items)
-    : BaseRepository<TEntity, Guid>(items)
-    where TEntity : class, IEntity<Guid>;
+    : BaseRepository<TEntity, Guid>(items), IRepository<TEntity>
+    where TEntity : class, IEntity;
 
 /// <summary>
 /// An implementation of <see cref="IRepository{TEntity,TKey}"/> using in-memory data.
