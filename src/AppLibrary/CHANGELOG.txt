@@ -1,7 +1,16 @@
+v5.0.1
+
+- Updated changelog for v5.0.0 release.
+
 v5.0.0
 
-- Upgrade to .NET 8.0.
-- 
+- Upgraded to .NET 8.0.
+- Added entity and repository interfaces that default to using a GUID primary key and updated the abstract classes to 
+  use these new interfaces.
+- Breaking changes:
+  - Uses of `EntityNotFoundException` will need to be updated to provide the class type. For example, 
+    `EntityNotFoundException(typeof(MyEntity), id)` should be replaced with `EntityNotFoundException<MyEntity>(id)`.
+  - References to `IEntity<Guid>` may need to be replaced with `IEntity`.
 
 v4.1.0
 
