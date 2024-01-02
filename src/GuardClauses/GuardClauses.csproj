@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>1.0.0</Version>
+        <Version>2.0.0</Version>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -11,7 +11,7 @@
         <Company>Georgia EPD</Company>
         <Title>Georgia EPD-IT Guard Clauses Library</Title>
         <Description>Guard clause library</Description>
-        <Copyright>Copyright (c) State of Georgia 2023</Copyright>
+        <Copyright>Copyright (c) State of Georgia 2024</Copyright>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
         <PackageIcon>epd-icon-tile.png</PackageIcon>

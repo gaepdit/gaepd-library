@@ -18,14 +18,15 @@ To install , search for "GaEpd.AppLibrary" in the NuGet package manager or run t
 The following interfaces and abstract implementations of domain entities are provided for domain driven design:
 
 * The basic `IEntity<TKey>` interface defines an entity with a primary key of the given type.
+* The special case `IEntity` interface defines an entity with a `GUID` primary key.
 * `IAuditableEntity<TUserKey>` adds created/updated properties and methods for basic data auditing.
 * `ISoftDelete` and `ISoftDelete<TUserKey>` add properties for "soft deleting" an entity rather than actually deleting
   it.
 * `INamedEntity` adds a "Name" string property.
 * `IActiveEntity` adds an "Active" boolean property.
 
-There are also abstract classes based on the above that you should derive your domain entities
-from: `Entity<TKey>`, `AuditableEntity<TKey, TUserKey>`, `SoftDeleteEntity<TKey, TUserKey>`,
+There are also abstract classes based on the above interfaces from which you should derive your domain
+entities: `Entity<TKey>`, `AuditableEntity<TKey, TUserKey>`, `SoftDeleteEntity<TKey, TUserKey>`,
 `AuditableSoftDeleteEntity<TKey, TUserKey>`, and `StandardNamedEntity`.
 
 The `StandardNamedEntity` class derives from `AuditableEntity<Guid>`, `INamedEntity`, and `IActiveEntity`, and includes
