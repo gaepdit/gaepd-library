@@ -12,12 +12,10 @@ namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public abstract class BaseRepository<TEntity, TKey> : BaseRepository<TEntity, TKey, DbContext>
+public abstract class BaseRepository<TEntity, TKey>(DbContext context) :
+    BaseRepository<TEntity, TKey, DbContext>(context)
     where TEntity : class, IEntity<TKey>
-    where TKey : IEquatable<TKey>
-{
-    protected BaseRepository(DbContext context) : base(context) { }
-}
+    where TKey : IEquatable<TKey>;
 
 /// <summary>
 /// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework.
@@ -26,18 +24,16 @@ public abstract class BaseRepository<TEntity, TKey> : BaseRepository<TEntity, TK
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
 /// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
 [SuppressMessage("", "S2436")]
-public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEntity, TKey>
+public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context) : IRepository<TEntity, TKey>
     where TEntity : class, IEntity<TKey>
     where TKey : IEquatable<TKey>
     where TContext : DbContext
 {
-    public readonly TContext Context;
-
-    protected BaseRepository(TContext context) => Context = context;
+    public TContext Context => context;
 
     public async Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token)
-        ?? throw new EntityNotFoundException(typeof(TEntity), id);
+        ?? throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(e => e.Id.Equals(id), token);
@@ -92,7 +88,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
         catch (DbUpdateConcurrencyException)
         {
             if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
-                throw new EntityNotFoundException(typeof(TEntity), entity.Id);
+                throw new EntityNotFoundException<TEntity>(entity.Id);
             throw;
         }
     }
@@ -109,7 +105,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
         {
             if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
             {
-                throw new EntityNotFoundException(typeof(TEntity), entity.Id);
+                throw new EntityNotFoundException<TEntity>(entity.Id);
             }
 
             throw;
@@ -146,7 +142,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext> : IRepository<TEnt
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual async ValueTask DisposeAsyncCore() => 
+    protected virtual async ValueTask DisposeAsyncCore() =>
         await Context.DisposeAsync().ConfigureAwait(false);
 
     #endregion

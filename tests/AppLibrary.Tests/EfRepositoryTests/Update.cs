@@ -31,7 +31,7 @@ public class Update : EfRepositoryTestBase
 
         var func = async () => await Repository.UpdateAsync(item);
 
-        func.Should().ThrowAsync<EntityNotFoundException>()
+        func.Should().ThrowAsync<EntityNotFoundException<DerivedEntity>>()
             .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {item.Id}");
     }
 }

@@ -20,28 +20,23 @@ public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
     public Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         Items.Any(e => e.Id.Equals(id))
             ? Task.FromResult(Items.Single(e => e.Id.Equals(id)))
-            : throw new EntityNotFoundException(typeof(TEntity), id);
+            : throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(e => e.Id.Equals(id)));
 
-    public Task<TEntity?> FindAsync(
-        Expression<Func<TEntity, bool>> predicate,
-        CancellationToken token = default) =>
+    public Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(predicate.Compile()));
 
     public Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
         Task.FromResult(Items.ToList() as IReadOnlyCollection<TEntity>);
 
-    public Task<IReadOnlyCollection<TEntity>> GetListAsync(
-        Expression<Func<TEntity, bool>> predicate,
+    public Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default) =>
         Task.FromResult(Items.Where(predicate.Compile()).ToList() as IReadOnlyCollection<TEntity>);
 
-    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
-        Expression<Func<TEntity, bool>> predicate,
-        PaginatedRequest paging,
-        CancellationToken token = default)
+    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
+        PaginatedRequest paging, CancellationToken token = default)
     {
         var result = Items.Where(predicate.Compile()).AsQueryable()
             .OrderByIf(paging.Sorting)
@@ -49,8 +44,7 @@ public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
         return Task.FromResult(result.ToList() as IReadOnlyCollection<TEntity>);
     }
 
-    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
-        PaginatedRequest paging,
+    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(PaginatedRequest paging,
         CancellationToken token = default)
     {
         var result = Items.AsQueryable()

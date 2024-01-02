@@ -18,7 +18,7 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     /// </summary>
     /// <param name="id">The Id of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <exception cref="EntityNotFoundException">Thrown if no entity exists with the given Id.</exception>
+    /// <exception cref="EntityNotFoundException{TEntity}">Thrown if no entity exists with the given Id.</exception>
     /// <returns>An entity.</returns>
     Task<TEntity> GetAsync(TKey id, CancellationToken token = default);
 

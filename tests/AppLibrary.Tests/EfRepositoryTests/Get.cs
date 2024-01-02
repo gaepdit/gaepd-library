@@ -12,7 +12,7 @@ public class Get : EfRepositoryTestBase
 
         var func = async () => await Repository.GetAsync(id);
 
-        func.Should().ThrowAsync<EntityNotFoundException>()
+        func.Should().ThrowAsync<EntityNotFoundException<DerivedEntity>>()
             .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {id}");
     }
 
