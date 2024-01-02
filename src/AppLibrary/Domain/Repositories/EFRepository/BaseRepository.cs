@@ -7,15 +7,15 @@ using System.Linq.Expressions;
 namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 
 /// <summary>
-/// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework. The <see cref="DbContext"/>
-/// type is assumed, but a derivative may still be used.
+/// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework where TKey is
+/// a <see cref="Guid"/> primary key.
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
-/// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public abstract class BaseRepository<TEntity, TKey>(DbContext context) :
-    BaseRepository<TEntity, TKey, DbContext>(context)
-    where TEntity : class, IEntity<TKey>
-    where TKey : IEquatable<TKey>;
+/// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
+public abstract class BaseRepository<TEntity, TContext>(TContext context)
+    : BaseRepository<TEntity, Guid, DbContext>(context)
+    where TEntity : class, IEntity<Guid>
+    where TContext : DbContext;
 
 /// <summary>
 /// An implementation of <see cref="IRepository{TEntity,TKey}"/> using Entity Framework.
@@ -24,7 +24,8 @@ public abstract class BaseRepository<TEntity, TKey>(DbContext context) :
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
 /// <typeparam name="TContext">The type of the <see cref="DbContext"/>.</typeparam>
 [SuppressMessage("", "S2436")]
-public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context) : IRepository<TEntity, TKey>
+public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
+    : IRepository<TEntity, TKey>
     where TEntity : class, IEntity<TKey>
     where TKey : IEquatable<TKey>
     where TContext : DbContext
@@ -114,7 +115,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context) 
 
     public async Task SaveChangesAsync(CancellationToken token = default) => await Context.SaveChangesAsync(token);
 
-    #region IDisposable,  IAsyncDisposable
+    #region IDisposable, IAsyncDisposable
 
     private bool _disposed;
     ~BaseRepository() => Dispose(disposing: false);

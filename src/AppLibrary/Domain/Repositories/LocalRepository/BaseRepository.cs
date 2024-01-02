@@ -5,17 +5,25 @@ using System.Linq.Expressions;
 namespace GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 
 /// <summary>
+/// An implementation of <see cref="IRepository{TEntity,TKey}"/> using in-memory data where TKey is
+/// a <see cref="Guid"/> primary key.
+/// </summary>
+/// <typeparam name="TEntity">The entity type.</typeparam>
+public abstract class BaseRepository<TEntity>(IEnumerable<TEntity> items)
+    : BaseRepository<TEntity, Guid>(items)
+    where TEntity : class, IEntity<Guid>;
+
+/// <summary>
 /// An implementation of <see cref="IRepository{TEntity,TKey}"/> using in-memory data.
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TKey">The primary key type for the entity.</typeparam>
-public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
+public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
+    : IRepository<TEntity, TKey>
     where TEntity : IEntity<TKey>
     where TKey : IEquatable<TKey>
 {
-    public ICollection<TEntity> Items { get; }
-
-    protected BaseRepository(IEnumerable<TEntity> items) => Items = items.ToList();
+    public ICollection<TEntity> Items { get; } = items.ToList();
 
     public Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
         Items.Any(e => e.Id.Equals(id))
