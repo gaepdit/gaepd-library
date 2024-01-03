@@ -1,3 +1,7 @@
+v5.1.0
+
+- Updated included GuardClauses library to v2.0.0.
+
 v5.0.1
 
 - Updated changelog for v5.0.0 release.
