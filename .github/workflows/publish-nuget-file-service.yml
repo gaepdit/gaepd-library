@@ -4,7 +4,7 @@ name: Publish File Service NuGet Package
 
 on:
   push:
-    tags: [fs/v*]
+    tags: [f/v*]
   workflow_dispatch:
 
 jobs:

@@ -4,7 +4,7 @@ name: Publish Guard Clauses NuGet Package
 
 on:
   push:
-    tags: [gc/v*]
+    tags: [g/v*]
   workflow_dispatch:
 
 jobs:

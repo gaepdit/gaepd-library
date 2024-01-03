@@ -4,7 +4,7 @@ name: Publish App Library NuGet Package
 
 on:
   push:
-    tags: [al/v*]
+    tags: [l/v*]
   workflow_dispatch: 
 
 jobs:
