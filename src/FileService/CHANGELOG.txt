@@ -1,3 +1,7 @@
+v2.1.0
+
+- Adds an extension method for registering and configuring file services. 
+
 v2.0.0
 
 - Upgrade to .NET 8.0.
