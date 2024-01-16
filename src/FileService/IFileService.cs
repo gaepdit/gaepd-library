@@ -41,10 +41,15 @@ public interface IFileService
     /// <param name="fileName">The name of the file to retrieve.</param>
     /// <param name="path">The location of the file to retrieve.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>A TryGetResponse with `Success` = `true` if the file is found or `false` if the file
+    /// <returns>A <see cref="TryGetResponse"/> with `Success` = `true` if the file is found or `false` if the file
     /// is not found.</returns>
     Task<TryGetResponse> TryGetFileAsync(string fileName, string path = "", CancellationToken token = default);
 
+    /// <summary>
+    /// Contains the results of a call to <see cref="IFileService.TryGetFileAsync"/>.
+    /// </summary>
+    /// <param name="Success">Is true if the requested file is found; otherwise false.</param>
+    /// <param name="Value">Contains the requested Stream if the file is found.</param>
     public sealed record TryGetResponse(bool Success, Stream Value) : IDisposable, IAsyncDisposable
     {
         public void Dispose() => Value.Dispose();

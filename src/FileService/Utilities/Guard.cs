@@ -7,8 +7,7 @@ namespace GaEpd.FileService;
 [DebuggerStepThrough]
 public static class Guard
 {
-    public static string NotNullOrWhiteSpace(
-        [NotNull] string? value,
+    public static string NotNullOrWhiteSpace([NotNull] string? value,
         [CallerArgumentExpression("value")] string? parameterName = null)
     {
         if (value is null)

@@ -9,21 +9,26 @@ public class AzureBlobStorage : IFileService
     private readonly string _basePath;
     private readonly BlobContainerClient _containerClient;
 
-    public AzureBlobStorage(string accountName, string container, string basePath)
+    /// <summary>
+    /// Initializes a new instance of the AzureBlobStorage class.
+    /// </summary>
+    /// <param name="accountName">The Azure storage account name.</param>
+    /// <param name="container">The blob storage container.</param>
+    /// <param name="basePath">An optional path defining where the files will be stored within the container.</param>
+    public AzureBlobStorage(string accountName, string container, string basePath = "")
     {
         Guard.NotNullOrWhiteSpace(accountName);
         Guard.NotNullOrWhiteSpace(container);
         _basePath = basePath;
-        var serviceUrl = new Uri($"https://{accountName}.blob.core.windows.net");
-        var serviceClient = new BlobServiceClient(serviceUrl, new DefaultAzureCredential());
+        var serviceUri = new Uri($"https://{accountName}.blob.core.windows.net");
+        var serviceClient = new BlobServiceClient(serviceUri, new DefaultAzureCredential());
         _containerClient = serviceClient.GetBlobContainerClient(container);
     }
 
     public async Task SaveFileAsync(Stream stream, string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var filePath = Path.Combine(_basePath, path, fileName);
-        var blobClient = _containerClient.GetBlobClient(filePath);
+        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
         await blobClient.UploadAsync(stream, overwrite: true, token);
     }
 
@@ -40,9 +45,7 @@ public class AzureBlobStorage : IFileService
         var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
 
         if (!await blobClient.ExistsAsync(token))
-        {
             throw new FileNotFoundException(Path.Combine(path, fileName));
-        }
 
         var fileResponse = await blobClient.DownloadStreamingAsync(cancellationToken: token);
         return fileResponse.Value.Content;

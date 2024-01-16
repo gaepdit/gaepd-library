@@ -13,25 +13,37 @@ public class FileSystem : IFileService
     private readonly bool _useWindowsLogin;
     private readonly SafeAccessTokenHandle? _accessToken;
 
+    /// <summary>
+    /// Initializes a new instance of the FileSystem class.
+    /// </summary>
+    /// <param name="basePath">A path defining where the files will be stored.</param>
     public FileSystem(string basePath)
     {
         _basePath = Guard.NotNullOrWhiteSpace(basePath);
         Directory.CreateDirectory(_basePath);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the FileSystem class. Use of this overload causes all file access operations
+    /// to run as the provided WindowsIdentity and should only be used on Windows operating systems.
+    /// </summary>
+    /// <param name="basePath">A path defining where the files will be stored.</param>
+    /// <param name="username">The username of the Windows Identity.</param>
+    /// <param name="domain">The domain of the Windows Identity.</param>
+    /// <param name="password">The password of the Windows Identity.</param>
+    /// <exception cref="InvalidOperationException">Thrown if called on a non-Windows operating system.</exception>
     public FileSystem(string basePath, string username, string domain, string password)
     {
-        _basePath = Guard.NotNullOrWhiteSpace(basePath);
-        if (username == string.Empty || password == string.Empty)
-        {
-            Directory.CreateDirectory(_basePath);
-            return;
-        }
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            throw new InvalidOperationException(
+                "This FileSystem overload is only available on Windows operating systems.");
 
-        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) throw new InvalidOperationException();
-        _accessToken = new WindowsLogin(username, domain, password).AccessToken;
+        _basePath = Guard.NotNullOrWhiteSpace(basePath);
+        _basePath = Guard.NotNullOrWhiteSpace(username);
+
         _basePath = basePath;
         _useWindowsLogin = true;
+        _accessToken = new WindowsLogin(username, domain, password).AccessToken;
         WindowsIdentity.RunImpersonated(_accessToken!, () => Directory.CreateDirectory(_basePath));
     }
 
