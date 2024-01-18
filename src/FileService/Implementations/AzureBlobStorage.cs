@@ -1,6 +1,8 @@
-﻿using Azure.Identity;
+﻿using Azure;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using System.Runtime.CompilerServices;
 
 namespace GaEpd.FileService.Implementations;
 
@@ -39,16 +41,28 @@ public class AzureBlobStorage : IFileService
         return (await blobClient.ExistsAsync(token)).Value;
     }
 
+    public async IAsyncEnumerable<IFileService.FileDescription> GetFilesAsync(string path = "",
+        [EnumeratorCancellation] CancellationToken token = default)
+    {
+        var blobItems = _containerClient.GetBlobsAsync(prefix: Path.Combine(_basePath, path), cancellationToken: token);
+
+        await foreach (var blobItem in blobItems.WithCancellation(token))
+        {
+            yield return new IFileService.FileDescription
+            {
+                FullName = blobItem.Name,
+                ContentLength = blobItem.Properties.ContentLength,
+                CreatedOn = blobItem.Properties.CreatedOn,
+            };
+        }
+    }
+
     public async Task<Stream> GetFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
         var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
-
-        if (!await blobClient.ExistsAsync(token))
-            throw new FileNotFoundException(Path.Combine(path, fileName));
-
-        var fileResponse = await blobClient.DownloadStreamingAsync(cancellationToken: token);
-        return fileResponse.Value.Content;
+        if (!await blobClient.ExistsAsync(token)) throw new FileNotFoundException(Path.Combine(path, fileName));
+        return (await blobClient.DownloadStreamingAsync(cancellationToken: token)).Value.Content;
     }
 
     public async Task<IFileService.TryGetResponse> TryGetFileAsync(string fileName, string path = "",
@@ -56,14 +70,10 @@ public class AzureBlobStorage : IFileService
     {
         Guard.NotNullOrWhiteSpace(fileName);
         var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
-
-        if (!await blobClient.ExistsAsync(token))
-        {
-            return new IFileService.TryGetResponse(false, Stream.Null);
-        }
-
-        var fileResponse = await blobClient.DownloadStreamingAsync(cancellationToken: token);
-        return new IFileService.TryGetResponse(true, fileResponse.Value.Content);
+        var response = await blobClient.DownloadStreamingAsync(cancellationToken: token);
+        return response.HasValue
+            ? new IFileService.TryGetResponse(true, response.Value.Content)
+            : new IFileService.TryGetResponse(false, Stream.Null);
     }
 
     public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)

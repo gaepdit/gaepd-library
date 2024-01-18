@@ -1,6 +1,7 @@
 using GaEpd.FileService.Utilities;
 using Microsoft.Win32.SafeHandles;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 
@@ -73,6 +74,22 @@ public class FileSystem : IFileService
         Task<bool> FileExists() => Task.FromResult(File.Exists(Path.Combine(_basePath, path, fileName)));
     }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async IAsyncEnumerable<IFileService.FileDescription> GetFilesAsync(string path = "",
+        [EnumeratorCancellation] CancellationToken token = default)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+    {
+        foreach (var fileInfo in new DirectoryInfo(path).EnumerateFiles())
+        {
+            yield return new IFileService.FileDescription()
+            {
+                FullName = fileInfo.FullName,
+                ContentLength = fileInfo.Length,
+                CreatedOn = fileInfo.CreationTimeUtc,
+            };
+        }
+    }
+
     public Task<Stream> GetFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
@@ -99,10 +116,10 @@ public class FileSystem : IFileService
         Guard.NotNullOrWhiteSpace(fileName);
         var filePath = Path.Combine(_basePath, path, fileName);
         return _useWindowsLogin
-            ? WindowsIdentity.RunImpersonated(_accessToken!, InternalTryGetFile)
-            : InternalTryGetFile();
+            ? WindowsIdentity.RunImpersonated(_accessToken!, TryGetFileInternal)
+            : TryGetFileInternal();
 
-        Task<IFileService.TryGetResponse> InternalTryGetFile()
+        Task<IFileService.TryGetResponse> TryGetFileInternal()
         {
             return Task.FromResult(File.Exists(filePath)
                 ? new IFileService.TryGetResponse(true, File.OpenRead(filePath))

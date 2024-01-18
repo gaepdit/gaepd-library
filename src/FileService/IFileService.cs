@@ -24,6 +24,15 @@ public interface IFileService
     Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default);
 
     /// <summary>
+    /// Lists files in a specified path.
+    /// </summary>
+    /// <param name="path">The location of the files to return.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>An <see cref="IEnumerable{FileInfo}"/> of files in the specified path. If no files exist in the path,
+    /// returns an empty IEnumerable.</returns>
+    IAsyncEnumerable<FileDescription> GetFilesAsync(string path = "", CancellationToken token = default);
+
+    /// <summary>
     /// Retrieves a file as a <see cref="Stream"/>.
     /// </summary>
     /// <param name="fileName">The name of the file to retrieve.</param>
@@ -46,6 +55,16 @@ public interface IFileService
     Task<TryGetResponse> TryGetFileAsync(string fileName, string path = "", CancellationToken token = default);
 
     /// <summary>
+    /// Deletes a file. If the file does not exist, the method returns without throwing an exception.
+    /// </summary>
+    /// <param name="fileName">The name of the file to delete.</param>
+    /// <param name="path">The location of the file to delete.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default);
+
+    // Return types
+
+    /// <summary>
     /// Contains the results of a call to <see cref="IFileService.TryGetFileAsync"/>.
     /// </summary>
     /// <param name="Success">Is true if the requested file is found; otherwise false.</param>
@@ -57,10 +76,23 @@ public interface IFileService
     }
 
     /// <summary>
-    /// Deletes a file. If the file does not exist, the method returns without throwing an exception.
+    /// Contains information about a file.
     /// </summary>
-    /// <param name="fileName">The name of the file to delete.</param>
-    /// <param name="path">The location of the file to delete.</param>
-    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default);
+    public sealed record FileDescription
+    {
+        /// <summary>
+        /// Path and filename.
+        /// </summary>
+        public required string FullName { get; init; }
+
+        /// <summary>
+        /// Size in bytes.
+        /// </summary>
+        public long? ContentLength { get; init; }
+
+        /// <summary>
+        /// Created.
+        /// </summary>
+        public DateTimeOffset? CreatedOn { get; init; }
+    }
 }
