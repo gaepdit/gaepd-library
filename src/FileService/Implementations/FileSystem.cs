@@ -79,11 +79,11 @@ public class FileSystem : IFileService
         [EnumeratorCancellation] CancellationToken token = default)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
-        foreach (var fileInfo in new DirectoryInfo(path).EnumerateFiles())
+        foreach (var fileInfo in new DirectoryInfo(Path.Combine(_basePath, path)).EnumerateFiles())
         {
-            yield return new IFileService.FileDescription()
+            yield return new IFileService.FileDescription
             {
-                FullName = fileInfo.FullName,
+                FullName = Path.Combine(path, fileInfo.Name),
                 ContentLength = fileInfo.Length,
                 CreatedOn = fileInfo.CreationTimeUtc,
             };

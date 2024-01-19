@@ -1,5 +1,4 @@
-﻿using Azure;
-using Azure.Identity;
+﻿using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using System.Runtime.CompilerServices;
@@ -46,7 +45,7 @@ public class AzureBlobStorage : IFileService
     {
         var blobItems = _containerClient.GetBlobsAsync(prefix: Path.Combine(_basePath, path), cancellationToken: token);
 
-        await foreach (var blobItem in blobItems.WithCancellation(token))
+        await foreach (var blobItem in blobItems)
         {
             yield return new IFileService.FileDescription
             {
