@@ -11,10 +11,10 @@ public class FileSystemTests
     [SetUp]
     public void Setup()
     {
-        _basePath = $"./.UnitTestFiles/{Guid.NewGuid().ToString()}";
+        _basePath = $"./.UnitTestFiles/basePath_{Guid.NewGuid().ToString()}";
         _fileService = new FileSystem(_basePath);
     }
-
+    
     [TearDown]
     public void TearDown() => Directory.Delete(_basePath, true);
 
@@ -22,7 +22,7 @@ public class FileSystemTests
     public async Task SaveFile_Succeeds_And_GetFile_ReturnsFile()
     {
         // Arrange
-        var fileName = Guid.NewGuid().ToString();
+        var fileName = $"fileName_{Guid.NewGuid().ToString()}";
 
         // Act
         using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName);
@@ -40,7 +40,7 @@ public class FileSystemTests
     public async Task FileExists_WhenFileExists_ReturnsTrue()
     {
         // Arrange
-        var fileName = Guid.NewGuid().ToString();
+        var fileName = $"fileName_{Guid.NewGuid().ToString()}";
         using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName);
 
         // Act
@@ -67,11 +67,13 @@ public class FileSystemTests
         const string searchPath = "searchPath";
         const string ignorePath = "ignorePath";
 
+        // In FileSystem, `GetFilesAsync` returns files in alphabetical order, so this naming makes the assertions simpler.
+        // (In InMemory, files are returned in the order added, so naming doesn't matter.)
         var files = new List<(string path, string fileName)>
         {
-            (searchPath, "abc"),
-            (searchPath, "def"),
-            (ignorePath, "xyz"),
+            (searchPath, $"a_{Guid.NewGuid().ToString()}"),
+            (searchPath, $"b_{Guid.NewGuid().ToString()}"),
+            (ignorePath, $"c_{Guid.NewGuid().ToString()}"),
         };
 
         foreach (var tuple in files)
@@ -118,7 +120,7 @@ public class FileSystemTests
     public async Task TryGetFile_WhenFileExists_ReturnsTrueAndFile()
     {
         // Arrange
-        var fileName = Guid.NewGuid().ToString();
+        var fileName = $"fileName_{Guid.NewGuid().ToString()}";
         using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName);
 
         // Act
@@ -144,14 +146,28 @@ public class FileSystemTests
     public async Task DeleteFile_Succeeds()
     {
         // Arrange
-        var fileName = Guid.NewGuid().ToString();
+        var fileName = $"fileName_{Guid.NewGuid().ToString()}";
         using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName);
 
         // Act
         await _fileService.DeleteFileAsync(fileName);
 
         // Assert
-        var func = async () => await _fileService.GetFileAsync(fileName);
-        await func.Should().ThrowAsync<FileNotFoundException>();
+        (await _fileService.FileExistsAsync(fileName)).Should().BeFalse();
+    }
+
+    [Test]
+    public async Task DeleteFile_WithPath_Succeeds()
+    {
+        // Arrange
+        var fileName = $"fileName_{Guid.NewGuid().ToString()}";
+        var path = $"path_{Guid.NewGuid().ToString()}";
+        using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName, path);
+
+        // Act
+        await _fileService.DeleteFileAsync(Path.Combine(path, fileName));
+
+        // Assert
+        (await _fileService.FileExistsAsync(fileName, path)).Should().BeFalse();
     }
 }

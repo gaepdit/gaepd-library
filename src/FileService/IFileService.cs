@@ -24,12 +24,13 @@ public interface IFileService
     Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default);
 
     /// <summary>
-    /// Lists files in a specified path.
+    /// Lists files in a specified path. The order of files returned depends on the implementation and should not be
+    /// relied on to be consistent.
     /// </summary>
     /// <param name="path">The location of the files to return.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <returns>An <see cref="IEnumerable{FileInfo}"/> of files in the specified path. If no files exist in the path,
-    /// returns an empty IEnumerable.</returns>
+    /// <returns>An <see cref="IAsyncEnumerable{FileDescription}"/> collection of files in the specified path.
+    /// If no files exist in the specified path, returns an empty collection.</returns>
     IAsyncEnumerable<FileDescription> GetFilesAsync(string path = "", CancellationToken token = default);
 
     /// <summary>
