@@ -15,7 +15,7 @@ public interface IFileService
     Task SaveFileAsync(Stream stream, string fileName, string path = "", CancellationToken token = default);
 
     /// <summary>
-    /// Checks if file exists.
+    /// Checks if the specified file exists.
     /// </summary>
     /// <param name="fileName">The name of the file to look for.</param>
     /// <param name="path">The location of the file.</param>
@@ -24,8 +24,8 @@ public interface IFileService
     Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default);
 
     /// <summary>
-    /// Lists files in a specified path. The order of files returned depends on the implementation and should not be
-    /// relied on to be consistent.
+    /// Recursively lists files in a specified path and its subfolders. The order of files returned depends on
+    /// the implementation and should not be relied on to be consistent.
     /// </summary>
     /// <param name="path">The location of the files to return.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>

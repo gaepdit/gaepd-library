@@ -88,6 +88,41 @@ public class InMemoryTests
     }
 
     [Test]
+    public async Task GetFiles_WhenFilesExistInSubfolders_RecursivelyReturnsList()
+    {
+        // Arrange
+        const string searchPath = "searchPath";
+        const string nestedPath = "nestedPath";
+
+        // In FileSystem, `GetFilesAsync` returns files in alphabetical order, so this naming makes the assertions simpler.
+        // (In InMemory, files are returned in the order added, so naming doesn't matter.)
+        var files = new List<(string path, string fileName)>
+        {
+            (searchPath, $"a_{Guid.NewGuid().ToString()}"),
+            (searchPath, $"b_{Guid.NewGuid().ToString()}"),
+            (Path.Combine(searchPath, nestedPath), $"c_{Guid.NewGuid().ToString()}"),
+        };
+
+        foreach (var tuple in files)
+            using (var msTest = new MemoryStream(_fileBytes))
+                await _fileService.SaveFileAsync(msTest, tuple.fileName, tuple.path);
+
+        // Act
+        // -- Only find files starting with `searchPath`.
+        var results = _fileService.GetFilesAsync(searchPath);
+
+        // Assert
+        var i = 0;
+        await foreach (var item in results)
+        {
+            item.FullName.Should().Be(Path.Combine(files[i].path, files[i].fileName));
+            i++;
+        }
+
+        i.Should().Be(3);
+    }
+
+    [Test]
     public async Task GetFiles_WhenFileDoesNotExist_ReturnsEmptyList()
     {
         // Act
