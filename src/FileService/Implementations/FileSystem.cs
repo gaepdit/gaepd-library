@@ -125,8 +125,8 @@ public class FileSystem : IFileService
         Task<IFileService.TryGetResponse> TryGetFileInternal()
         {
             return Task.FromResult(File.Exists(filePath)
-                ? new IFileService.TryGetResponse(true, File.OpenRead(filePath))
-                : new IFileService.TryGetResponse(false, Stream.Null));
+                ? new IFileService.TryGetResponse(File.OpenRead(filePath))
+                : IFileService.TryGetResponse.FailedTryGetResponse);
         }
     }
 

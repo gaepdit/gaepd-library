@@ -68,12 +68,17 @@ public interface IFileService
     /// <summary>
     /// Contains the results of a call to <see cref="IFileService.TryGetFileAsync"/>.
     /// </summary>
-    /// <param name="Success">Is true if the requested file is found; otherwise false.</param>
-    /// <param name="Value">Contains the requested Stream if the file is found.</param>
-    public sealed record TryGetResponse(bool Success, Stream Value) : IDisposable, IAsyncDisposable
+    public sealed record TryGetResponse(Stream Value) : IDisposable, IAsyncDisposable
     {
+        /// <summary>
+        /// Success is true if the requested file is found; otherwise false.
+        /// </summary>
+        public bool Success { get; private init; } = true;
+
         public void Dispose() => Value.Dispose();
         public async ValueTask DisposeAsync() => await Value.DisposeAsync();
+
+        public static TryGetResponse FailedTryGetResponse => new(Stream.Null) { Success = false };
     }
 
     /// <summary>

@@ -65,8 +65,8 @@ public class InMemory : IFileService
         var filePath = Path.Combine(path, fileName);
         return Task.FromResult(
             _fileContainer.TryGetValue(filePath, out var memoryFile)
-                ? new IFileService.TryGetResponse(true, new MemoryStream(memoryFile.Content))
-                : new IFileService.TryGetResponse(false, Stream.Null));
+                ? new IFileService.TryGetResponse(new MemoryStream(memoryFile.Content))
+                : IFileService.TryGetResponse.FailedTryGetResponse);
     }
 
     public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)

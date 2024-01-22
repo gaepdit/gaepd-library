@@ -71,10 +71,10 @@ public class AzureBlobStorage : IFileService
         var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
 
         if (!await blobClient.ExistsAsync(token))
-            return new IFileService.TryGetResponse(false, Stream.Null);
+            return IFileService.TryGetResponse.FailedTryGetResponse;
 
         var response = await blobClient.DownloadStreamingAsync(cancellationToken: token);
-        return new IFileService.TryGetResponse(true, response.Value.Content);
+        return new IFileService.TryGetResponse(response.Value.Content);
     }
 
     public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
