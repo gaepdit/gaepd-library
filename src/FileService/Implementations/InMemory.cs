@@ -12,6 +12,7 @@ public class InMemory : IFileService
         CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
+        if (stream.CanSeek) stream.Position = 0;
         await using var ms = new MemoryStream(Convert.ToInt32(stream.Length));
         await stream.CopyToAsync(ms, token);
         _fileContainer.Add(Path.Combine(path, fileName),

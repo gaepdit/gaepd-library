@@ -1,4 +1,4 @@
-﻿using Azure.Identity;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using System.Runtime.CompilerServices;
@@ -30,6 +30,7 @@ public class AzureBlobStorage : IFileService
     {
         Guard.NotNullOrWhiteSpace(fileName);
         var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        if (stream.CanSeek) stream.Position = 0;
         await blobClient.UploadAsync(stream, overwrite: true, token);
     }
 
