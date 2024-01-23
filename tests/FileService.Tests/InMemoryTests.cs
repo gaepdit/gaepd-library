@@ -1,3 +1,4 @@
+using GaEpd.FileService.Utilities;
 using FileNotFoundException = GaEpd.FileService.FileNotFoundException;
 
 namespace FileService.Tests;
@@ -80,7 +81,7 @@ public class InMemoryTests
         var i = 0;
         await foreach (var item in results)
         {
-            item.FullName.Should().Be(Path.Combine(files[i].path, files[i].fileName));
+            item.FullName.Should().Be(PathTool.Combine(files[i].path, files[i].fileName));
             i++;
         }
 
@@ -100,7 +101,7 @@ public class InMemoryTests
         {
             (searchPath, $"a_{Guid.NewGuid().ToString()}"),
             (searchPath, $"b_{Guid.NewGuid().ToString()}"),
-            (Path.Combine(searchPath, nestedPath), $"c_{Guid.NewGuid().ToString()}"),
+            (PathTool.Combine(searchPath, nestedPath), $"c_{Guid.NewGuid().ToString()}"),
         };
 
         foreach (var tuple in files)
@@ -115,7 +116,7 @@ public class InMemoryTests
         var i = 0;
         await foreach (var item in results)
         {
-            item.FullName.Should().Be(Path.Combine(files[i].path, files[i].fileName));
+            item.FullName.Should().Be(PathTool.Combine(files[i].path, files[i].fileName));
             i++;
         }
 
@@ -191,7 +192,7 @@ public class InMemoryTests
         using (var msTest = new MemoryStream(_fileBytes)) await _fileService.SaveFileAsync(msTest, fileName, path);
 
         // Act
-        await _fileService.DeleteFileAsync(Path.Combine(path, fileName));
+        await _fileService.DeleteFileAsync(PathTool.Combine(path, fileName));
 
         // Assert
         (await _fileService.FileExistsAsync(fileName, path)).Should().BeFalse();

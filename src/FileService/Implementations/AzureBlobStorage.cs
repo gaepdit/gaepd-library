@@ -1,6 +1,7 @@
-using Azure.Identity;
+﻿using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using GaEpd.FileService.Utilities;
 using System.Runtime.CompilerServices;
 
 namespace GaEpd.FileService.Implementations;
@@ -29,7 +30,7 @@ public class AzureBlobStorage : IFileService
     public async Task SaveFileAsync(Stream stream, string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        var blobClient = _containerClient.GetBlobClient(PathTool.Combine(_basePath, path, fileName));
         if (stream.CanSeek) stream.Position = 0;
         await blobClient.UploadAsync(stream, overwrite: true, token);
     }
@@ -37,20 +38,21 @@ public class AzureBlobStorage : IFileService
     public async Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        var blobClient = _containerClient.GetBlobClient(PathTool.Combine(_basePath, path, fileName));
         return (await blobClient.ExistsAsync(token)).Value;
     }
 
     public async IAsyncEnumerable<IFileService.FileDescription> GetFilesAsync(string path = "",
         [EnumeratorCancellation] CancellationToken token = default)
     {
-        var blobItems = _containerClient.GetBlobsAsync(prefix: Path.Combine(_basePath, path), cancellationToken: token);
+        var blobItems = _containerClient.GetBlobsAsync(
+            prefix: PathTool.CombineWithDirectorySeparator(_basePath, path), cancellationToken: token);
 
         await foreach (var blobItem in blobItems)
         {
             yield return new IFileService.FileDescription
             {
-                FullName = blobItem.Name,
+                FullName = blobItem.Name.Replace(PathTool.CombineWithDirectorySeparator(_basePath), string.Empty),
                 ContentLength = blobItem.Properties.ContentLength,
                 CreatedOn = blobItem.Properties.CreatedOn,
             };
@@ -60,8 +62,8 @@ public class AzureBlobStorage : IFileService
     public async Task<Stream> GetFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
-        if (!await blobClient.ExistsAsync(token)) throw new FileNotFoundException(Path.Combine(path, fileName));
+        var blobClient = _containerClient.GetBlobClient(PathTool.Combine(_basePath, path, fileName));
+        if (!await blobClient.ExistsAsync(token)) throw new FileNotFoundException(PathTool.Combine(path, fileName));
         return (await blobClient.DownloadStreamingAsync(cancellationToken: token)).Value.Content;
     }
 
@@ -69,7 +71,7 @@ public class AzureBlobStorage : IFileService
         CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        var blobClient = _containerClient.GetBlobClient(PathTool.Combine(_basePath, path, fileName));
 
         if (!await blobClient.ExistsAsync(token))
             return IFileService.TryGetResponse.FailedTryGetResponse;
@@ -81,7 +83,7 @@ public class AzureBlobStorage : IFileService
     public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var blobClient = _containerClient.GetBlobClient(Path.Combine(_basePath, path, fileName));
+        var blobClient = _containerClient.GetBlobClient(PathTool.Combine(_basePath, path, fileName));
         return blobClient.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, cancellationToken: token);
     }
 }

@@ -1,3 +1,4 @@
+using GaEpd.FileService.Utilities;
 using System.Runtime.CompilerServices;
 
 namespace GaEpd.FileService.Implementations;
@@ -15,14 +16,14 @@ public class InMemory : IFileService
         if (stream.CanSeek) stream.Position = 0;
         await using var ms = new MemoryStream(Convert.ToInt32(stream.Length));
         await stream.CopyToAsync(ms, token);
-        _fileContainer.Add(Path.Combine(path, fileName),
+        _fileContainer.Add(PathTool.Combine(path, fileName),
             new MemoryFile(ms.ToArray(), ms.Length, DateTimeOffset.UtcNow));
     }
 
     public Task<bool> FileExistsAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        return Task.FromResult(_fileContainer.ContainsKey(Path.Combine(path, fileName)));
+        return Task.FromResult(_fileContainer.ContainsKey(PathTool.Combine(path, fileName)));
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -44,7 +45,7 @@ public class InMemory : IFileService
     public Task<Stream> GetFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var filePath = Path.Combine(path, fileName);
+        var filePath = PathTool.Combine(path, fileName);
         MemoryFile memoryFile;
 
         try
@@ -63,7 +64,7 @@ public class InMemory : IFileService
         CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        var filePath = Path.Combine(path, fileName);
+        var filePath = PathTool.Combine(path, fileName);
         return Task.FromResult(
             _fileContainer.TryGetValue(filePath, out var memoryFile)
                 ? new IFileService.TryGetResponse(new MemoryStream(memoryFile.Content))
@@ -73,7 +74,7 @@ public class InMemory : IFileService
     public Task DeleteFileAsync(string fileName, string path = "", CancellationToken token = default)
     {
         Guard.NotNullOrWhiteSpace(fileName);
-        _fileContainer.Remove(Path.Combine(path, fileName));
+        _fileContainer.Remove(PathTool.Combine(path, fileName));
         return Task.CompletedTask;
     }
 }
