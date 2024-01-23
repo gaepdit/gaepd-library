@@ -37,6 +37,6 @@ public static class PathTool
     public static string CombineWithDirectorySeparator(string path) =>
         string.Concat(Path.TrimEndingDirectorySeparator(path), DirectorySeparator);
 
-    public static string CombineWithDirectorySeparator(string first, string second) =>
-        string.Concat(Combine(first, second), DirectorySeparator);
+    public static string CombineWithDirectorySeparator(string first, string second, string third = "") =>
+        string.Concat(Combine(first, second, third), DirectorySeparator);
 }
