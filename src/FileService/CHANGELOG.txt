@@ -1,3 +1,7 @@
+[Unreleased]
+
+- Adds a method to list files in a specified path.
+
 v2.1.0
 
 - Adds an extension method for registering and configuring file services. 
