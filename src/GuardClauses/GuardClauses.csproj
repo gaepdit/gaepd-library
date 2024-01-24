@@ -23,7 +23,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>(Add release notes to CHANGELOG.txt)</PackageReleaseNotes>
+        <PackageReleaseNotes>(Add release notes to CHANGELOG.md)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
-        <ReadLinesFromFile File="CHANGELOG.txt">
+        <ReadLinesFromFile File="CHANGELOG.md">
             <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
         </ReadLinesFromFile>
         <PropertyGroup>

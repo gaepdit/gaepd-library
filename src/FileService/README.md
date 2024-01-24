@@ -16,6 +16,7 @@ An `IFileService` interface is used to abstract out common file persistence oper
 
 * `SaveFileAsync`
 * `FileExistsAsync`
+* `GetFilesAsync`
 * `GetFileAsync`
 * `TryGetFileAsync`
 * `DeleteFileAsync`
@@ -47,7 +48,7 @@ And add the following section to your configuration:
 }
 ```
 
-The `FileService` setting must be set to "InMemory", "FileSystem", or "AzureBlobStorage".
+The `FileService` setting must be set to `InMemory`, `FileSystem`, or `AzureBlobStorage`.
 
 * If `InMemory` is chosen, all other settings are ignored.
 
