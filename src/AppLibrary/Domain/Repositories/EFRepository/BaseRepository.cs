@@ -33,7 +33,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
     public TContext Context => context;
 
     public async Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
-        await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token)
+        await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token).ConfigureAwait(false)
         ?? throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
@@ -44,21 +44,21 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(predicate, token);
 
     public async Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
-        await Context.Set<TEntity>().AsNoTracking().ToListAsync(token);
+        await Context.Set<TEntity>().AsNoTracking().ToListAsync(token).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<TEntity>> GetListAsync(
         Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
-        await Context.Set<TEntity>().AsNoTracking().Where(predicate).ToListAsync(token);
+        await Context.Set<TEntity>().AsNoTracking().Where(predicate).ToListAsync(token).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
         Expression<Func<TEntity, bool>> predicate, PaginatedRequest paging, CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking().Where(predicate)
-            .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token);
+            .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
         PaginatedRequest paging, CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking()
-            .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token);
+            .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token).ConfigureAwait(false);
 
     public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().CountAsync(predicate, token);
@@ -71,8 +71,8 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
 
     public async Task InsertAsync(TEntity entity, bool autoSave = true, CancellationToken token = default)
     {
-        await Context.Set<TEntity>().AddAsync(entity, token);
-        if (autoSave) await SaveChangesAsync(token);
+        await Context.Set<TEntity>().AddAsync(entity, token).ConfigureAwait(false);
+        if (autoSave) await SaveChangesAsync(token).ConfigureAwait(false);
     }
 
     public async Task UpdateAsync(TEntity entity, bool autoSave = true, CancellationToken token = default)
@@ -84,11 +84,12 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
 
         try
         {
-            await SaveChangesAsync(token);
+            await SaveChangesAsync(token).ConfigureAwait(false);
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
+            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token)
+                    .ConfigureAwait(false))
                 throw new EntityNotFoundException<TEntity>(entity.Id);
             throw;
         }
@@ -100,11 +101,12 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
 
         try
         {
-            if (autoSave) await SaveChangesAsync(token);
+            if (autoSave) await SaveChangesAsync(token).ConfigureAwait(false);
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token))
+            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token)
+                    .ConfigureAwait(false))
             {
                 throw new EntityNotFoundException<TEntity>(entity.Id);
             }
@@ -113,7 +115,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         }
     }
 
-    public async Task SaveChangesAsync(CancellationToken token = default) => await Context.SaveChangesAsync(token);
+    public Task SaveChangesAsync(CancellationToken token = default) => Context.SaveChangesAsync(token);
 
     #region IDisposable, IAsyncDisposable
 
@@ -143,8 +145,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual async ValueTask DisposeAsyncCore() =>
-        await Context.DisposeAsync().ConfigureAwait(false);
+    protected virtual ValueTask DisposeAsyncCore() => Context.DisposeAsync();
 
     #endregion
 }

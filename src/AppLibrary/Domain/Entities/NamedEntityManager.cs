@@ -13,7 +13,7 @@ public abstract class NamedEntityManager<TEntity, TRepository>(TRepository repos
 {
     public async Task<TEntity> CreateAsync(string name, string? createdById = null, CancellationToken token = default)
     {
-        await ThrowIfDuplicateName(name, ignoreId: null, token);
+        await ThrowIfDuplicateName(name, ignoreId: null, token).ConfigureAwait(false);
         var item = new TEntity();
         item.SetId(Guid.NewGuid());
         item.SetName(name);
@@ -23,14 +23,14 @@ public abstract class NamedEntityManager<TEntity, TRepository>(TRepository repos
 
     public async Task ChangeNameAsync(TEntity entity, string name, CancellationToken token = default)
     {
-        await ThrowIfDuplicateName(name, entity.Id, token);
+        await ThrowIfDuplicateName(name, entity.Id, token).ConfigureAwait(false);
         entity.SetName(name);
     }
 
     private async Task ThrowIfDuplicateName(string name, Guid? ignoreId, CancellationToken token)
     {
         // Validate the name is not a duplicate.
-        var entity = await repository.FindByNameAsync(name.Trim(), token);
+        var entity = await repository.FindByNameAsync(name.Trim(), token).ConfigureAwait(false);
         if (entity is not null && (ignoreId is null || entity.Id != ignoreId))
             throw new DuplicateNameException(name);
     }

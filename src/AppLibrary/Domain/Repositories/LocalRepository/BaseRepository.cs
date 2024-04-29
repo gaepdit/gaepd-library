@@ -78,13 +78,13 @@ public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
 
     public async Task UpdateAsync(TEntity entity, bool autoSave = true, CancellationToken token = default)
     {
-        var item = await GetAsync(entity.Id, token);
+        var item = await GetAsync(entity.Id, token).ConfigureAwait(false);
         Items.Remove(item);
         Items.Add(entity);
     }
 
     public async Task DeleteAsync(TEntity entity, bool autoSave = true, CancellationToken token = default) =>
-        Items.Remove(await GetAsync(entity.Id, token));
+        Items.Remove(await GetAsync(entity.Id, token).ConfigureAwait(false));
 
     // Local repository does not require changes to be explicitly saved.
     public Task SaveChangesAsync(CancellationToken token = default) => Task.CompletedTask;
