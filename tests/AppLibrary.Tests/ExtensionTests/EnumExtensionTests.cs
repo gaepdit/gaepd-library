@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AppLibrary.Tests.ExtensionTests;
 
 [TestFixture]
-public class EnumExtensions
+public class EnumExtensionTests
 {
     [TestCase(EnumTest.DisplayOnly, "Display Only")]
     [TestCase(EnumTest.DisplayAndDescription, "Display for Display And Description")]
