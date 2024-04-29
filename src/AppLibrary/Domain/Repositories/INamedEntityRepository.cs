@@ -17,4 +17,11 @@ public interface INamedEntityRepository<TEntity> : IRepository<TEntity>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A SimpleNamedEntity entity.</returns>
     Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default);
+    /// <summary>
+    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values.
+    /// Returns an empty collection if none exist.
+    /// </summary>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default);
 }

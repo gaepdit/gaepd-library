@@ -13,4 +13,8 @@ public abstract class NamedEntityRepository<TEntity>(IEnumerable<TEntity> items)
 {
     public Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(e => string.Equals(e.Name.ToUpper(), name.ToUpper())));
+
+    public Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default) =>
+        Task.FromResult(Items.OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
+            .ToList() as IReadOnlyCollection<TEntity>);
 }

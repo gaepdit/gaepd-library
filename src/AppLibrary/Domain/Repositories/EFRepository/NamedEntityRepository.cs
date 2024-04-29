@@ -16,5 +16,10 @@ public abstract class NamedEntityRepository<TEntity, TContext>(TContext context)
 {
     public Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking()
-            .SingleOrDefaultAsync(e => string.Equals(e.Name.ToUpper(), name.ToUpper()), token);
+            .SingleOrDefaultAsync(entity => string.Equals(entity.Name.ToUpper(), name.ToUpper()), token);
+
+    public async Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default) =>
+        await Context.Set<TEntity>().AsNoTracking()
+            .OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
+            .ToListAsync(token).ConfigureAwait(false);
 }
