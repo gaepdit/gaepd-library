@@ -1,6 +1,6 @@
 # Changelog
 
-## [Next]
+## [5.2.0]
 
 - Added a string `Truncate` function.
 - Added a `GetOrderedListAsync` method to the Named Entity Repository.
