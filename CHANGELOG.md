@@ -1,10 +1,15 @@
 # Changelog
 
-# [5.1.0]
+## [Next]
+
+- Added a string `Truncate` function.
+- Added a `GetOrderedListAsync` method to the Named Entity Repository.
+
+## [5.1.0]
 
 - Updated the included GuardClauses library to v2.0.0.
 
-# [5.0.1]
+## [5.0.1]
 
 - Updated changelog for v5.0.0 release.
 

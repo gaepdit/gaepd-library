@@ -27,6 +27,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Include="../../CHANGELOG.md" Pack="false" PackagePath="/"/>
         <None Include="../../LICENSE" Pack="true" PackagePath=""/>
         <None Include="../../README.md">
             <Pack>True</Pack>
