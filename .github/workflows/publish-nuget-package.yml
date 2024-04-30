@@ -4,8 +4,9 @@ name: Publish App Library NuGet Package
 
 on:
   push:
-    tags: [v*]
-  workflow_dispatch: 
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
 
 jobs:
   publish-app-library-nuget-package:
@@ -29,3 +30,8 @@ jobs:
 
       - name: NuGet Push
         run: dotnet nuget push .artifacts/AppLibrary/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Create GitHub Release
+        uses: docker://ghcr.io/anton-yurchenko/git-release:v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
