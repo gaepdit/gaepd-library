@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.2.1] - 2024-04-30
+
+- Added a `GetOrderedListAsync` overload method with predicate matching.
+
 ## [5.2.0] - 2024-04-30
 
 - Added a string `Truncate` function.
@@ -87,6 +91,7 @@
 
 _Initial release._
 
+[5.2.1]: https://github.com/gaepdit/app-library/releases/tag/v5.2.1
 [5.2.0]: https://github.com/gaepdit/app-library/releases/tag/v5.2.0
 [5.1.0]: https://github.com/gaepdit/app-library/releases/tag/l%2Fv5.1.0
 [5.0.1]: https://github.com/gaepdit/app-library/releases/tag/al%2Fv5.0.1
