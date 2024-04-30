@@ -15,7 +15,7 @@ public class Count : EfRepositoryTestBase
     [Test]
     public async Task CountAsync_WithoutPredicate_WhenNoItemsExist_ReturnsZero()
     {
-        await Helper.ClearTestEntityTableAsync();
+        await Helper.ClearTableAsync<DerivedEntity>();
 
         var result = await Repository.CountAsync(e => true);
 

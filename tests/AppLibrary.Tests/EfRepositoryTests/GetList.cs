@@ -17,7 +17,7 @@ public class GetList : EfRepositoryTestBase
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        await Helper.ClearTestEntityTableAsync();
+        await Helper.ClearTableAsync<DerivedEntity>();
 
         var result = await Repository.GetListAsync();
 
@@ -27,21 +27,18 @@ public class GetList : EfRepositoryTestBase
     [Test]
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
-        // Assuming this predicate selects correct items.
-        var items = Repository.Context.Set<DerivedEntity>();
-        var selectedItems = items.Skip(1).ToList();
+        var skipId = Repository.Context.Set<DerivedEntity>().First().Id;
+        var expected = Repository.Context.Set<DerivedEntity>().Where(entity => entity.Id != skipId);
 
-        var result = await Repository.GetListAsync(e => e.Id == selectedItems[0].Id);
+        var result = await Repository.GetListAsync(entity => entity.Id != skipId);
 
-        result.Should().BeEquivalentTo(selectedItems);
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Test]
     public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
-        var id = Guid.NewGuid();
-
-        var result = await Repository.GetListAsync(e => e.Id == id);
+        var result = await Repository.GetListAsync(e => e.Id == Guid.Empty);
 
         result.Should().BeEmpty();
     }

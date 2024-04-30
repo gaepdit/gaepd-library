@@ -10,7 +10,7 @@ public class Update : EfRepositoryTestBase
     {
         var originalEntity = Repository.Context.Set<DerivedEntity>().First();
         Helper.ClearChangeTracker();
-        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Name = "Xyz" };
+        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Note = "Xyz" };
 
         await Repository.UpdateAsync(newEntityWithSameId);
 

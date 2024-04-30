@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using TestSupport.EfHelpers;
 
-namespace AppLibrary.Tests.RepositoryHelpers;
+namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class DerivedEfRepository(AppDbContext context) : BaseRepository<DerivedEntity, AppDbContext>(context);
 
@@ -102,17 +102,12 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
     /// Deletes all data from the EF database table for the specified entity.
     /// </summary>
     /// <typeparam name="TEntity">The entity type.</typeparam>
-    private async Task ClearTableAsync<TEntity>() where TEntity : class
+    public async Task ClearTableAsync<TEntity>() where TEntity : class
     {
         Context.RemoveRange(Context.Set<TEntity>());
         await Context.SaveChangesAsync();
         ClearChangeTracker();
     }
-
-    /// <summary>
-    /// Deletes all data from the EF database table for the Test Entity.
-    /// </summary>
-    public async Task ClearTestEntityTableAsync() => await ClearTableAsync<DerivedEntity>();
 
     /// <summary>
     /// Seeds data and returns an instance of EfRepository.
@@ -125,8 +120,8 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
             _context.TestEntities.AddRange(
                 new List<DerivedEntity>
                 {
-                    new() { Id = Guid.NewGuid(), Name = "Abc" },
-                    new() { Id = Guid.NewGuid(), Name = "Def" },
+                    new() { Id = Guid.NewGuid(), Note = "Abc" },
+                    new() { Id = Guid.NewGuid(), Note = "Def" },
                 });
             _context.SaveChanges();
         }
@@ -134,6 +129,8 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
         Context = new AppDbContext(_options);
         return new DerivedEfRepository(Context);
     }
+
+    public const string UsefulSuffix = "def";
 
     /// <summary>
     /// Seeds data and returns an instance of EfNamedEntityRepository.
@@ -146,8 +143,9 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
             _context.TestNamedEntities.AddRange(
                 new List<DerivedNamedEntity>
                 {
-                    new(Guid.NewGuid(), "Abc def"),
-                    new(Guid.NewGuid(), "Efg hij"),
+                    new(id: Guid.NewGuid(), name: "Abc abc"),
+                    new(id: Guid.NewGuid(), name: $"Xyx {UsefulSuffix}"),
+                    new(id: Guid.NewGuid(), name: $"Efg {UsefulSuffix}"),
                 });
             _context.SaveChanges();
         }

@@ -1,5 +1,4 @@
 ﻿using AppLibrary.Tests.EntityHelpers;
-using AppLibrary.Tests.RepositoryHelpers;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
@@ -52,11 +51,11 @@ public class Find : EfRepositoryTestBase
 
         // Test using a predicate that compares uppercase names.
         var resultSameCase = await Repository.FindAsync(e =>
-            e.Name.ToUpper().Equals(entity.Name.ToUpper()));
+            e.Note.ToUpper().Equals(entity.Note.ToUpper()));
 
         // Test using a predicate that compares an uppercase name to a lowercase name.
         var resultDifferentCase = await Repository.FindAsync(e =>
-            e.Name.ToUpper().Equals(entity.Name.ToLower()));
+            e.Note.ToUpper().Equals(entity.Note.ToLower()));
 
         using (new AssertionScope())
         {
@@ -74,11 +73,11 @@ public class Find : EfRepositoryTestBase
 
         // Test using a predicate that compares uppercase names.
         var resultSameCase = await repository.FindAsync(e =>
-            e.Name.ToUpper().Equals(entity.Name.ToUpper()));
+            e.Note.ToUpper().Equals(entity.Note.ToUpper()));
 
         // Test using a predicate that compares an uppercase name to a lowercase name.
         var resultDifferentCase = await repository.FindAsync(e =>
-            e.Name.ToUpper().Equals(entity.Name.ToLower()));
+            e.Note.ToUpper().Equals(entity.Note.ToLower()));
 
         using (new AssertionScope())
         {
