@@ -46,10 +46,10 @@ public class Find : LocalRepositoryTestBase
         var entity = Repository.Items.First();
 
         var resultIgnoreCase = await Repository.FindAsync(e =>
-            e.Name.ToUpperInvariant().Equals(entity.Name.ToLowerInvariant(), StringComparison.CurrentCultureIgnoreCase));
+            e.Note.ToUpperInvariant().Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCultureIgnoreCase));
 
         var resultCaseSensitive = await Repository.FindAsync(e =>
-            e.Name.ToUpperInvariant().Equals(entity.Name.ToLowerInvariant(), StringComparison.CurrentCulture));
+            e.Note.ToUpperInvariant().Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCulture));
 
         using (new AssertionScope())
         {

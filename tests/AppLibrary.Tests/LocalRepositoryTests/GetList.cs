@@ -23,18 +23,18 @@ public class GetList : LocalRepositoryTestBase
     [Test]
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
-        // Assuming this predicate selects correct items.
-        var selectedItems = Repository.Items.Skip(1).ToList();
+        var skipId = Repository.Items.First().Id;
+        var expected = Repository.Items.Where(entity => entity.Id != skipId);
 
-        var result = await Repository.GetListAsync(e => e.Id == selectedItems[0].Id);
+        var result = await Repository.GetListAsync(entity => entity.Id != skipId);
 
-        result.Should().BeEquivalentTo(selectedItems);
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Test]
     public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
-        var result = await Repository.GetListAsync(e => e.Id == Guid.NewGuid());
+        var result = await Repository.GetListAsync(entity => entity.Id == Guid.Empty);
 
         result.Should().BeEmpty();
     }

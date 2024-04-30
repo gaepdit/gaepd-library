@@ -1,4 +1,5 @@
 ﻿using GaEpd.AppLibrary.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace GaEpd.AppLibrary.Domain.Repositories.LocalRepository;
 
@@ -16,5 +17,11 @@ public abstract class NamedEntityRepository<TEntity>(IEnumerable<TEntity> items)
 
     public Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default) =>
         Task.FromResult(Items.OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
+            .ToList() as IReadOnlyCollection<TEntity>);
+
+    public Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(Expression<Func<TEntity, bool>> predicate,
+        CancellationToken token = default) =>
+        Task.FromResult(Items.Where(predicate.Compile())
+            .OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
             .ToList() as IReadOnlyCollection<TEntity>);
 }

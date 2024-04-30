@@ -54,8 +54,8 @@ public class GetPagedList : LocalRepositoryTestBase
     public async Task GivenSorting_ReturnsSortedList()
     {
         var itemsCount = Repository.Items.Count;
-        var pagingAsc = new PaginatedRequest(1, itemsCount, "Name asc");
-        var pagingDesc = new PaginatedRequest(1, itemsCount, "Name desc");
+        var pagingAsc = new PaginatedRequest(1, itemsCount, "Note asc");
+        var pagingDesc = new PaginatedRequest(1, itemsCount, "Note desc");
 
         var resultAsc = await Repository.GetPagedListAsync(pagingAsc);
         var resultDesc = await Repository.GetPagedListAsync(pagingDesc);
@@ -68,8 +68,8 @@ public class GetPagedList : LocalRepositoryTestBase
             resultDesc.Should().BeEquivalentTo(Repository.Items);
 
             var comparer = CultureInfo.InvariantCulture.CompareInfo.GetStringComparer(CompareOptions.IgnoreCase);
-            resultAsc.Should().BeInAscendingOrder(e => e.Name, comparer);
-            resultDesc.Should().BeInDescendingOrder(e => e.Name, comparer);
+            resultAsc.Should().BeInAscendingOrder(e => e.Note, comparer);
+            resultDesc.Should().BeInDescendingOrder(e => e.Note, comparer);
         }
     }
 }

@@ -44,22 +44,18 @@ public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
         Task.FromResult(Items.Where(predicate.Compile()).ToList() as IReadOnlyCollection<TEntity>);
 
     public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
-        PaginatedRequest paging, CancellationToken token = default)
-    {
-        var result = Items.Where(predicate.Compile()).AsQueryable()
+        PaginatedRequest paging, CancellationToken token = default) =>
+        Task.FromResult(Items.Where(predicate.Compile()).AsQueryable()
             .OrderByIf(paging.Sorting)
-            .Skip(paging.Skip).Take(paging.Take);
-        return Task.FromResult(result.ToList() as IReadOnlyCollection<TEntity>);
-    }
+            .Skip(paging.Skip).Take(paging.Take)
+            .ToList() as IReadOnlyCollection<TEntity>);
 
     public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(PaginatedRequest paging,
-        CancellationToken token = default)
-    {
-        var result = Items.AsQueryable()
+        CancellationToken token = default) =>
+        Task.FromResult(Items.AsQueryable()
             .OrderByIf(paging.Sorting)
-            .Skip(paging.Skip).Take(paging.Take);
-        return Task.FromResult(result.ToList() as IReadOnlyCollection<TEntity>);
-    }
+            .Skip(paging.Skip).Take(paging.Take)
+            .ToList() as IReadOnlyCollection<TEntity>);
 
     public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Task.FromResult(Items.Count(predicate.Compile()));

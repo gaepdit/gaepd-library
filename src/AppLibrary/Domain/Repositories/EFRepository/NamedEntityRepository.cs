@@ -1,5 +1,6 @@
 using GaEpd.AppLibrary.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 
@@ -20,6 +21,12 @@ public abstract class NamedEntityRepository<TEntity, TContext>(TContext context)
 
     public async Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking()
+            .OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
+            .ToListAsync(token).ConfigureAwait(false);
+
+    public async Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(Expression<Func<TEntity, bool>> predicate,
+        CancellationToken token = default) =>
+        await Context.Set<TEntity>().AsNoTracking().Where(predicate)
             .OrderBy(entity => entity.Name).ThenBy(entity => entity.Id)
             .ToListAsync(token).ConfigureAwait(false);
 }

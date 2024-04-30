@@ -9,7 +9,7 @@ public class Update : LocalRepositoryTestBase
     public async Task UpdateAsync_UpdateExistingItem_ShouldReflectChanges()
     {
         var originalEntity = Repository.Items.First();
-        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Name = "Xyz" };
+        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Note = "Xyz" };
 
         await Repository.UpdateAsync(newEntityWithSameId);
 

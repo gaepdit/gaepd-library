@@ -1,7 +1,6 @@
 ﻿using AppLibrary.Tests.EntityHelpers;
-using AppLibrary.Tests.RepositoryHelpers;
 
-namespace AppLibrary.Tests.EfRepositoryTests;
+namespace AppLibrary.Tests.EfRepositoryTests.NamedEntityRepositoryTests;
 
 public class FindByName
 {
@@ -26,28 +25,28 @@ public class FindByName
     [Test]
     public async Task FindByName_WhenEntityExists_ReturnsEntity()
     {
-        var entity = _repository.Context.Set<DerivedNamedEntity>().First();
+        var expected = _repository.Context.Set<DerivedNamedEntity>().First();
 
-        var result = await _repository.FindByNameAsync(entity.Name);
+        var result = await _repository.FindByNameAsync(expected.Name);
 
-        result.Should().BeEquivalentTo(entity);
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Test]
     public async Task FindByName_WhenEntityDoesNotExist_ReturnsNull()
     {
-        var entity = await _repository.FindByNameAsync("xxx");
+        var result = await _repository.FindByNameAsync("xxx");
 
-        entity.Should().BeNull();
+        result.Should().BeNull();
     }
 
     [Test]
     public async Task FindByName_IsNotCaseSensitive()
     {
-        var entity = _repository.Context.Set<DerivedNamedEntity>().First();
+        var expected = _repository.Context.Set<DerivedNamedEntity>().First();
 
-        var result = await _repository.FindByNameAsync(entity.Name.ToUpperInvariant());
+        var result = await _repository.FindByNameAsync(expected.Name.ToUpperInvariant());
 
-        result.Should().BeEquivalentTo(entity);
+        result.Should().BeEquivalentTo(expected);
     }
 }

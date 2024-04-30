@@ -1,6 +1,4 @@
-﻿using AppLibrary.Tests.RepositoryHelpers;
-
-namespace AppLibrary.Tests.EfRepositoryTests;
+﻿namespace AppLibrary.Tests.EfRepositoryTests;
 
 public class EfRepositoryTestBase
 {

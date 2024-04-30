@@ -1,4 +1,5 @@
 ﻿using GaEpd.AppLibrary.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace GaEpd.AppLibrary.Domain.Repositories;
 
@@ -17,11 +18,23 @@ public interface INamedEntityRepository<TEntity> : IRepository<TEntity>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A SimpleNamedEntity entity.</returns>
     Task<TEntity?> FindByNameAsync(string name, CancellationToken token = default);
+
     /// <summary>
-    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values.
+    /// Returns a read-only collection of all <see cref="INamedEntity"/> values ordered by <see cref="INamedEntity.Name"/>.
     /// Returns an empty collection if none exist.
     /// </summary>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A read-only collection of entities.</returns>
     Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(CancellationToken token = default);
+
+    /// <summary>
+    /// Returns a read-only collection of all <see cref="INamedEntity"/> values matching the conditions of
+    /// the <paramref name="predicate"/> and ordered by <see cref="INamedEntity.Name"/>.
+    /// Returns an empty collection if there are no matches.
+    /// </summary>
+    /// <param name="predicate">The search conditions.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(
+        Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
 }
