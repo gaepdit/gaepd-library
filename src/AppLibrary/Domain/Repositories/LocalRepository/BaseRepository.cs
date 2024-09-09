@@ -30,8 +30,16 @@ public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
             ? Task.FromResult(Items.Single(e => e.Id.Equals(id)))
             : throw new EntityNotFoundException<TEntity>(id);
 
+    // Navigation properties are already included when using in-memory data structures.
+    public Task<TEntity> GetAsync(TKey id, string[] includeProperties, CancellationToken token = default) =>
+        GetAsync(id, token);
+
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(entity => entity.Id.Equals(id)));
+
+    // Navigation properties are already included when using in-memory data structures.
+    public Task<TEntity?> FindAsync(TKey id, string[] includeProperties, CancellationToken token = default) =>
+        FindAsync(id, token);
 
     public Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Task.FromResult(Items.SingleOrDefault(predicate.Compile()));

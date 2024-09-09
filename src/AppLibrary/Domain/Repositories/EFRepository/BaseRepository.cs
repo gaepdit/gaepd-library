@@ -36,8 +36,19 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         await Context.Set<TEntity>().SingleOrDefaultAsync(entity => entity.Id.Equals(id), token).ConfigureAwait(false)
         ?? throw new EntityNotFoundException<TEntity>(id);
 
+    public async Task<TEntity> GetAsync(TKey id, string[] includeProperties, CancellationToken token = default) =>
+        await includeProperties.Aggregate(Context.Set<TEntity>().AsNoTracking(),
+                (queryable, includeProperty) => queryable.Include(includeProperty))
+            .SingleOrDefaultAsync(entity => entity.Id.Equals(id), token).ConfigureAwait(false)
+        ?? throw new EntityNotFoundException<TEntity>(id);
+
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(entity => entity.Id.Equals(id), token);
+
+    public Task<TEntity?> FindAsync(TKey id, string[] includeProperties, CancellationToken token = default) =>
+        includeProperties.Aggregate(Context.Set<TEntity>().AsNoTracking(),
+                (queryable, includeProperty) => queryable.Include(includeProperty))
+            .SingleOrDefaultAsync(entity => entity.Id.Equals(id), token);
 
     public Task<TEntity?> FindAsync(
         Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
