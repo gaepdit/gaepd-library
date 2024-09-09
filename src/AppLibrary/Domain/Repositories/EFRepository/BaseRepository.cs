@@ -33,11 +33,11 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
     public TContext Context => context;
 
     public async Task<TEntity> GetAsync(TKey id, CancellationToken token = default) =>
-        await Context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id), token).ConfigureAwait(false)
+        await Context.Set<TEntity>().SingleOrDefaultAsync(entity => entity.Id.Equals(id), token).ConfigureAwait(false)
         ?? throw new EntityNotFoundException<TEntity>(id);
 
     public Task<TEntity?> FindAsync(TKey id, CancellationToken token = default) =>
-        Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(e => e.Id.Equals(id), token);
+        Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(entity => entity.Id.Equals(id), token);
 
     public Task<TEntity?> FindAsync(
         Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
@@ -64,7 +64,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         Context.Set<TEntity>().AsNoTracking().CountAsync(predicate, token);
 
     public Task<bool> ExistsAsync(TKey id, CancellationToken token = default) =>
-        Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(id), token);
+        Context.Set<TEntity>().AsNoTracking().AnyAsync(entity => entity.Id.Equals(id), token);
 
     public Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().AnyAsync(predicate, token);
@@ -88,8 +88,8 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token)
-                    .ConfigureAwait(false))
+            if (!await Context.Set<TEntity>().AsNoTracking()
+                    .AnyAsync(e => e.Id.Equals(entity.Id), token).ConfigureAwait(false))
                 throw new EntityNotFoundException<TEntity>(entity.Id);
             throw;
         }
@@ -105,12 +105,9 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!await Context.Set<TEntity>().AsNoTracking().AnyAsync(e => e.Id.Equals(entity.Id), token)
-                    .ConfigureAwait(false))
-            {
+            if (!await Context.Set<TEntity>().AsNoTracking()
+                    .AnyAsync(e => e.Id.Equals(entity.Id), token).ConfigureAwait(false))
                 throw new EntityNotFoundException<TEntity>(entity.Id);
-            }
-
             throw;
         }
     }

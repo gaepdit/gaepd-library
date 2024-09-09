@@ -35,6 +35,6 @@ public interface INamedEntityRepository<TEntity> : IRepository<TEntity>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A read-only collection of entities.</returns>
-    Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(
-        Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
+    Task<IReadOnlyCollection<TEntity>> GetOrderedListAsync(Expression<Func<TEntity, bool>> predicate,
+        CancellationToken token = default);
 }

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AppLibrary.Tests.ExtensionTests;
 
-[TestFixture]
 public class EnumExtensionTests
 {
     [TestCase(EnumTest.DisplayOnly, "Display Only")]

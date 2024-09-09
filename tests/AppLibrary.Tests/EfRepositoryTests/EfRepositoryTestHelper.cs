@@ -133,7 +133,7 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
     public const string UsefulSuffix = "def";
 
     /// <summary>
-    /// Seeds data and returns an instance of EfNamedEntityRepository.
+    /// Seeds data and returns an instance of <see cref="TestNamedEntityRepository"/>.
     /// </summary>
     /// <returns>A <see cref="DerivedEfNamedEntityRepository"/>.</returns>
     public DerivedEfNamedEntityRepository GetNamedEntityRepository()

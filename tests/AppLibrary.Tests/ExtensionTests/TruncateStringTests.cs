@@ -2,7 +2,6 @@
 
 namespace AppLibrary.Tests.ExtensionTests;
 
-[TestFixture]
 public class TruncateStringTests
 {
     private const string Value = "abc";
