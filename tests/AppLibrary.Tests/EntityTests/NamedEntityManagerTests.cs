@@ -1,4 +1,4 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 using GaEpd.AppLibrary.Domain.Entities;
 using GaEpd.AppLibrary.Domain.Repositories;
 using NSubstitute;
@@ -7,14 +7,14 @@ namespace AppLibrary.Tests.EntityTests;
 
 public class NamedEntityManagerTests
 {
-    private INamedEntityRepository<DerivedNamedEntity> _repositoryMock = default!;
-    private DerivedNamedEntityManager _manager = default!;
+    private INamedEntityRepository<TestNamedEntity> _repositoryMock = default!;
+    private TestNamedEntityManager _manager = default!;
 
     [SetUp]
     public void Setup()
     {
-        _repositoryMock = Substitute.For<INamedEntityRepository<DerivedNamedEntity>>();
-        _manager = new DerivedNamedEntityManager(_repositoryMock);
+        _repositoryMock = Substitute.For<INamedEntityRepository<TestNamedEntity>>();
+        _manager = new TestNamedEntityManager(_repositoryMock);
     }
 
     [TearDown]
@@ -31,7 +31,7 @@ public class NamedEntityManagerTests
     [Test]
     public async Task ChangeNameAsync_ShouldChangeEntityName()
     {
-        var entity = new DerivedNamedEntity(Guid.NewGuid(), "OldName");
+        var entity = new TestNamedEntity(Guid.NewGuid(), "OldName");
 
         await _manager.ChangeNameAsync(entity, "NewName");
 
@@ -42,7 +42,7 @@ public class NamedEntityManagerTests
     public void ThrowIfDuplicateName_ShouldThrowDuplicateNameException()
     {
         _repositoryMock.FindByNameAsync("Duplicate", Arg.Any<CancellationToken>())
-            .Returns(new DerivedNamedEntity(Guid.NewGuid(), "Duplicate"));
+            .Returns(new TestNamedEntity(Guid.NewGuid(), "Duplicate"));
 
         var func = async () => await _manager.CreateAsync("Duplicate");
 

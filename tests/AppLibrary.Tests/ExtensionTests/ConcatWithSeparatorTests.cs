@@ -2,7 +2,6 @@
 
 namespace AppLibrary.Tests.ExtensionTests;
 
-[TestFixture]
 public class ConcatWithSeparatorTests
 {
     private static readonly string[] Items = ["a", "b"];

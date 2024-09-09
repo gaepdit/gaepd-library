@@ -1,15 +1,15 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class Insert : EfRepositoryTestBase
+public class Insert : RepositoryTestBase
 {
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldIncreaseCountByOne()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var initialCount = items.Count();
-        var entity = new DerivedEntity { Id = Guid.NewGuid() };
+        var entity = new TestEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
 
@@ -19,7 +19,7 @@ public class Insert : EfRepositoryTestBase
     [Test]
     public async Task InsertAsync_AddNewItem_ShouldBeAbleToRetrieveNewItem()
     {
-        var entity = new DerivedEntity { Id = Guid.NewGuid() };
+        var entity = new TestEntity { Id = Guid.NewGuid() };
 
         await Repository.InsertAsync(entity);
         var result = await Repository.GetAsync(entity.Id);

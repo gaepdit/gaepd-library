@@ -1,6 +1,6 @@
 ﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Exists : LocalRepositoryTestBase
+public class Exists : RepositoryTestBase
 {
     [Test]
     public async Task ExistsAsync_WhenEntityExists_ReturnsTrue()

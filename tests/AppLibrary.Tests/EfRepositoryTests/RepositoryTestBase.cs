@@ -1,10 +1,10 @@
 ﻿namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class EfRepositoryTestBase
+public class RepositoryTestBase
 {
     protected EfRepositoryTestHelper Helper = default!;
 
-    protected DerivedEfRepository Repository = default!;
+    protected TestRepository Repository = default!;
 
     [SetUp]
     public void SetUp()

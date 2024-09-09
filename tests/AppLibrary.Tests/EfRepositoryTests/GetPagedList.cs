@@ -1,15 +1,15 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 using GaEpd.AppLibrary.Pagination;
 using System.Globalization;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class GetPagedList : EfRepositoryTestBase
+public class GetPagedList : RepositoryTestBase
 {
     [Test]
     public async Task GetPagedListAsync_ReturnsCorrectPagedResults()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var paging = new PaginatedRequest(2, 1);
         var expectedResults = items.Skip(paging.Skip).Take(paging.Take).ToList();
 
@@ -21,7 +21,7 @@ public class GetPagedList : EfRepositoryTestBase
     [Test]
     public async Task GetPagedListAsync_WithPredicate_ReturnsCorrectPagedResults()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         // Assuming this is the correct selection based on your predicate.
         var selectedItems = items.Skip(1).ToList();
         var paging = new PaginatedRequest(1, 1);
@@ -35,7 +35,7 @@ public class GetPagedList : EfRepositoryTestBase
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        await Helper.ClearTableAsync<DerivedEntity>();
+        await Helper.ClearTableAsync<TestEntity>();
         var paging = new PaginatedRequest(1, 1);
 
         var result = await Repository.GetPagedListAsync(paging);
@@ -46,7 +46,7 @@ public class GetPagedList : EfRepositoryTestBase
     [Test]
     public async Task WhenPagedBeyondExistingItems_ReturnsEmptyList()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var paging = new PaginatedRequest(2, items.Count());
 
         var result = await Repository.GetPagedListAsync(paging);
@@ -57,7 +57,7 @@ public class GetPagedList : EfRepositoryTestBase
     [Test]
     public async Task GivenSorting_ReturnsSortedList()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
         var itemsCount = items.Count();
         var pagingAsc = new PaginatedRequest(1, itemsCount, "Note asc");
         var pagingDesc = new PaginatedRequest(1, itemsCount, "Note desc");

@@ -1,13 +1,13 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class Exists : EfRepositoryTestBase
+public class Exists : RepositoryTestBase
 {
     [Test]
     public async Task ExistsAsync_WhenEntityExists_ReturnsTrue()
     {
-        var entity = Repository.Context.Set<DerivedEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         var result = await Repository.ExistsAsync(entity.Id);
 
@@ -27,7 +27,7 @@ public class Exists : EfRepositoryTestBase
     [Test]
     public async Task ExistsAsync_UsingPredicate_WhenEntityExists_ReturnsTrue()
     {
-        var entity = Repository.Context.Set<DerivedEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         var result = await Repository.ExistsAsync(e => e.Id == entity.Id);
 

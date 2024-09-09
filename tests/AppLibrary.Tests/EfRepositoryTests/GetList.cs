@@ -1,13 +1,13 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class GetList : EfRepositoryTestBase
+public class GetList : RepositoryTestBase
 {
     [Test]
     public async Task GetListAsync_ReturnsAllEntities()
     {
-        var items = Repository.Context.Set<DerivedEntity>();
+        var items = Repository.Context.Set<TestEntity>();
 
         var result = await Repository.GetListAsync();
 
@@ -17,7 +17,7 @@ public class GetList : EfRepositoryTestBase
     [Test]
     public async Task WhenNoItemsExist_ReturnsEmptyList()
     {
-        await Helper.ClearTableAsync<DerivedEntity>();
+        await Helper.ClearTableAsync<TestEntity>();
 
         var result = await Repository.GetListAsync();
 
@@ -27,8 +27,8 @@ public class GetList : EfRepositoryTestBase
     [Test]
     public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
     {
-        var skipId = Repository.Context.Set<DerivedEntity>().First().Id;
-        var expected = Repository.Context.Set<DerivedEntity>().Where(entity => entity.Id != skipId);
+        var skipId = Repository.Context.Set<TestEntity>().First().Id;
+        var expected = Repository.Context.Set<TestEntity>().Where(entity => entity.Id != skipId);
 
         var result = await Repository.GetListAsync(entity => entity.Id != skipId);
 

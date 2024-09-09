@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class GetPagedList : LocalRepositoryTestBase
+public class GetPagedList : RepositoryTestBase
 {
     [Test]
     public async Task GetPagedListAsync_ReturnsCorrectPagedResults()

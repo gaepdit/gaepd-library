@@ -16,20 +16,41 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     /// <summary>
     /// Returns the <see cref="IEntity{TKey}"/> with the given <paramref name="id"/>.
     /// </summary>
-    /// <param name="id">The Id of the entity.</param>
+    /// <param name="id">The ID of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
-    /// <exception cref="EntityNotFoundException{TEntity}">Thrown if no entity exists with the given Id.</exception>
+    /// <exception cref="EntityNotFoundException{TEntity}">Thrown if no entity exists with the given ID.</exception>
     /// <returns>An entity.</returns>
     Task<TEntity> GetAsync(TKey id, CancellationToken token = default);
 
     /// <summary>
-    /// Returns the <see cref="IEntity{TKey}"/> with the given <paramref name="id"/>.
-    /// Returns null if no entity exists with the given Id.
+    /// Returns the <see cref="TEntity"/> with the given <paramref name="id"/>.
     /// </summary>
-    /// <param name="id">The Id of the entity.</param>
+    /// <param name="id">The ID of the entity.</param>
+    /// <param name="includeProperties">Navigation properties to include (when using an Entity Framework repository).</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <exception cref="EntityNotFoundException{TEntity}">Thrown if no entity exists with the given ID.</exception>
+    /// <returns>An entity.</returns>
+    Task<TEntity> GetAsync(TKey id, string[] includeProperties, CancellationToken token = default);
+
+    /// <summary>
+    /// Returns the <see cref="IEntity{TKey}"/> with the given <paramref name="id"/>.
+    /// Returns null if no entity exists with the given ID.
+    /// </summary>
+    /// <param name="id">The ID of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>An entity or null.</returns>
     Task<TEntity?> FindAsync(TKey id, CancellationToken token = default);
+
+    /// <summary>
+    /// Returns the <see cref="TEntity"/> matching the given <paramref name="id"/>.
+    /// Returns null if there are no matches.
+    /// </summary>
+    /// <param name="id">The ID of the entity.</param>
+    /// <param name="includeProperties">Navigation properties to include (when using an Entity Framework repository).</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <exception cref="InvalidOperationException">Thrown if there are multiple matches.</exception>
+    /// <returns>An entity or null.</returns>
+    Task<TEntity?> FindAsync(TKey id, string[] includeProperties, CancellationToken token = default);
 
     /// <summary>
     /// Returns a single <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
@@ -56,25 +77,22 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     /// <param name="predicate">The search conditions.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A read-only collection of entities.</returns>
-    Task<IReadOnlyCollection<TEntity>> GetListAsync(
-        Expression<Func<TEntity, bool>> predicate,
+    Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default);
 
     /// <summary>
-    /// Returns a paginated read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the
+    /// Returns a filtered, read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the
     /// <paramref name="predicate"/>. Returns an empty collection if there are no matches.
     /// </summary>
     /// <param name="predicate">The search conditions.</param>
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A sorted and paged read-only collection of entities.</returns>
-    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
-        Expression<Func<TEntity, bool>> predicate,
-        PaginatedRequest paging,
-        CancellationToken token = default);
+    Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
+        PaginatedRequest paging, CancellationToken token = default);
 
     /// <summary>
-    /// Returns a paginated read-only collection of all <see cref="IEntity{TKey}"/> values.
+    /// Returns a filtered, read-only collection of all <see cref="IEntity{TKey}"/> values.
     /// Returns an empty collection if there are no matches.
     /// </summary>
     /// <param name="paging">A <see cref="PaginatedRequest"/> to define the paging options.</param>
@@ -94,7 +112,7 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     /// <summary>
     /// Returns a boolean indicating whether an <see cref="IEntity{TKey}"/> with the given <paramref name="id"/> exists.
     /// </summary>
-    /// <param name="id">The Id of the entity.</param>
+    /// <param name="id">The ID of the entity.</param>
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>True if the entity exists; otherwise false.</returns>
     public Task<bool> ExistsAsync(TKey id, CancellationToken token = default);

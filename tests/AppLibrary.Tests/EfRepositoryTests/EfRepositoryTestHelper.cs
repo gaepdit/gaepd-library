@@ -1,4 +1,4 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 using GaEpd.AppLibrary.Domain.Repositories.EFRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
@@ -6,15 +6,24 @@ using TestSupport.EfHelpers;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class DerivedEfRepository(AppDbContext context) : BaseRepository<DerivedEntity, AppDbContext>(context);
+public class TestRepository(AppDbContext context)
+    : BaseRepository<TestEntity, AppDbContext>(context);
 
-public class DerivedEfNamedEntityRepository(AppDbContext context)
-    : NamedEntityRepository<DerivedNamedEntity, AppDbContext>(context);
+public class TestNamedEntityRepository(AppDbContext context)
+    : NamedEntityRepository<TestNamedEntity, AppDbContext>(context);
+
+public class NavigationPropertiesRepository(AppDbContext context)
+    : BaseRepository<TestEntityWithNavigationProperties, AppDbContext>(context);
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public DbSet<DerivedEntity> TestEntities => Set<DerivedEntity>();
-    public DbSet<DerivedNamedEntity> TestNamedEntities => Set<DerivedNamedEntity>();
+    public DbSet<TestEntity> TestEntities => Set<TestEntity>();
+    public DbSet<TestNamedEntity> TestNamedEntities => Set<TestNamedEntity>();
+
+    public DbSet<TestEntityWithNavigationProperties> TestEntitiesWithNavigationProperties =>
+        Set<TestEntityWithNavigationProperties>();
+
+    public DbSet<TextRecord> TextRecords => Set<TextRecord>();
 }
 
 public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
@@ -112,13 +121,13 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
     /// <summary>
     /// Seeds data and returns an instance of EfRepository.
     /// </summary>
-    /// <returns>A <see cref="DerivedEfRepository"/>.</returns>
-    public DerivedEfRepository GetRepository()
+    /// <returns>A <see cref="TestRepository"/>.</returns>
+    public TestRepository GetRepository()
     {
         if (!_context.TestEntities.Any())
         {
             _context.TestEntities.AddRange(
-                new List<DerivedEntity>
+                new List<TestEntity>
                 {
                     new() { Id = Guid.NewGuid(), Note = "Abc" },
                     new() { Id = Guid.NewGuid(), Note = "Def" },
@@ -127,21 +136,21 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
         }
 
         Context = new AppDbContext(_options);
-        return new DerivedEfRepository(Context);
+        return new TestRepository(Context);
     }
 
     public const string UsefulSuffix = "def";
 
     /// <summary>
-    /// Seeds data and returns an instance of EfNamedEntityRepository.
+    /// Seeds data and returns an instance of <see cref="TestNamedEntityRepository"/>.
     /// </summary>
-    /// <returns>A <see cref="DerivedEfNamedEntityRepository"/>.</returns>
-    public DerivedEfNamedEntityRepository GetNamedEntityRepository()
+    /// <returns>A <see cref="TestNamedEntityRepository"/>.</returns>
+    public TestNamedEntityRepository GetNamedEntityRepository()
     {
         if (!_context.TestNamedEntities.Any())
         {
             _context.TestNamedEntities.AddRange(
-                new List<DerivedNamedEntity>
+                new List<TestNamedEntity>
                 {
                     new(id: Guid.NewGuid(), name: "Abc abc"),
                     new(id: Guid.NewGuid(), name: $"Xyx {UsefulSuffix}"),
@@ -151,7 +160,24 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
         }
 
         Context = new AppDbContext(_options);
-        return new DerivedEfNamedEntityRepository(Context);
+        return new TestNamedEntityRepository(Context);
+    }
+
+    /// <summary>
+    /// Seeds data and returns an instance of <see cref="NavigationPropertiesRepository"/>.
+    /// </summary>
+    /// <returns>A <see cref="NavigationPropertiesRepository"/>.</returns>
+    public NavigationPropertiesRepository GetNavigationPropertiesRepository(
+        List<TestEntityWithNavigationProperties> entities)
+    {
+        if (!_context.TestEntitiesWithNavigationProperties.Any())
+        {
+            _context.TestEntitiesWithNavigationProperties.AddRange(entities);
+            _context.SaveChanges();
+        }
+
+        Context = new AppDbContext(_options);
+        return new NavigationPropertiesRepository(Context);
     }
 
     public void Dispose()

@@ -1,9 +1,9 @@
 ﻿using GaEpd.AppLibrary.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppLibrary.Tests.EntityHelpers;
+namespace AppLibrary.Tests.TestEntities;
 
-public class DerivedEntity : IEntity
+public class TestEntity : IEntity
 {
     public Guid Id { get; init; }
 

@@ -1,6 +1,6 @@
 ﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class GetList : LocalRepositoryTestBase
+public class GetList : RepositoryTestBase
 {
     [Test]
     public async Task GetListAsync_ReturnsAllEntities()

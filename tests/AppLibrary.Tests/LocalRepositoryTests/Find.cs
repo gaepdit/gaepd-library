@@ -1,6 +1,6 @@
 ﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Find : LocalRepositoryTestBase
+public class Find : RepositoryTestBase
 {
     [Test]
     public async Task FindAsync_WhenEntityExists_ReturnsEntity()
@@ -46,7 +46,8 @@ public class Find : LocalRepositoryTestBase
         var entity = Repository.Items.First();
 
         var resultIgnoreCase = await Repository.FindAsync(e =>
-            e.Note.ToUpperInvariant().Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCultureIgnoreCase));
+            e.Note.ToUpperInvariant()
+                .Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCultureIgnoreCase));
 
         var resultCaseSensitive = await Repository.FindAsync(e =>
             e.Note.ToUpperInvariant().Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCulture));

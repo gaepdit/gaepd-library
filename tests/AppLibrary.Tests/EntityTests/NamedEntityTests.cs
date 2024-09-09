@@ -1,4 +1,4 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 
 namespace AppLibrary.Tests.EntityTests;
 
@@ -7,7 +7,7 @@ public class NamedEntityTests
     [Test]
     public void SetName_ShouldSetTheName_WhenValidNameIsProvided()
     {
-        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
 
         sut.SetName("Changed");
 
@@ -17,7 +17,7 @@ public class NamedEntityTests
     [Test]
     public void SetName_ShouldThrowException_WhenInvalidNameIsProvided()
     {
-        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
 
         var action = () => sut.SetName(string.Empty);
 
@@ -28,7 +28,7 @@ public class NamedEntityTests
     [Test]
     public void SetName_ShouldThrowException_WhenNameIsShorterThanMinimum()
     {
-        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
 
         var action = () => sut.SetName("123");
 
@@ -39,7 +39,7 @@ public class NamedEntityTests
     [Test]
     public void SetName_ShouldThrowException_WhenNameIsLongerThanMaximum()
     {
-        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntity(Guid.NewGuid(), "Test");
 
         var action = () => sut.SetName("1234567890");
 
@@ -50,7 +50,7 @@ public class NamedEntityTests
     [Test]
     public void NameWithActivity_ShouldAppendInactive_WhenActiveIsFalse()
     {
-        var sut = new DerivedNamedEntity(Guid.NewGuid(), "Test") { Active = false };
+        var sut = new TestNamedEntity(Guid.NewGuid(), "Test") { Active = false };
 
         var result = sut.NameWithActivity;
 
@@ -60,7 +60,7 @@ public class NamedEntityTests
     [Test]
     public void NoMinMax_ShouldSetTheName_WhenValidNameIsProvided()
     {
-        var sut = new DerivedNamedEntityNoMinMax(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntityNoMinMax(Guid.NewGuid(), "Test");
 
         sut.SetName("Changed");
 
@@ -70,7 +70,7 @@ public class NamedEntityTests
     [Test]
     public void NoMinMax_ShouldThrowException_WhenEmptyNameIsProvided()
     {
-        var sut = new DerivedNamedEntityNoMinMax(Guid.NewGuid(), "Test");
+        var sut = new TestNamedEntityNoMinMax(Guid.NewGuid(), "Test");
 
         var action = () => sut.SetName(string.Empty);
 
