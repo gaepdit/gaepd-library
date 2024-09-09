@@ -1,15 +1,15 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 using GaEpd.AppLibrary.Domain.Repositories;
 
 namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Update : LocalRepositoryTestBase
+public class Update : RepositoryTestBase
 {
     [Test]
     public async Task UpdateAsync_UpdateExistingItem_ShouldReflectChanges()
     {
         var originalEntity = Repository.Items.First();
-        var newEntityWithSameId = new DerivedEntity { Id = originalEntity.Id, Note = "Xyz" };
+        var newEntityWithSameId = new TestEntity { Id = originalEntity.Id, Note = "Xyz" };
 
         await Repository.UpdateAsync(newEntityWithSameId);
 
@@ -25,11 +25,11 @@ public class Update : LocalRepositoryTestBase
     [Test]
     public void UpdateAsync_WhenItemDoesNotExist_Throws()
     {
-        var item = new DerivedEntity { Id = Guid.NewGuid() };
+        var item = new TestEntity { Id = Guid.NewGuid() };
 
         var func = async () => await Repository.UpdateAsync(item);
 
-        func.Should().ThrowAsync<EntityNotFoundException<DerivedEntity>>()
-            .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {item.Id}");
+        func.Should().ThrowAsync<EntityNotFoundException<TestEntity>>()
+            .WithMessage($"Entity not found. Entity type: {typeof(TestEntity).FullName}, id: {item.Id}");
     }
 }

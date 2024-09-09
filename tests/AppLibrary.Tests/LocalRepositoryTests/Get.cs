@@ -1,9 +1,9 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 using GaEpd.AppLibrary.Domain.Repositories;
 
 namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Get : LocalRepositoryTestBase
+public class Get : RepositoryTestBase
 {
     [Test]
     public void GetAsync_WhenEntityDoesNotExist_ThrowsException()
@@ -12,8 +12,8 @@ public class Get : LocalRepositoryTestBase
 
         var func = async () => await Repository.GetAsync(id);
 
-        func.Should().ThrowAsync<EntityNotFoundException<DerivedEntity>>()
-            .WithMessage($"Entity not found. Entity type: {typeof(DerivedEntity).FullName}, id: {id}");
+        func.Should().ThrowAsync<EntityNotFoundException<TestEntity>>()
+            .WithMessage($"Entity not found. Entity type: {typeof(TestEntity).FullName}, id: {id}");
     }
 
     [Test]

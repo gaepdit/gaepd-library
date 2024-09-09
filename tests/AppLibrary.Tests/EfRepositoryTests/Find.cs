@@ -1,13 +1,13 @@
-﻿using AppLibrary.Tests.EntityHelpers;
+﻿using AppLibrary.Tests.TestEntities;
 
 namespace AppLibrary.Tests.EfRepositoryTests;
 
-public class Find : EfRepositoryTestBase
+public class Find : RepositoryTestBase
 {
     [Test]
     public async Task FindAsync_WhenEntityExists_ReturnsEntity()
     {
-        var entity = Repository.Context.Set<DerivedEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         var result = await Repository.FindAsync(entity.Id);
 
@@ -27,7 +27,7 @@ public class Find : EfRepositoryTestBase
     [Test]
     public async Task FindAsync_UsingPredicate_WhenEntityExists_ReturnsEntity()
     {
-        var entity = Repository.Context.Set<DerivedEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         var result = await Repository.FindAsync(e => e.Id == entity.Id);
 
@@ -47,7 +47,7 @@ public class Find : EfRepositoryTestBase
     [Test]
     public async Task FindAsync_UsingPredicate_WhenUsingSqlite_IsCaseSensitive()
     {
-        var entity = Repository.Context.Set<DerivedEntity>().First();
+        var entity = Repository.Context.Set<TestEntity>().First();
 
         // Test using a predicate that compares uppercase names.
         var resultSameCase = await Repository.FindAsync(e =>
@@ -69,7 +69,7 @@ public class Find : EfRepositoryTestBase
     {
         await using var repositoryHelper = EfRepositoryTestHelper.CreateSqlServerRepositoryHelper(this);
         await using var repository = repositoryHelper.GetRepository();
-        var entity = repository.Context.Set<DerivedEntity>().First();
+        var entity = repository.Context.Set<TestEntity>().First();
 
         // Test using a predicate that compares uppercase names.
         var resultSameCase = await repository.FindAsync(e =>

@@ -1,6 +1,6 @@
 ﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Count : LocalRepositoryTestBase
+public class Count : RepositoryTestBase
 {
     [Test]
     public async Task CountAsync_WithoutPredicate_ReturnsCorrectCount()

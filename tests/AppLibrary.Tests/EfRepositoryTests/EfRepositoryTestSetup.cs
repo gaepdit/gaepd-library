@@ -3,7 +3,7 @@ using System.Diagnostics;
 namespace AppLibrary.Tests.EfRepositoryTests;
 
 [SetUpFixture]
-public class EfRepositoryTests
+public class EfRepositoryTestSetup
 {
     [OneTimeTearDown]
     public void RunAfterAllTests()

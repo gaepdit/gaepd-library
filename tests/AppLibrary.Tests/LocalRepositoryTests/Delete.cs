@@ -1,6 +1,6 @@
 ﻿namespace AppLibrary.Tests.LocalRepositoryTests;
 
-public class Delete: LocalRepositoryTestBase
+public class Delete : RepositoryTestBase
 {
     [Test]
     public async Task DeleteAsync_DeleteExistingItem_ShouldDecreaseCountByOne()
