@@ -37,7 +37,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
         ?? throw new EntityNotFoundException<TEntity>(id);
 
     public async Task<TEntity> GetAsync(TKey id, string[] includeProperties, CancellationToken token = default) =>
-        await includeProperties.Aggregate(Context.Set<TEntity>().AsNoTracking(),
+        await includeProperties.Aggregate(Context.Set<TEntity>().AsQueryable(),
                 (queryable, includeProperty) => queryable.Include(includeProperty))
             .SingleOrDefaultAsync(entity => entity.Id.Equals(id), token).ConfigureAwait(false)
         ?? throw new EntityNotFoundException<TEntity>(id);
