@@ -1,6 +1,10 @@
 # Changelog
 
-## [5.3.0] - 2024-09-09
+## [5.3.1] - 2024-09-11
+
+- Fixed the Entity Framework repository's `GetAsync` method to enable change tracking for the returned entity.
+
+## [5.3.0] - 2024-09-10
 
 - Added `GetAsync` and `FindAsync` overloads that allow you to specify what navigation properties to include (when using the Entity Framework repository).
 
