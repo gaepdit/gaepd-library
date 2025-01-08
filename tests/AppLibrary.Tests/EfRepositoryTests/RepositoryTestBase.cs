@@ -2,9 +2,8 @@
 
 public class RepositoryTestBase
 {
-    protected EfRepositoryTestHelper Helper = default!;
-
-    protected TestRepository Repository = default!;
+    protected EfRepositoryTestHelper Helper;
+    protected TestRepository Repository;
 
     [SetUp]
     public void SetUp()

@@ -7,8 +7,8 @@ namespace AppLibrary.Tests.EntityTests;
 
 public class NamedEntityManagerTests
 {
-    private INamedEntityRepository<TestNamedEntity> _repositoryMock = default!;
-    private TestNamedEntityManager _manager = default!;
+    private INamedEntityRepository<TestNamedEntity> _repositoryMock;
+    private TestNamedEntityManager _manager;
 
     [SetUp]
     public void Setup()

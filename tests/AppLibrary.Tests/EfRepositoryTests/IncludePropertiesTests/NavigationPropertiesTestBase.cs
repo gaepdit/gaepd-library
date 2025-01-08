@@ -4,7 +4,7 @@ namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 
 public class NavigationPropertiesRepositoryTestBase
 {
-    protected NavigationPropertiesRepository Repository = default!;
+    protected NavigationPropertiesRepository Repository;
 
     protected readonly List<TestEntityWithNavigationProperties> NavigationPropertyEntities =
     [
