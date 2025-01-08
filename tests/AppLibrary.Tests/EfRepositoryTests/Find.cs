@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class Find : RepositoryTestBase
 {
     [Test]
-    public async Task FindAsync_WhenEntityExists_ReturnsEntity()
+    public async Task Find_WhenEntityExists_ReturnsEntity()
     {
         var entity = Repository.Context.Set<TestEntity>().First();
 
@@ -15,7 +15,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_WhenEntityDoesNotExist_ReturnsNull()
     {
         var id = Guid.NewGuid();
 
@@ -25,7 +25,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenEntityExists_ReturnsEntity()
+    public async Task Find_UsingPredicate_WhenEntityExists_ReturnsEntity()
     {
         var entity = Repository.Context.Set<TestEntity>().First();
 
@@ -35,7 +35,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_UsingPredicate_WhenEntityDoesNotExist_ReturnsNull()
     {
         var id = Guid.NewGuid();
 
@@ -45,7 +45,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenUsingSqlite_IsCaseSensitive()
+    public async Task Find_UsingPredicate_WhenUsingSqlite_IsCaseSensitive()
     {
         var entity = Repository.Context.Set<TestEntity>().First();
 
@@ -65,7 +65,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenUsingSqlServer_IsNotCaseSensitive()
+    public async Task Find_UsingPredicate_WhenUsingSqlServer_IsNotCaseSensitive()
     {
         await using var repositoryHelper = EfRepositoryTestHelper.CreateSqlServerRepositoryHelper(this);
         await using var repository = repositoryHelper.GetRepository();

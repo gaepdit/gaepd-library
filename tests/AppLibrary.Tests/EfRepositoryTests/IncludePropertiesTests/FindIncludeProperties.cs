@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 public class FindIncludeProperties : NavigationPropertiesTestBase
 {
     [Test]
-    public async Task FindAsync_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_WhenEntityDoesNotExist_ReturnsNull()
     {
         // Arrange
         var id = Guid.NewGuid();

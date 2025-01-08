@@ -3,7 +3,7 @@
 public class Find : RepositoryTestBase
 {
     [Test]
-    public async Task FindAsync_WhenEntityExists_ReturnsEntity()
+    public async Task Find_WhenEntityExists_ReturnsEntity()
     {
         var entity = Repository.Items.First();
 
@@ -13,7 +13,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_WhenEntityDoesNotExist_ReturnsNull()
     {
         var id = Guid.NewGuid();
 
@@ -23,7 +23,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenEntityExists_ReturnsEntity()
+    public async Task Find_UsingPredicate_WhenEntityExists_ReturnsEntity()
     {
         var entity = Repository.Items.First();
 
@@ -33,7 +33,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_UsingPredicate_WhenEntityDoesNotExist_ReturnsNull()
     {
         var result = await Repository.FindAsync(e => e.Id == Guid.NewGuid());
 
@@ -41,7 +41,7 @@ public class Find : RepositoryTestBase
     }
 
     [Test]
-    public async Task FindAsync_UsingPredicate_WhenUsingLocalRepository_IsCaseSensitive()
+    public async Task Find_UsingPredicate_WhenUsingLocalRepository_IsCaseSensitive()
     {
         var entity = Repository.Items.First();
 

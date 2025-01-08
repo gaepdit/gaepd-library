@@ -6,7 +6,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class Update : RepositoryTestBase
 {
     [Test]
-    public async Task UpdateAsync_UpdateExistingItem_ShouldReflectChanges()
+    public async Task Update_UpdateExistingItem_ShouldReflectChanges()
     {
         var originalEntity = Repository.Context.Set<TestEntity>().First();
         Helper.ClearChangeTracker();
@@ -25,7 +25,7 @@ public class Update : RepositoryTestBase
     }
 
     [Test]
-    public void UpdateAsync_WhenItemDoesNotExist_Throws()
+    public void Update_WhenItemDoesNotExist_Throws()
     {
         var item = new TestEntity { Id = Guid.NewGuid() };
 

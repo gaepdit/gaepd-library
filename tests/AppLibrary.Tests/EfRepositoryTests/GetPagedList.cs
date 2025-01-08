@@ -7,7 +7,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class GetPagedList : RepositoryTestBase
 {
     [Test]
-    public async Task GetPagedListAsync_ReturnsCorrectPagedResults()
+    public async Task GetPagedList_ReturnsCorrectPagedResults()
     {
         var items = Repository.Context.Set<TestEntity>();
         var paging = new PaginatedRequest(2, 1);
@@ -19,7 +19,7 @@ public class GetPagedList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetPagedListAsync_WithPredicate_ReturnsCorrectPagedResults()
+    public async Task GetPagedList_WithPredicate_ReturnsCorrectPagedResults()
     {
         var items = Repository.Context.Set<TestEntity>();
         // Assuming this is the correct selection based on your predicate.

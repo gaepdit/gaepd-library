@@ -59,7 +59,7 @@ public class GetListWithOrdering : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
+    public async Task GetList_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
         var result = await Repository.GetListAsync(entity => entity.Id == Guid.Empty, ordering: "Note");
 

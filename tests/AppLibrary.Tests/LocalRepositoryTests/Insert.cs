@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.LocalRepositoryTests;
 public class Insert : RepositoryTestBase
 {
     [Test]
-    public async Task InsertAsync_AddNewItem_ShouldIncreaseCountByOne()
+    public async Task Insert_AddNewItem_ShouldIncreaseCountByOne()
     {
         var initialCount = Repository.Items.Count;
         var entity = new TestEntity { Id = Guid.NewGuid() };
@@ -16,7 +16,7 @@ public class Insert : RepositoryTestBase
     }
 
     [Test]
-    public async Task InsertAsync_AddNewItem_ShouldBeAbleToRetrieveNewItem()
+    public async Task Insert_AddNewItem_ShouldBeAbleToRetrieveNewItem()
     {
         var entity = new TestEntity { Id = Guid.NewGuid() };
 

@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class Count : RepositoryTestBase
 {
     [Test]
-    public async Task CountAsync_WithoutPredicate_ReturnsCorrectCount()
+    public async Task Count_WithoutPredicate_ReturnsCorrectCount()
     {
         var result = await Repository.CountAsync(e => true);
 
@@ -13,7 +13,7 @@ public class Count : RepositoryTestBase
     }
 
     [Test]
-    public async Task CountAsync_WithoutPredicate_WhenNoItemsExist_ReturnsZero()
+    public async Task Count_WithoutPredicate_WhenNoItemsExist_ReturnsZero()
     {
         await Helper.ClearTableAsync<TestEntity>();
 
@@ -23,7 +23,7 @@ public class Count : RepositoryTestBase
     }
 
     [Test]
-    public async Task CountAsync_WithPredicate_ReturnsCorrectCount()
+    public async Task Count_WithPredicate_ReturnsCorrectCount()
     {
         // Assuming this is the count you are expecting from your predicate.
         var selectedItemsCount = Repository.Context.Set<TestEntity>().Count() - 1;
@@ -34,7 +34,7 @@ public class Count : RepositoryTestBase
     }
 
     [Test]
-    public async Task CountAsync_WithPredicateThatDoesNotMatchAnyEntity_ReturnsZero()
+    public async Task Count_WithPredicateThatDoesNotMatchAnyEntity_ReturnsZero()
     {
         var id = Guid.NewGuid();
 

@@ -6,7 +6,7 @@ namespace AppLibrary.Tests.LocalRepositoryTests;
 public class GetPagedList : RepositoryTestBase
 {
     [Test]
-    public async Task GetPagedListAsync_ReturnsCorrectPagedResults()
+    public async Task GetPagedList_ReturnsCorrectPagedResults()
     {
         var paging = new PaginatedRequest(2, 1);
         var expectedResults = Repository.Items.Skip(paging.Skip).Take(paging.Take).ToList();
@@ -17,7 +17,7 @@ public class GetPagedList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetPagedListAsync_WithPredicate_ReturnsCorrectPagedResults()
+    public async Task GetPagedList_WithPredicate_ReturnsCorrectPagedResults()
     {
         // Assuming this is the correct selection based on your predicate.
         var selectedItems = Repository.Items.Skip(1).ToList();

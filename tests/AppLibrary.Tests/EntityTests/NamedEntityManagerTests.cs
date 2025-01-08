@@ -21,7 +21,7 @@ public class NamedEntityManagerTests
     public async Task TearDown() => await _repositoryMock.DisposeAsync();
 
     [Test]
-    public async Task CreateAsync_ShouldReturnEntityWithGivenName()
+    public async Task Create_ShouldReturnEntityWithGivenName()
     {
         var result = await _manager.CreateAsync("Test");
 
@@ -29,7 +29,7 @@ public class NamedEntityManagerTests
     }
 
     [Test]
-    public async Task ChangeNameAsync_ShouldChangeEntityName()
+    public async Task ChangeName_ShouldChangeEntityName()
     {
         var entity = new TestNamedEntity(Guid.NewGuid(), "OldName");
 

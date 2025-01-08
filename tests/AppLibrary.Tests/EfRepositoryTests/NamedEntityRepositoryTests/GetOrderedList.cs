@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests.NamedEntityRepositoryTests;
 public class GetOrderedList : NamedRepositoryTestBase
 {
     [Test]
-    public async Task GetOrderedListAsync_ReturnsAllEntities()
+    public async Task GetOrderedList_ReturnsAllEntities()
     {
         var expected = Repository.Context.Set<TestNamedEntity>().OrderBy(entity => entity.Name);
 
@@ -25,7 +25,7 @@ public class GetOrderedList : NamedRepositoryTestBase
     }
 
     [Test]
-    public async Task GetOrderedListAsync_UsingPredicate_ReturnsCorrectEntities()
+    public async Task GetOrderedList_UsingPredicate_ReturnsCorrectEntities()
     {
         var expected = Repository.Context.Set<TestNamedEntity>()
             .Where(entity => entity.Name.Contains(EfRepositoryTestHelper.UsefulSuffix))
@@ -38,7 +38,7 @@ public class GetOrderedList : NamedRepositoryTestBase
     }
 
     [Test]
-    public async Task GetOrderedListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
+    public async Task GetOrderedList_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
         var result = await Repository.GetOrderedListAsync(entity => entity.Id == Guid.Empty);
 

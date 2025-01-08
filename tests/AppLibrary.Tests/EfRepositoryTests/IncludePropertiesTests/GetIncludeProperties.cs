@@ -6,7 +6,7 @@ namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 public class GetIncludeProperties : NavigationPropertiesTestBase
 {
     [Test]
-    public void GetAsync_WhenEntityDoesNotExist_ThrowsException()
+    public void Get_WhenEntityDoesNotExist_ThrowsException()
     {
         // Arrange
         var id = Guid.NewGuid();

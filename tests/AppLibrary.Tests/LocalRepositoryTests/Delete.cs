@@ -3,7 +3,7 @@
 public class Delete : RepositoryTestBase
 {
     [Test]
-    public async Task DeleteAsync_DeleteExistingItem_ShouldDecreaseCountByOne()
+    public async Task Delete_DeleteExistingItem_ShouldDecreaseCountByOne()
     {
         var initialCount = Repository.Items.Count;
         var entity = Repository.Items.First();
@@ -14,7 +14,7 @@ public class Delete : RepositoryTestBase
     }
 
     [Test]
-    public async Task DeleteAsync_DeleteExistingItem_ItemShouldNoLongerExist()
+    public async Task Delete_DeleteExistingItem_ItemShouldNoLongerExist()
     {
         var entity = Repository.Items.First();
 

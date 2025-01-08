@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class Delete : RepositoryTestBase
 {
     [Test]
-    public async Task DeleteAsync_DeleteExistingItem_ShouldDecreaseCountByOne()
+    public async Task Delete_DeleteExistingItem_ShouldDecreaseCountByOne()
     {
         var items = Repository.Context.Set<TestEntity>();
         var initialCount = items.Count();
@@ -17,7 +17,7 @@ public class Delete : RepositoryTestBase
     }
 
     [Test]
-    public async Task DeleteAsync_DeleteExistingItem_ItemShouldNoLongerExist()
+    public async Task Delete_DeleteExistingItem_ItemShouldNoLongerExist()
     {
         var entity = Repository.Context.Set<TestEntity>().First();
 
