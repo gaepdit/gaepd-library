@@ -6,15 +6,36 @@ public class NavigationPropertiesTestBase
 {
     protected NavigationPropertiesRepository Repository;
 
-    protected readonly List<TestEntityWithNavigationProperties> NavigationPropertyEntities =
+    protected static readonly List<TestEntityWithNavigationProperties> NavigationPropertyEntities =
     [
         new()
         {
             Id = Guid.NewGuid(),
+            Name = "Llama",
             TextRecords =
             {
-                new TextRecord { Id = Guid.NewGuid(), Text = "Abc" },
-                new TextRecord { Id = Guid.NewGuid(), Text = "Def" },
+                new TextRecord { Id = Guid.NewGuid(), Text = "A" },
+                new TextRecord { Id = Guid.NewGuid(), Text = "B" },
+            },
+        },
+        new()
+        {
+            Id = Guid.NewGuid(),
+            Name = "Moose",
+            TextRecords =
+            {
+                new TextRecord { Id = Guid.NewGuid(), Text = "A" },
+                new TextRecord { Id = Guid.NewGuid(), Text = "B" },
+            },
+        },
+        new()
+        {
+            Id = Guid.NewGuid(),
+            Name = "Narwhal",
+            TextRecords =
+            {
+                new TextRecord { Id = Guid.NewGuid(), Text = "A" },
+                new TextRecord { Id = Guid.NewGuid(), Text = "B" },
             },
         },
     ];

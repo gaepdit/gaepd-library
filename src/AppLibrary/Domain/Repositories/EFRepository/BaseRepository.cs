@@ -50,8 +50,7 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
                 (queryable, includeProperty) => queryable.Include(includeProperty))
             .SingleOrDefaultAsync(entity => entity.Id.Equals(id), token);
 
-    public Task<TEntity?> FindAsync(
-        Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
+    public Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(predicate, token);
 
     public async Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
@@ -75,8 +74,22 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
             .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
+        Expression<Func<TEntity, bool>> predicate, PaginatedRequest paging, string[] includeProperties,
+        CancellationToken token = default) =>
+        await includeProperties.Aggregate(Context.Set<TEntity>().AsNoTracking(),
+                (queryable, includeProperty) => queryable.Include(includeProperty))
+            .Where(predicate).OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take)
+            .ToListAsync(token).ConfigureAwait(false);
+
+    public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
         PaginatedRequest paging, CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking()
+            .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token).ConfigureAwait(false);
+
+    public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
+        PaginatedRequest paging, string[] includeProperties, CancellationToken token = default) =>
+        await includeProperties.Aggregate(Context.Set<TEntity>().AsNoTracking(),
+                (queryable, includeProperty) => queryable.Include(includeProperty))
             .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToListAsync(token).ConfigureAwait(false);
 
     public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>

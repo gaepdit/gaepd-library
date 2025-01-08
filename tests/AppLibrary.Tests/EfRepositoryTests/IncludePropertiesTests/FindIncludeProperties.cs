@@ -24,8 +24,8 @@ public class FindIncludeProperties : NavigationPropertiesTestBase
         var expected = NavigationPropertyEntities[0];
 
         // Act
-        var result = await Repository.FindAsync(expected.Id,
-            includeProperties: [nameof(TestEntityWithNavigationProperties.TextRecords)]);
+        const string textRecordsName = nameof(TestEntityWithNavigationProperties.TextRecords);
+        var result = await Repository.FindAsync(expected.Id, includeProperties: [textRecordsName]);
 
         // Assert
         using var scope = new AssertionScope();
