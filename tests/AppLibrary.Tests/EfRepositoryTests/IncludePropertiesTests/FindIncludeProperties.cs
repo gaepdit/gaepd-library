@@ -2,7 +2,7 @@
 
 namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 
-public class FindIncludeProperties : NavigationPropertiesRepositoryTestBase
+public class FindIncludeProperties : NavigationPropertiesTestBase
 {
     [Test]
     public async Task FindAsync_WhenEntityDoesNotExist_ReturnsNull()

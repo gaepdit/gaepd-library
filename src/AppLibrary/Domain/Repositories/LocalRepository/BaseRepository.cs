@@ -47,9 +47,17 @@ public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
     public Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.ToList());
 
+    public Task<IReadOnlyCollection<TEntity>> GetListAsync(string ordering, CancellationToken token = default) =>
+        Task.FromResult<IReadOnlyCollection<TEntity>>(Items.AsQueryable().OrderByIf(ordering).ToList());
+
     public Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.Where(predicate.Compile()).ToList());
+
+    public Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, string ordering,
+        CancellationToken token = default) =>
+        Task.FromResult<IReadOnlyCollection<TEntity>>(Items.Where(predicate.Compile()).AsQueryable()
+            .OrderByIf(ordering).ToList());
 
     public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
         PaginatedRequest paging, CancellationToken token = default) =>

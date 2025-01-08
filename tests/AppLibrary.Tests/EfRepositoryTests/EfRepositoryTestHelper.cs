@@ -131,6 +131,7 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
                 {
                     new() { Id = Guid.NewGuid(), Note = "Abc" },
                     new() { Id = Guid.NewGuid(), Note = "Def" },
+                    new() { Id = Guid.NewGuid(), Note = "Ghi" },
                 });
             _context.SaveChanges();
         }

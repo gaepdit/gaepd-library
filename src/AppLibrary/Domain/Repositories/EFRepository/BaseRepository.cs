@@ -57,9 +57,17 @@ public abstract class BaseRepository<TEntity, TKey, TContext>(TContext context)
     public async Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking().ToListAsync(token).ConfigureAwait(false);
 
+    public async Task<IReadOnlyCollection<TEntity>> GetListAsync(string ordering, CancellationToken token = default) =>
+        await Context.Set<TEntity>().AsNoTracking().OrderByIf(ordering).ToListAsync(token).ConfigureAwait(false);
+
     public async Task<IReadOnlyCollection<TEntity>> GetListAsync(
         Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         await Context.Set<TEntity>().AsNoTracking().Where(predicate).ToListAsync(token).ConfigureAwait(false);
+
+    public async Task<IReadOnlyCollection<TEntity>> GetListAsync(
+        Expression<Func<TEntity, bool>> predicate, string ordering, CancellationToken token = default) =>
+        await Context.Set<TEntity>().AsNoTracking().Where(predicate)
+            .OrderByIf(ordering).ToListAsync(token).ConfigureAwait(false);
 
     public async Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(
         Expression<Func<TEntity, bool>> predicate, PaginatedRequest paging, CancellationToken token = default) =>

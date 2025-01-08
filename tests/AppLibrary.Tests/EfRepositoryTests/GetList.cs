@@ -38,7 +38,7 @@ public class GetList : RepositoryTestBase
     [Test]
     public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
-        var result = await Repository.GetListAsync(e => e.Id == Guid.Empty);
+        var result = await Repository.GetListAsync(entity => entity.Id == Guid.Empty);
 
         result.Should().BeEmpty();
     }

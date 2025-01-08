@@ -71,6 +71,15 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default);
 
     /// <summary>
+    /// Returns a read-only collection of all <see cref="IEntity{TKey}"/> values.
+    /// Returns an empty collection if none exist.
+    /// </summary>
+    /// <param name="ordering">An expression string to indicate values to order by.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetListAsync(string ordering, CancellationToken token = default);
+
+    /// <summary>
     /// Returns a read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
     /// Returns an empty collection if there are no matches.
     /// </summary>
@@ -78,6 +87,17 @@ public interface IReadRepository<TEntity, in TKey> : IDisposable, IAsyncDisposab
     /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
     /// <returns>A read-only collection of entities.</returns>
     Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate,
+        CancellationToken token = default);
+
+    /// <summary>
+    /// Returns a read-only collection of <see cref="IEntity{TKey}"/> matching the conditions of the <paramref name="predicate"/>.
+    /// Returns an empty collection if there are no matches.
+    /// </summary>
+    /// <param name="predicate">The search conditions.</param>
+    /// <param name="ordering">An expression string to indicate values to order by.</param>
+    /// <param name="token"><see cref="T:System.Threading.CancellationToken"/></param>
+    /// <returns>A read-only collection of entities.</returns>
+    Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, string ordering,
         CancellationToken token = default);
 
     /// <summary>

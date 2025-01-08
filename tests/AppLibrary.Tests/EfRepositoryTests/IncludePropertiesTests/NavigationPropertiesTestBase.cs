@@ -2,7 +2,7 @@
 
 namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 
-public class NavigationPropertiesRepositoryTestBase
+public class NavigationPropertiesTestBase
 {
     protected NavigationPropertiesRepository Repository;
 

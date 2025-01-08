@@ -3,7 +3,7 @@ using GaEpd.AppLibrary.Domain.Repositories;
 
 namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 
-public class GetIncludeProperties : NavigationPropertiesRepositoryTestBase
+public class GetIncludeProperties : NavigationPropertiesTestBase
 {
     [Test]
     public void GetAsync_WhenEntityDoesNotExist_ThrowsException()
