@@ -15,11 +15,9 @@ public class Update : RepositoryTestBase
 
         var result = await Repository.GetAsync(newEntityWithSameId.Id);
 
-        using (new AssertionScope())
-        {
-            result.Should().BeEquivalentTo(newEntityWithSameId);
-            Repository.Items.Contains(originalEntity).Should().BeFalse();
-        }
+        using var scope = new AssertionScope();
+        result.Should().BeEquivalentTo(newEntityWithSameId);
+        Repository.Items.Contains(originalEntity).Should().BeFalse();
     }
 
     [Test]

@@ -17,11 +17,9 @@ public class Update : RepositoryTestBase
         Helper.ClearChangeTracker();
         var result = await Repository.GetAsync(newEntityWithSameId.Id);
 
-        using (new AssertionScope())
-        {
-            result.Should().BeEquivalentTo(newEntityWithSameId);
-            Repository.Context.Set<TestEntity>().ToList().Contains(originalEntity).Should().BeFalse();
-        }
+        using var scope = new AssertionScope();
+        result.Should().BeEquivalentTo(newEntityWithSameId);
+        Repository.Context.Set<TestEntity>().ToList().Contains(originalEntity).Should().BeFalse();
     }
 
     [Test]

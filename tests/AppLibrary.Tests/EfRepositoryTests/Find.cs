@@ -57,11 +57,9 @@ public class Find : RepositoryTestBase
         var resultDifferentCase = await Repository.FindAsync(e =>
             e.Note.ToUpper().Equals(entity.Note.ToLower()));
 
-        using (new AssertionScope())
-        {
-            resultSameCase.Should().BeEquivalentTo(entity);
-            resultDifferentCase.Should().BeNull();
-        }
+        using var scope = new AssertionScope();
+        resultSameCase.Should().BeEquivalentTo(entity);
+        resultDifferentCase.Should().BeNull();
     }
 
     [Test]
@@ -79,10 +77,8 @@ public class Find : RepositoryTestBase
         var resultDifferentCase = await repository.FindAsync(e =>
             e.Note.ToUpper().Equals(entity.Note.ToLower()));
 
-        using (new AssertionScope())
-        {
-            resultSameCase.Should().BeEquivalentTo(entity);
-            resultDifferentCase.Should().BeEquivalentTo(entity);
-        }
+        using var scope = new AssertionScope();
+        resultSameCase.Should().BeEquivalentTo(entity);
+        resultDifferentCase.Should().BeEquivalentTo(entity);
     }
 }

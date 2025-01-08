@@ -52,10 +52,8 @@ public class Find : RepositoryTestBase
         var resultCaseSensitive = await Repository.FindAsync(e =>
             e.Note.ToUpperInvariant().Equals(entity.Note.ToLowerInvariant(), StringComparison.CurrentCulture));
 
-        using (new AssertionScope())
-        {
-            resultIgnoreCase.Should().BeEquivalentTo(entity);
-            resultCaseSensitive.Should().BeNull();
-        }
+        using var scope = new AssertionScope();
+        resultIgnoreCase.Should().BeEquivalentTo(entity);
+        resultCaseSensitive.Should().BeNull();
     }
 }
