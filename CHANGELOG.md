@@ -1,6 +1,6 @@
 # Changelog
 
-## [Next] - Unreleased
+## [5.4.0] - 2025-01-09
 
 - Added `GetListAsync` overloads that allow you to specify the ordering of the returned list.
 - Added `GetPagedListAsync` overloads that allow you to specify what navigation properties to include (when using the Entity Framework repository).
@@ -105,6 +105,7 @@
 
 _Initial release._
 
+[5.4.0]: https://github.com/gaepdit/app-library/releases/tag/v5.4.0
 [5.3.1]: https://github.com/gaepdit/app-library/releases/tag/v5.3.1
 [5.3.0]: https://github.com/gaepdit/app-library/releases/tag/v5.3.0
 [5.2.1]: https://github.com/gaepdit/app-library/releases/tag/v5.2.1
