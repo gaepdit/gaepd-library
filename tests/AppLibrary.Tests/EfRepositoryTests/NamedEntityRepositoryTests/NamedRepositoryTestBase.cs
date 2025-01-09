@@ -2,9 +2,9 @@
 
 public class NamedRepositoryTestBase
 {
-    protected EfRepositoryTestHelper Helper = default!;
+    protected EfRepositoryTestHelper Helper;
 
-    protected TestNamedEntityRepository Repository = default!;
+    protected TestNamedEntityRepository Repository;
 
     [SetUp]
     public void SetUp()

@@ -6,7 +6,7 @@ namespace AppLibrary.Tests.LocalRepositoryTests;
 public class Update : RepositoryTestBase
 {
     [Test]
-    public async Task UpdateAsync_UpdateExistingItem_ShouldReflectChanges()
+    public async Task Update_UpdateExistingItem_ShouldReflectChanges()
     {
         var originalEntity = Repository.Items.First();
         var newEntityWithSameId = new TestEntity { Id = originalEntity.Id, Note = "Xyz" };
@@ -15,15 +15,13 @@ public class Update : RepositoryTestBase
 
         var result = await Repository.GetAsync(newEntityWithSameId.Id);
 
-        using (new AssertionScope())
-        {
-            result.Should().BeEquivalentTo(newEntityWithSameId);
-            Repository.Items.Contains(originalEntity).Should().BeFalse();
-        }
+        using var scope = new AssertionScope();
+        result.Should().BeEquivalentTo(newEntityWithSameId);
+        Repository.Items.Contains(originalEntity).Should().BeFalse();
     }
 
     [Test]
-    public void UpdateAsync_WhenItemDoesNotExist_Throws()
+    public void Update_WhenItemDoesNotExist_Throws()
     {
         var item = new TestEntity { Id = Guid.NewGuid() };
 

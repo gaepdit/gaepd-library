@@ -3,7 +3,7 @@
 public class GetList : RepositoryTestBase
 {
     [Test]
-    public async Task GetListAsync_ReturnsAllEntities()
+    public async Task GetList_ReturnsAllEntities()
     {
         var result = await Repository.GetListAsync();
 
@@ -21,7 +21,7 @@ public class GetList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
+    public async Task GetList_UsingPredicate_ReturnsCorrectEntities()
     {
         var skipId = Repository.Items.First().Id;
         var expected = Repository.Items.Where(entity => entity.Id != skipId);
@@ -32,7 +32,7 @@ public class GetList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
+    public async Task GetList_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
         var result = await Repository.GetListAsync(entity => entity.Id == Guid.Empty);
 

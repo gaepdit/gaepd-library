@@ -7,8 +7,8 @@ namespace AppLibrary.Tests.EntityTests;
 
 public class NamedEntityManagerTests
 {
-    private INamedEntityRepository<TestNamedEntity> _repositoryMock = default!;
-    private TestNamedEntityManager _manager = default!;
+    private INamedEntityRepository<TestNamedEntity> _repositoryMock;
+    private TestNamedEntityManager _manager;
 
     [SetUp]
     public void Setup()
@@ -21,7 +21,7 @@ public class NamedEntityManagerTests
     public async Task TearDown() => await _repositoryMock.DisposeAsync();
 
     [Test]
-    public async Task CreateAsync_ShouldReturnEntityWithGivenName()
+    public async Task Create_ShouldReturnEntityWithGivenName()
     {
         var result = await _manager.CreateAsync("Test");
 
@@ -29,7 +29,7 @@ public class NamedEntityManagerTests
     }
 
     [Test]
-    public async Task ChangeNameAsync_ShouldChangeEntityName()
+    public async Task ChangeName_ShouldChangeEntityName()
     {
         var entity = new TestNamedEntity(Guid.NewGuid(), "OldName");
 

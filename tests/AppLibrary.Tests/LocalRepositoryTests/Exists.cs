@@ -3,7 +3,7 @@
 public class Exists : RepositoryTestBase
 {
     [Test]
-    public async Task ExistsAsync_WhenEntityExists_ReturnsTrue()
+    public async Task Exists_WhenEntityExists_ReturnsTrue()
     {
         var entity = Repository.Items.First();
 
@@ -13,7 +13,7 @@ public class Exists : RepositoryTestBase
     }
 
     [Test]
-    public async Task ExistsAsync_WhenEntityDoesNotExist_ReturnsFalse()
+    public async Task Exists_WhenEntityDoesNotExist_ReturnsFalse()
     {
         var id = Guid.NewGuid();
 
@@ -23,7 +23,7 @@ public class Exists : RepositoryTestBase
     }
 
     [Test]
-    public async Task ExistsAsync_UsingPredicate_WhenEntityExists_ReturnsTrue()
+    public async Task Exists_UsingPredicate_WhenEntityExists_ReturnsTrue()
     {
         var entity = Repository.Items.First();
 
@@ -33,7 +33,7 @@ public class Exists : RepositoryTestBase
     }
 
     [Test]
-    public async Task ExistsAsync_UsingPredicate_WhenEntityDoesNotExist_ReturnsFall()
+    public async Task Exists_UsingPredicate_WhenEntityDoesNotExist_ReturnsFall()
     {
         var result = await Repository.ExistsAsync(e => e.Id == Guid.NewGuid());
 

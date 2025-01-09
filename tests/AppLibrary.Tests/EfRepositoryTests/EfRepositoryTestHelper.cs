@@ -28,7 +28,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
 public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
 {
-    private AppDbContext Context { get; set; } = default!;
+    private AppDbContext Context { get; set; } = null!;
     private readonly DbContextOptions<AppDbContext> _options;
     private readonly AppDbContext _context;
 
@@ -131,6 +131,7 @@ public sealed class EfRepositoryTestHelper : IDisposable, IAsyncDisposable
                 {
                     new() { Id = Guid.NewGuid(), Note = "Abc" },
                     new() { Id = Guid.NewGuid(), Note = "Def" },
+                    new() { Id = Guid.NewGuid(), Note = "Ghi" },
                 });
             _context.SaveChanges();
         }

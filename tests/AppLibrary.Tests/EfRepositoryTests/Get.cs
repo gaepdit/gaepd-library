@@ -6,7 +6,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class Get : RepositoryTestBase
 {
     [Test]
-    public void GetAsync_WhenEntityDoesNotExist_ThrowsException()
+    public void Get_WhenEntityDoesNotExist_ThrowsException()
     {
         var id = Guid.NewGuid();
 
@@ -17,7 +17,7 @@ public class Get : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetAsync_WhenEntityExists_ReturnsEntity()
+    public async Task Get_WhenEntityExists_ReturnsEntity()
     {
         var entity = Repository.Context.Set<TestEntity>().First();
 

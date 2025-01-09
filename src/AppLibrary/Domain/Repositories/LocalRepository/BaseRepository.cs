@@ -47,19 +47,35 @@ public abstract class BaseRepository<TEntity, TKey>(IEnumerable<TEntity> items)
     public Task<IReadOnlyCollection<TEntity>> GetListAsync(CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.ToList());
 
+    public Task<IReadOnlyCollection<TEntity>> GetListAsync(string ordering, CancellationToken token = default) =>
+        Task.FromResult<IReadOnlyCollection<TEntity>>(Items.AsQueryable().OrderByIf(ordering).ToList());
+
     public Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate,
         CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.Where(predicate.Compile()).ToList());
+
+    public Task<IReadOnlyCollection<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, string ordering,
+        CancellationToken token = default) =>
+        Task.FromResult<IReadOnlyCollection<TEntity>>(Items.Where(predicate.Compile()).AsQueryable()
+            .OrderByIf(ordering).ToList());
 
     public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
         PaginatedRequest paging, CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.Where(predicate.Compile()).AsQueryable()
             .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToList());
 
+    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate,
+        PaginatedRequest paging, string[] includeProperties, CancellationToken token = default) =>
+        GetPagedListAsync(predicate, paging, token);
+
     public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(PaginatedRequest paging,
         CancellationToken token = default) =>
         Task.FromResult<IReadOnlyCollection<TEntity>>(Items.AsQueryable()
             .OrderByIf(paging.Sorting).Skip(paging.Skip).Take(paging.Take).ToList());
+
+    public Task<IReadOnlyCollection<TEntity>> GetPagedListAsync(PaginatedRequest paging, string[] includeProperties,
+        CancellationToken token = default) =>
+        GetPagedListAsync(paging, token);
 
     public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default) =>
         Task.FromResult(Items.Count(predicate.Compile()));

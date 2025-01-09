@@ -2,10 +2,10 @@
 
 namespace AppLibrary.Tests.EfRepositoryTests.IncludePropertiesTests;
 
-public class FindIncludeProperties : NavigationPropertiesRepositoryTestBase
+public class FindIncludeProperties : NavigationPropertiesTestBase
 {
     [Test]
-    public async Task FindAsync_WhenEntityDoesNotExist_ReturnsNull()
+    public async Task Find_WhenEntityDoesNotExist_ReturnsNull()
     {
         // Arrange
         var id = Guid.NewGuid();
@@ -24,8 +24,8 @@ public class FindIncludeProperties : NavigationPropertiesRepositoryTestBase
         var expected = NavigationPropertyEntities[0];
 
         // Act
-        var result = await Repository.FindAsync(expected.Id,
-            includeProperties: [nameof(TestEntityWithNavigationProperties.TextRecords)]);
+        const string textRecordsName = nameof(TestEntityWithNavigationProperties.TextRecords);
+        var result = await Repository.FindAsync(expected.Id, includeProperties: [textRecordsName]);
 
         // Assert
         using var scope = new AssertionScope();

@@ -5,7 +5,7 @@ namespace AppLibrary.Tests.EfRepositoryTests;
 public class GetList : RepositoryTestBase
 {
     [Test]
-    public async Task GetListAsync_ReturnsAllEntities()
+    public async Task GetList_ReturnsAllEntities()
     {
         var items = Repository.Context.Set<TestEntity>();
 
@@ -25,7 +25,7 @@ public class GetList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetListAsync_UsingPredicate_ReturnsCorrectEntities()
+    public async Task GetList_UsingPredicate_ReturnsCorrectEntities()
     {
         var skipId = Repository.Context.Set<TestEntity>().First().Id;
         var expected = Repository.Context.Set<TestEntity>().Where(entity => entity.Id != skipId);
@@ -36,9 +36,9 @@ public class GetList : RepositoryTestBase
     }
 
     [Test]
-    public async Task GetListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
+    public async Task GetList_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
-        var result = await Repository.GetListAsync(e => e.Id == Guid.Empty);
+        var result = await Repository.GetListAsync(entity => entity.Id == Guid.Empty);
 
         result.Should().BeEmpty();
     }

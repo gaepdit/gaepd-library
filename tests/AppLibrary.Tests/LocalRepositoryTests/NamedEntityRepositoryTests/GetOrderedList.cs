@@ -3,7 +3,7 @@
 public class GetOrderedList : NamedRepositoryTestBase
 {
     [Test]
-    public async Task GetOrderedListAsync_ReturnsAllEntities()
+    public async Task GetOrderedList_ReturnsAllEntities()
     {
         var result = await NamedEntityRepository.GetOrderedListAsync();
 
@@ -21,7 +21,7 @@ public class GetOrderedList : NamedRepositoryTestBase
     }
 
     [Test]
-    public async Task GetOrderedListAsync_UsingPredicate_ReturnsCorrectEntities()
+    public async Task GetOrderedList_UsingPredicate_ReturnsCorrectEntities()
     {
         var expected = NamedEntityRepository.Items
             .Where(entity => entity.Name.Contains(TestNamedEntityRepository.UsefulSuffix))
@@ -33,7 +33,7 @@ public class GetOrderedList : NamedRepositoryTestBase
     }
 
     [Test]
-    public async Task GetOrderedListAsync_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
+    public async Task GetOrderedList_UsingPredicate_WhenNoItemsMatch_ReturnsEmptyList()
     {
         var result = await NamedEntityRepository.GetOrderedListAsync(entity => entity.Id == Guid.Empty);
 
