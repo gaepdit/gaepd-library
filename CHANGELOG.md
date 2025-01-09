@@ -1,5 +1,11 @@
 # Changelog
 
+## [Next] - Unreleased
+
+- Added `GetListAsync` overloads that allow you to specify the ordering of the returned list.
+- Added `GetPagedListAsync` overloads that allow you to specify what navigation properties to include (when using the Entity Framework repository).
+- The parent type of `EntityNotFoundException` has been changed to `KeyNotFoundException` (instead of `Exception`).
+
 ## [5.3.1] - 2024-09-11
 
 - Fixed the Entity Framework repository's `GetAsync` method to enable change tracking for the returned entity.
@@ -99,6 +105,7 @@
 
 _Initial release._
 
+[5.3.1]: https://github.com/gaepdit/app-library/releases/tag/v5.3.1
 [5.3.0]: https://github.com/gaepdit/app-library/releases/tag/v5.3.0
 [5.2.1]: https://github.com/gaepdit/app-library/releases/tag/v5.2.1
 [5.2.0]: https://github.com/gaepdit/app-library/releases/tag/v5.2.0
