@@ -68,7 +68,7 @@ public class GetPagedList : RepositoryTestBase
     public async Task GivenDescSorting_ReturnsDescSortedList()
     {
         // Arrange
-        var items = Repository.Items.OrderBy(entity => entity.Note).ToList();
+        var items = Repository.Items.OrderByDescending(entity => entity.Note).ToList();
         var itemsCount = items.Count;
         var paging = new PaginatedRequest(1, itemsCount, "Note desc");
 
