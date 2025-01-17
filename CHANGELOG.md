@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Updated to .NET 9.
+
 ## [5.4.0] - 2025-01-09
 
 - Added `GetListAsync` overloads that allow you to specify the ordering of the returned list.
