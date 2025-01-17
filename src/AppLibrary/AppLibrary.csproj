@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <Version>5.4.0</Version>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>GaEpd.AppLibrary</RootNamespace>
@@ -11,7 +11,7 @@
         <Company>Georgia EPD</Company>
         <Title>Georgia EPD-IT Core App Library</Title>
         <Description>Core app library with entities, repositories, and more</Description>
-        <Copyright>Copyright (c) State of Georgia 2024</Copyright>
+        <Copyright>Copyright (c) State of Georgia 2025</Copyright>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/gaepdit/app-library</PackageProjectUrl>
         <PackageIcon>epd-icon-tile.png</PackageIcon>
