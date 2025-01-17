@@ -3,8 +3,8 @@
     <PropertyGroup>
         <Version>5.4.0</Version>
         <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
         <RootNamespace>GaEpd.AppLibrary</RootNamespace>
         <PackageId>GaEpd.AppLibrary</PackageId>
         <Authors>Douglas Waldron</Authors>
